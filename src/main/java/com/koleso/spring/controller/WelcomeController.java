@@ -3,12 +3,22 @@ package com.koleso.spring.controller;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
+
+import java.util.List;
 
 @Controller
+@RequestMapping("/players")
 public class WelcomeController {
 
-    @RequestMapping( method = RequestMethod.GET, value = "/")
-    public String welcome() {
-        return "index";
+    //PesronService service;
+
+
+    @RequestMapping( method = RequestMethod.GET)
+    public ModelAndView welcome(ModelAndView modelAndView) {
+        modelAndView.addObject("players", List.of());
+        modelAndView.addObject("greetMess", "asdkjlfhasjkfdhjakshdjkashdkjas");
+        modelAndView.setViewName("index");
+        return modelAndView;
     }
 }
