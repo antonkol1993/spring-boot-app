@@ -13,7 +13,6 @@ import org.springframework.web.context.WebApplicationContext;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@With
 @Component
 public class Player {
 

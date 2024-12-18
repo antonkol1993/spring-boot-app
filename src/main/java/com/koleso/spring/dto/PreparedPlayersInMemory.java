@@ -8,11 +8,37 @@ import org.springframework.stereotype.Component;
 
 import java.util.List;
 
-@Configuration
-@ComponentScan(basePackages = "com.koleso.spring")
+
 public class PreparedPlayersInMemory {
 
-//    @Bean
+
+
+
+//                new Player().withName("Rois")
+//                new Player().withName("Hleb")
+//                new Player().withName("Mironchyk")
+//                new Player().withName("Bensema")
+//                new Player().withName("Lukaku")
+//                new Player().withName("Donnarumma")
+//                new Player().withName("Narut")
+
+
+    public static List<Player> getLocalePlayers() {
+        Player player1 = new Player();
+        player1.setName("Messi");
+        Player player2 = new Player();
+        player2.setName("Hleb");
+        Player player3 = new Player();
+        player3.setName("Mironchyk");
+        return List.of(
+            player1,player2,player3
+
+        );
+    }
+
+
+
+    //    @Bean
 //    @Scope(value = "prototype")
 //    public Player playerMessi() {
 //        Player player = new Player();
@@ -26,19 +52,4 @@ public class PreparedPlayersInMemory {
 ////        player.setName("Rois");
 //        return player;
 //    }
-
-    @Bean
-    public static List<Player> getLocalePlayers() {
-        return List.of(
-                new Player().withName("Messi").withAge(35).withCountry("Argentina").withPosition("Forward").withRating("91"),
-                new Player().withName("Rois").withAge(34).withCountry("Germany").withPosition("Midfielder").withRating("59"),
-                new Player().withName("Hleb").withAge(38).withCountry("Belarus").withPosition("Midfielder").withRating("47"),
-                new Player().withName("Mironchyk").withAge(29).withCountry("Russia").withPosition("Forward").withRating("53"),
-                new Player().withName("Bensema").withAge(35).withCountry("France").withPosition("Forward").withRating("69"),
-                new Player().withName("Lukaku").withAge(33).withCountry("Belgium").withPosition("Forward").withRating("57"),
-                new Player().withName("Donnarumma").withAge(35).withCountry("Italy").withPosition("Goalkeeper").withRating("83"),
-                new Player().withName("Narut").withAge(23).withCountry("USA").withPosition("Forward").withRating("96")
-
-        );
-    }
 }
