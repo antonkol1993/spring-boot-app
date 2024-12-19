@@ -12,27 +12,27 @@ import org.springframework.web.context.WebApplicationContext;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Entity
+//@Entity
 @Component
 public class Player {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(unique = true)
+//    @Id
+//    @GeneratedValue(strategy = GenerationType.IDENTITY)
+//    @Column(unique = true)
     private Integer id;
 
-    @Column(nullable = false)
+//    @Column(nullable = false)
     private String name;
 
-    @Column(nullable = false)
+//    @Column(nullable = false)
     private Integer age;
 
-    @Column()
+//    @Column()
     private String country;
 
-    @Column()
+//    @Column()
     private String position;
 
-    @Column()
+//    @Column()
     private String rating;
 }

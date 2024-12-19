@@ -8,33 +8,29 @@ import org.springframework.stereotype.Component;
 
 import java.util.List;
 
-
+@ComponentScan("com.koleso.spring")
+@Component
 public class PreparedPlayersInMemory {
 
-
-
-
-//                new Player().withName("Rois")
-//                new Player().withName("Hleb")
-//                new Player().withName("Mironchyk")
-//                new Player().withName("Bensema")
-//                new Player().withName("Lukaku")
-//                new Player().withName("Donnarumma")
-//                new Player().withName("Narut")
-
-
-    public static List<Player> getLocalePlayers() {
+    @Bean
+    public static Player getplayer1(){
         Player player1 = new Player();
-        player1.setName("Messi");
-        Player player2 = new Player();
-        player2.setName("Hleb");
-        Player player3 = new Player();
-        player3.setName("Mironchyk");
-        return List.of(
-            player1,player2,player3
-
-        );
+                player1.setName("Messi");
+        return player1;
     }
+
+//    public static List<Player> getLocalePlayers() {
+//        Player player1 = new Player();
+//        player1.setName("Messi");
+//        Player player2 = new Player();
+//        player2.setName("Hleb");
+//        Player player3 = new Player();
+//        player3.setName("Mironchyk");
+//        return List.of(
+//            player1,player2,player3
+//
+//        );
+//    }
 
 
 

@@ -17,7 +17,8 @@ public class WelcomeController {
 
     @RequestMapping( method = RequestMethod.GET)
     public ModelAndView welcome(ModelAndView modelAndView) {
-        modelAndView.addObject("players", PreparedPlayersInMemory.getLocalePlayers());
+
+        modelAndView.addObject("players", PreparedPlayersInMemory.getplayer1());
         modelAndView.addObject("greetMess", "asdkjlfhasjkfdhjakshdjkashdkjas");
         modelAndView.setViewName("index");
         return modelAndView;
