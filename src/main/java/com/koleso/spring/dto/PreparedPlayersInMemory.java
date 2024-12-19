@@ -2,22 +2,21 @@ package com.koleso.spring.dto;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
-import java.util.List;
 
 @ComponentScan("com.koleso.spring")
 @Component
 public class PreparedPlayersInMemory {
 
     @Bean
-    public static Player getplayer1(){
-        Player player1 = new Player();
-                player1.setName("Messi");
+    public Player getplayer1() {
+        Player player1 = new Player(2, "Messi", 35, "Argentina", "Attack", "72");
         return player1;
     }
+
+
+    //todo to example, what I did
 
 //    public static List<Player> getLocalePlayers() {
 //        Player player1 = new Player();
@@ -31,7 +30,6 @@ public class PreparedPlayersInMemory {
 //
 //        );
 //    }
-
 
 
     //    @Bean
