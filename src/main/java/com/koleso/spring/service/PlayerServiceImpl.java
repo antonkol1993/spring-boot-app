@@ -3,6 +3,8 @@ package com.koleso.spring.service;
 import com.koleso.spring.dto.Player;
 import com.koleso.spring.repository.PlayerRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -15,6 +17,9 @@ public class PlayerServiceImpl implements PlayerService {
 
     @Override
     public List<Player> getPlayers() {
+//        playerRepository.findByAgeLessThanEqualAndPosition(40, "forward")
+//                .ifPresent(players -> players.forEach(System.out::println));
+//        playerRepository.findAll(PageRequest.of(5, 30, Sort.Direction.ASC, "age"));
         return playerRepository.findAll();
     }
 
