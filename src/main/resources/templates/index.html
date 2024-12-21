@@ -3,13 +3,13 @@
 <h2>Hello World!</h2>
 <p th:text="${greetMess} ?: 'Antoshka'"></p>
 <table>
-    <tr th:each="student: ${players}">
-        <td th:text="${student.id}" />
-        <td th:text="${student.name}" />
-        <td th:text="${student.age}" />
-        <td th:text="${student.country}" />
-        <td th:text="${student.position}" />
-        <td th:text="${student.rating}" />
+    <tr th:each="player: ${players}">
+        <td th:text="${player.id}" />
+        <td th:text="${player.name}" />
+        <td th:text="${player.age}" />
+        <td th:text="${player.country}" />
+        <td th:text="${player.position}" />
+        <td th:text="${player.rating}" />
     </tr>
 </table>
 </body>

@@ -1,10 +1,7 @@
 package com.koleso.spring.controller;
 
-import com.koleso.spring.dto.Player;
 import com.koleso.spring.services.PlayerService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,10 +14,7 @@ import org.springframework.web.servlet.ModelAndView;
 @RequiredArgsConstructor
 public class WelcomeController {
 
-//    @Autowired
     private final PlayerService playerService;
-
-    AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext();
 
     @RequestMapping(method = RequestMethod.GET)
     public ModelAndView welcome(ModelAndView modelAndView) {
