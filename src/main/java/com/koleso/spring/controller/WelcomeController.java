@@ -1,8 +1,7 @@
 package com.koleso.spring.controller;
 
-import com.koleso.spring.services.PlayerService;
+import com.koleso.spring.service.PlayerService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;

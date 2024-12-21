@@ -1,21 +1,21 @@
-package com.koleso.spring.services;
+package com.koleso.spring.service;
 
 import com.koleso.spring.dto.Player;
-import com.koleso.spring.dto.PreparedPlayersInMemory;
-import org.springframework.beans.factory.config.ConfigurableBeanFactory;
-import org.springframework.context.annotation.Scope;
-import org.springframework.context.annotation.ScopedProxyMode;
+import com.koleso.spring.repository.PlayerRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
-@Scope(value = ConfigurableBeanFactory.SCOPE_SINGLETON, proxyMode = ScopedProxyMode.INTERFACES)
+@RequiredArgsConstructor
 public class PlayerServiceImpl implements PlayerService {
+
+    private final PlayerRepository playerRepository;
 
     @Override
     public List<Player> getPlayers() {
-        return PreparedPlayersInMemory.getPlayers();
+        return playerRepository.findAll();
     }
 
     @Override

@@ -9,14 +9,17 @@ spring:
     hikari:
       driver-class-name: com.mysql.cj.jdbc.Driver #${spring.datasource.driver-class-name}
       jdbc-url: ${spring.datasource.url}
-      password: ${spring.datasource.username}
-      username: ${spring.datasource.password}
+      username: ${spring.datasource.username}
+      password: ${spring.datasource.password}
   liquibase:
     enabled: false
   jpa:
     properties:
       hibernate:
-        dialect: org.hibernate.dialect.MySQL8Dialect
+        dialect: org.hibernate.dialect.MySQLDialect
+        hbm2ddl:
+          auto: create
+        show_sql: true
 
 
 
