@@ -1,5 +1,6 @@
 package com.koleso.spring.dto;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -29,4 +30,5 @@ public class Player {
     private String country;
     private String position;
     private String rating;
+    private Integer team;
 }

@@ -12,13 +12,14 @@ spring:
       username: ${spring.datasource.username}
       password: ${spring.datasource.password}
   liquibase:
-    enabled: false
+    change-log: classpath:db/changelog/liquibase-changeLog.yaml
+#    enabled: false
   jpa:
     properties:
       hibernate:
         dialect: org.hibernate.dialect.MySQLDialect
         hbm2ddl:
-          auto: create
+          auto: validate
         show_sql: true
 
 
