@@ -1,10 +1,7 @@
 package com.koleso.spring;
 
-import com.koleso.spring.dto.Player;
-import com.koleso.spring.dto.PreparedPlayersInMemory;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 @SpringBootApplication
 public class SpringBootAppApplication {

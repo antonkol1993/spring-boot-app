@@ -1,6 +1,9 @@
 package com.koleso.spring.controller;
 
 import com.koleso.spring.dto.Player;
+import com.koleso.spring.services.PlayerService;
+import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.stereotype.Controller;
@@ -11,21 +14,18 @@ import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 @RequestMapping("/players")
+@RequiredArgsConstructor
 public class WelcomeController {
 
-    private final Player getplayer1;
-    //PesronService service;
+//    @Autowired
+    private final PlayerService playerService;
+
     AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext();
-
-    public WelcomeController(@Qualifier("getplayer1") Player getplayer1) {
-        this.getplayer1 = getplayer1;
-    }
-
 
     @RequestMapping(method = RequestMethod.GET)
     public ModelAndView welcome(ModelAndView modelAndView) {
 
-        modelAndView.addObject("players", getplayer1);
+        modelAndView.addObject("players", playerService.getPlayers());
         modelAndView.addObject("greetMess", "asdkjlfhasjkfdhjakshdjkashdkjas");
         modelAndView.setViewName("index");
         return modelAndView;

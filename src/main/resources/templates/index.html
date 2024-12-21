@@ -2,6 +2,15 @@
 <body>
 <h2>Hello World!</h2>
 <p th:text="${greetMess} ?: 'Antoshka'"></p>
-<p th:text="${players} ?: 'Antoshka'"></p>
+<table>
+    <tr th:each="student: ${players}">
+        <td th:text="${student.id}" />
+        <td th:text="${student.name}" />
+        <td th:text="${student.age}" />
+        <td th:text="${student.country}" />
+        <td th:text="${student.position}" />
+        <td th:text="${student.rating}" />
+    </tr>
+</table>
 </body>
 </html>

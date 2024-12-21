@@ -1,6 +1,7 @@
 package com.koleso.spring.services;
 
 import com.koleso.spring.dto.Player;
+import com.koleso.spring.dto.PreparedPlayersInMemory;
 import org.springframework.beans.factory.config.ConfigurableBeanFactory;
 import org.springframework.context.annotation.Scope;
 import org.springframework.context.annotation.ScopedProxyMode;
@@ -14,26 +15,26 @@ public class PlayerServiceImpl implements PlayerService {
 
     @Override
     public List<Player> getPlayers() {
-        return List.of();
+        return PreparedPlayersInMemory.getPlayers();
     }
 
     @Override
-    public Player getPlayer() {
+    public Player getPlayer(Long id) {
         return null;
     }
 
     @Override
-    public void addPlayers() {
+    public void addPlayer(Player player) {
 
     }
 
     @Override
-    public void removePlayers() {
+    public void removePlayer(Long id) {
 
     }
 
     @Override
-    public void editPlayers() {
+    public void updatePlayer(Player player) {
 
     }
 }
