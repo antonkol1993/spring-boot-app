@@ -16,11 +16,10 @@ public class WelcomeController {
     private final PlayerService playerService;
 
     @RequestMapping(method = RequestMethod.GET)
-    public ModelAndView welcome(ModelAndView modelAndView) {
+    public ModelAndView getPlayers(ModelAndView modelAndView) {
 
         modelAndView.addObject("players", playerService.getPlayers());
-        modelAndView.addObject("greetMess", "asdkjlfhasjkfdhjakshdjkashdkjas");
-        modelAndView.setViewName("index");
+        modelAndView.setViewName("getPlayers");
         return modelAndView;
     }
 }

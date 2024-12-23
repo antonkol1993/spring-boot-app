@@ -1,0 +1,67 @@
+<html lang="aria-atomic">
+
+<h2>Players</h2>
+<head>
+    <style>
+        table {
+            font-family: arial, sans-serif;
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        td, th {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+        }
+
+        tr:nth-child(even) {
+            background-color: #dddddd;
+        }
+
+        .add_submit {
+            width: 250px;
+            height: 40px;
+            background: burlywood;
+            font-size: large;
+            font-weight: bold;
+        }
+
+        .delete_submit {
+            background: aquamarine;
+            font-weight: bold;
+        }
+
+        .to_form_submit {
+            background: darkseagreen;
+            font-weight: bold;
+        }
+
+        .add_href {
+            font-weight: bold;
+            font-size: large;
+        }
+    </style>
+    <title>Players list</title>
+</head>
+<body>
+<table>
+    <tr>
+        <th>Id</th>
+        <th>Player</th>
+        <th>Age</th>
+        <th>Country</th>
+        <th>Position</th>
+        <th>Rating</th>
+    </tr>
+    <tr th:each="player: ${players}">
+        <td th:text="${player.id}"></td>
+        <td th:text="${player.name}"></td>
+        <td th:text="${player.age}"></td>
+        <td th:text="${player.country}"></td>
+        <td th:text="${player.position}"></td>
+        <td th:text="${player.rating}"></td>
+    </tr>
+</table>
+</body>
+</html>
