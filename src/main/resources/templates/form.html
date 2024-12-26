@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<form th:action="@{/players/add}" method="post">
+Name:<input type="text" id="name" name="name" th:value="${players.name}" />
+Age:<input type="text" id="age" name="age" th:value="${players.age}" />
+Country:<input type="text" id="country" name="country" th:value="${players.country}" />
+Position:<input type="text" id="position" name="position" th:value="${players.position}" />
+Rating:<input type="text" id="rating" name="rating" th:value="${players.rating}" />
+Team:<input type="text" id="team" name="team" th:value="${players.team}" />
+    <input type="hidden" th:value="${players.id}">
+    <input name="input" type="submit">
+</form>
+
+</body>
+</html>
