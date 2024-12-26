@@ -40,7 +40,8 @@ public class WelcomeController {
     }
     @PostMapping("/add")
     public ModelAndView addPlayerPost(ModelAndView modelAndView) {
-
+//        modelAndView.addObject("players", playerService.getPlayers());
+//        modelAndView.setViewName("getPlayers");
         return modelAndView;
     }
 
