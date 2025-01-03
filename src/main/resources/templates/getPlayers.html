@@ -47,6 +47,7 @@
             background: aquamarine;
             font-weight: bold;
         }
+
         .edit_submit {
             background: bisque;
             font-weight: bold;
@@ -89,13 +90,13 @@
         <td th:text="${player.rating}"></td>
         <td th:text="${player.team}"></td>
 
-        <td> <a class="delete_submit"
-                style="color: darkred"
-                href="#"
-                th:href="@{'players/remove/'(id=${player.id})}"
-                th:text="Remove"></a>
+        <td><a class="delete_submit"
+               style="color: darkred"
+               href="#"
+               th:href="@{'players/remove/'(id=${player.id})}"
+               th:text="Remove"></a>
 
-            <a class="edit_submit_submit"
+            <a class="edit_submit"
                style="color: lightcoral"
                href="#"
                th:href="@{'players/update/'(id=${player.id})}"

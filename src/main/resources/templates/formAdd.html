@@ -8,16 +8,18 @@
 
 <div class="container mt-5">
     <h1>Add a new player</h1>
-<form th:action="@{/players/add}" th:modelAttribute="player" method="post">
-    Name:       <input type="text"   name="name"        th:value="${players.name}" class="form-control"/> <br>
-    Age:        <input type="number" name="age"         th:value="${players.age}" class="form-control"/> <br>
-    Country:    <input type="text"   name="country"     th:value="${players.country}" class="form-control"/> <br>
-    Position:   <input type="text"   name="position"    th:value="${players.position}" class="form-control"/> <br>
-    Rating:     <input type="number" name="rating"      th:value="${players.rating}" class="form-control"/> <br>
-    Team:       <input type="number"   name="team"        th:value="${players.team}" class="form-control"/> <br>
-<!--    <input type="hidden" name="id" th:value="${players.id}">-->
-    <button type="submit" class="btn btn-success">CREATE</button>
-</form>
+    <form th:action="@{/players/add}" th:modelAttribute="player" method="post">
+        <label>
+            Name: <input type="text" name="name" th:value="${players.name}" class="form-control"/> <br>
+            Age: <input type="number" name="age" th:value="${players.age}" class="form-control"/> <br>
+            Country: <input type="text" name="country" th:value="${players.country}" class="form-control"/> <br>
+            Position: <input type="text" name="position" th:value="${players.position}" class="form-control"/> <br>
+            Rating: <input type="number" name="rating" th:value="${players.rating}" class="form-control"/> <br>
+            Team: <input type="number" name="team" th:value="${players.team}" class="form-control"/> <br>
+        </label>
+        <!--    <input type="hidden" name="id" th:value="${players.id}">-->
+        <button type="submit" class="btn btn-success">CREATE</button>
+    </form>
 </div>
 
 </body>

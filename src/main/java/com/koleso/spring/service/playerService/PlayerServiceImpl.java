@@ -6,7 +6,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -16,9 +15,6 @@ public class PlayerServiceImpl implements PlayerService {
 
     @Override
     public List<Player> getPlayers() {
-//        playerRepository.findByAgeLessThanEqualAndPosition(40, "forward")
-//                .ifPresent(players -> players.forEach(System.out::println));
-//        playerRepository.findAll(PageRequest.of(5, 30, Sort.Direction.ASC, "age"));
         return playerRepository.findAll();
     }
 
@@ -34,7 +30,7 @@ public class PlayerServiceImpl implements PlayerService {
 
     @Override
     public void removePlayer(Long id) {
-    playerRepository.deleteById(id);
+        playerRepository.deleteById(id);
     }
 
     @Override

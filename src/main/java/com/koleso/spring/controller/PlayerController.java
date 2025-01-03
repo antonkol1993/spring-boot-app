@@ -50,14 +50,15 @@ public class PlayerController {
     }
 
     @GetMapping("get/*")
-    public ModelAndView getPlayerById(@RequestParam(value = "param")String id, ModelAndView modelAndView) {
+    public ModelAndView getPlayerById(@RequestParam(value = "param") String id, ModelAndView modelAndView) {
         Long playerId = Long.valueOf(id);
         modelAndView.addObject("player", playerService.getPlayerById(playerId));
         modelAndView.setViewName("showPlayer");
         return modelAndView;
     }
+
     @GetMapping("remove/*")
-    public ModelAndView removePlayer(@RequestParam(value = "id")String id, ModelAndView modelAndView) {
+    public ModelAndView removePlayer(@RequestParam(value = "id") String id, ModelAndView modelAndView) {
         Long playerId = Long.valueOf(id);
         playerService.removePlayer(playerId);
         modelAndView.addObject("players", playerService.getPlayers());
@@ -74,8 +75,6 @@ public class PlayerController {
         modelAndView.setViewName("formUpdate");
         return modelAndView;
     }
-
-
 
 
     @PostMapping("update/*")
@@ -97,8 +96,6 @@ public class PlayerController {
         modelAndView.setViewName("redirect:/players");
         return modelAndView;
     }
-
-
 
 
 }
