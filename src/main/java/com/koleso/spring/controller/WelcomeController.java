@@ -48,9 +48,12 @@ public class WelcomeController {
         return modelAndView;
     }
 
-    @GetMapping("/get/*")
-    public ModelAndView showPlayer(@RequestParam Long id, ModelAndView modelAndView) {
-        modelAndView.addObject("player", playerService.getPlayerById(id));
+    @GetMapping("/*")
+    public ModelAndView getPlayerById(@RequestParam(value = "param")String id, ModelAndView modelAndView) {
+
+        Long playerId = Long.valueOf(id);
+
+        modelAndView.addObject("player", playerService.getPlayerById(playerId));
         modelAndView.setViewName("showPlayer");
         return modelAndView;
     }

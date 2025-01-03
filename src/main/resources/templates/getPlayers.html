@@ -76,13 +76,10 @@
         <td><a class="add_href"
                style="color: darkslategray"
                href="#"
-<!--               th:href="@{'players/get/'} + ${player.id}"-->
-               th:href="@{'players/add'}"
-               th:text="${player.name}">
+               th:href="@{'players/get'(param=${player.id})}"
+            th:text="${player.name}"></a></td>
 
 
-<!--        <input type="hidden" name="id" value="#"-->
-<!--            th:number="${player.id}"></a></td>-->
         <td th:text="${player.age}"></td>
         <td th:text="${player.country}"></td>
         <td th:text="${player.position}"></td>
