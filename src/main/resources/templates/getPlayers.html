@@ -74,6 +74,7 @@
         <th>Country</th>
         <th>Position</th>
         <th>Rating</th>
+        <th>Team</th>
     </tr>
     <tr th:each="player: ${players}">
         <td th:text="${player.id}"></td>
@@ -86,6 +87,7 @@
         <td th:text="${player.country}"></td>
         <td th:text="${player.position}"></td>
         <td th:text="${player.rating}"></td>
+        <td th:text="${player.team}"></td>
 
         <td> <a class="delete_submit"
                 style="color: darkred"
@@ -94,12 +96,10 @@
                 th:text="Remove"></a>
 
             <a class="edit_submit_submit"
-               style="color: darkred"
+               style="color: lightcoral"
                href="#"
-               th:href="@{'players/edit/'(id=${player.id})}"
+               th:href="@{'players/update/'(id=${player.id})}"
                th:text="Edit"></a>
-
-
         </td>
 
     </tr>

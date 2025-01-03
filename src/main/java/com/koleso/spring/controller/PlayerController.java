@@ -42,6 +42,7 @@ public class PlayerController {
         player.setCountry(country);
         player.setPosition(position);
         player.setRating(rating);
+        player.setTeam(Integer.valueOf(team));
         playerService.addPlayer(player);
         modelAndView.addObject("players", playerService.getPlayers());
         modelAndView.setViewName("redirect:/players");
@@ -63,6 +64,41 @@ public class PlayerController {
         modelAndView.setViewName("redirect:/players");
         return modelAndView;
     }
+
+
+    @GetMapping("update/*")
+    public ModelAndView editPlayerGet(@RequestParam(value = "id") String id, ModelAndView modelAndView) {
+        Long playerId = Long.valueOf(id);
+        Player player = playerService.getPlayerById(playerId);
+        modelAndView.addObject("player", player);
+        modelAndView.setViewName("formUpdate");
+        return modelAndView;
+    }
+
+
+
+
+    @PostMapping("update/*")
+    public ModelAndView editPlayerPost(
+            @RequestParam String name, @RequestParam String age, @RequestParam String country,
+            @RequestParam String position, @RequestParam String rating, @RequestParam String team,
+            @RequestParam(value = "id") String id, ModelAndView modelAndView) {
+        Long playerId = Long.valueOf(id);
+        Player player = playerService.getPlayerById(playerId);
+        player.setName(name);
+        player.setAge(Integer.parseInt(age));
+        player.setCountry(country);
+        player.setPosition(position);
+        player.setRating(rating);
+        player.setTeam(Integer.valueOf(team));
+        playerService.updatePlayer(player);
+
+        modelAndView.addObject("players", playerService.getPlayers());
+        modelAndView.setViewName("redirect:/players");
+        return modelAndView;
+    }
+
+
 
 
 }
