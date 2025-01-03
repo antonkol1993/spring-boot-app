@@ -8,6 +8,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -25,12 +26,12 @@ public class PlayerServiceImpl implements PlayerService {
 
     @Override
     public Player getPlayer(Long id) {
-        return null;
+        return playerRepository.findById(id).orElse(null);
     }
 
     @Override
     public void addPlayer(Player player) {
-
+        playerRepository.save(player);
     }
 
     @Override
