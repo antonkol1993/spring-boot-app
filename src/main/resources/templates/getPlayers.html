@@ -47,6 +47,10 @@
             background: aquamarine;
             font-weight: bold;
         }
+        .edit_submit {
+            background: bisque;
+            font-weight: bold;
+        }
 
         .to_form_submit {
             background: darkseagreen;
@@ -76,14 +80,28 @@
         <td><a class="add_href"
                style="color: darkslategray"
                href="#"
-               th:href="@{'players/get'(param=${player.id})}"
-            th:text="${player.name}"></a></td>
-
-
+               th:href="@{'players/get/'(param=${player.id})}"
+               th:text="${player.name}"></a></td>
         <td th:text="${player.age}"></td>
         <td th:text="${player.country}"></td>
         <td th:text="${player.position}"></td>
         <td th:text="${player.rating}"></td>
+
+        <td> <a class="delete_submit"
+                style="color: darkred"
+                href="#"
+                th:href="@{'players/remove/'(id=${player.id})}"
+                th:text="Remove"></a>
+
+            <a class="edit_submit_submit"
+               style="color: darkred"
+               href="#"
+               th:href="@{'players/edit/'(id=${player.id})}"
+               th:text="Edit"></a>
+
+
+        </td>
+
     </tr>
 </table>
 <a class="add_href" style="color: darkred" href="players/add">Add a new

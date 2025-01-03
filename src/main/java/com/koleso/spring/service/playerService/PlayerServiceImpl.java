@@ -1,14 +1,11 @@
-package com.koleso.spring.service;
+package com.koleso.spring.service.playerService;
 
 import com.koleso.spring.dto.Player;
 import com.koleso.spring.repository.PlayerRepository;
 import lombok.RequiredArgsConstructor;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -36,7 +33,7 @@ public class PlayerServiceImpl implements PlayerService {
 
     @Override
     public void removePlayer(Long id) {
-
+    playerRepository.deleteById(id);
     }
 
     @Override
