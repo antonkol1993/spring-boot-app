@@ -8,7 +8,7 @@ public interface PlayerService {
 
     List<Player> getPlayers();
 
-    Player getPlayer(Long id);
+    Player getPlayerById(Long id);
 
     void addPlayer(Player player);
 

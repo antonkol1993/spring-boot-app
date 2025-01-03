@@ -22,6 +22,7 @@
             padding: 8px;
             background-color: cadetblue;
         }
+
         td {
             border: 1px solid #dddddd;
             text-align: left;
@@ -72,8 +73,16 @@
     </tr>
     <tr th:each="player: ${players}">
         <td th:text="${player.id}"></td>
-        <td> <a class="add_href" style="color: darkslategray" href="#" th:href="@{'players/get/'} + ${player.id}"
-                th:text="${player.name}"> </a></td>
+        <td><a class="add_href"
+               style="color: darkslategray"
+               href="#"
+<!--               th:href="@{'players/get/'} + ${player.id}"-->
+               th:href="@{'players/add'}"
+               th:text="${player.name}">
+
+
+<!--        <input type="hidden" name="id" value="#"-->
+<!--            th:number="${player.id}"></a></td>-->
         <td th:text="${player.age}"></td>
         <td th:text="${player.country}"></td>
         <td th:text="${player.position}"></td>
