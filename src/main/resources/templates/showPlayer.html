@@ -3,8 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+
 </head>
 <body>
-<h1>Hello PLAYER!!!!!</h1>
+<table>
+    <tr>
+        <th>Id</th>
+        <th>Player</th>
+        <th>Age</th>
+        <th>Country</th>
+        <th>Position</th>
+        <th>Rating</th>
+    </tr>
+    <tr th:object="${player}">
+        <td th:text="${player.id}"></td>
+        <td><a th:text="${player.name}"></a></td>
+        <td th:text="${player.age}"></td>
+        <td th:text="${player.country}"></td>
+        <td th:text="${player.position}"></td>
+        <td th:text="${player.rating}"></td>
+    </tr>
+</table>
+<a class="add_href" style="color: darkred" href="/players">BACK TO PLAYERS</a>
+
 </body>
 </html>
