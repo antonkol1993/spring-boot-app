@@ -32,7 +32,7 @@ public class PlayerServiceImpl implements PlayerService {
 
     @Override
     public Player getPlayerById(Long id) {
-        return playerRepository.findById(id).orElse(null);
+        return playerRepository.findById(id).orElseThrow();
     }
 
     @Override
