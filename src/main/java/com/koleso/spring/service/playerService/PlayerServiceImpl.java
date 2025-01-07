@@ -19,6 +19,18 @@ public class PlayerServiceImpl implements PlayerService {
     }
 
     @Override
+    public List<Player> getPlayers(int page, int pageSize) {
+        //todo
+        return playerRepository.findAll();
+    }
+
+    @Override
+    public int getAllPlayersCount() {
+        //todo
+        return 0;
+    }
+
+    @Override
     public Player getPlayerById(Long id) {
         return playerRepository.findById(id).orElse(null);
     }

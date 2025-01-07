@@ -8,6 +8,10 @@ public interface PlayerService {
 
     List<Player> getPlayers();
 
+    List<Player> getPlayers(int page, int pageSize);
+
+    int getAllPlayersCount();
+
     Player getPlayerById(Long id);
 
     void addPlayer(Player player);
