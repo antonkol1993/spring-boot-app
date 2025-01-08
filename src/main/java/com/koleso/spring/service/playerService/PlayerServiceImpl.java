@@ -42,7 +42,7 @@ public class PlayerServiceImpl implements PlayerService {
 
     @Override
     public int getAllPlayersCount() {
-        return getPlayers().size();
+        return playerRepository.findAll().size();
     }
 
     @Override

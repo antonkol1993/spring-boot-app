@@ -1,4 +1,4 @@
-<html lang="aria-atomic">
+<html lang="aria-atomic" xmlns:background-color="http://www.w3.org/1999/xhtml">
 
 <h2>Players</h2>
 <head>
@@ -105,14 +105,11 @@
 
     </tr>
 </table>
-<div>
-    <a class="add_href" style="color: darkred" href="#" th:href="@{'players'(page=1)}">1</a>
-    <a class="add_href" style="color: darkred" href="#" th:href="@{'players'(page=2)}">2</a>
-    <a class="add_href" style="color: darkred" href="#" th:href="@{'players'(page=3)}">3</a>
-    <a class="add_href" style="color: darkred" href="#" th:href="@{'players'(page=4)}">4</a>
-<!--    <a class="add_href" style="color: darkred" href="players?page=2">2</a>-->
 
-</div>
+<tr th:each="limit:${players}">
+    <a href="#" th:href="@{'players'(page=${1})}"> 1 </a>
+</tr>
+<!--    </tr>-->
 
 
 <a class="add_href" style="color: darkred" href="players/add">Add a new

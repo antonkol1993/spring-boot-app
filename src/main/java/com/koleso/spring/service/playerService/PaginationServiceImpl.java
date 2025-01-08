@@ -1,16 +1,17 @@
 package com.koleso.spring.service.playerService;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Service;
 
 @Service
+@RequiredArgsConstructor
 @PropertySource(value = "classpath:application.yaml", ignoreResourceNotFound = true)
 public class PaginationServiceImpl implements PaginationService {
     @Value("${spring.application.settings.pageSize}")
     private String pageSize;
-    private PlayerService playerService;
+
 
     @Override
     public int getPageSize() {
@@ -18,11 +19,18 @@ public class PaginationServiceImpl implements PaginationService {
     }
 
     @Override
-    public int getActualPageCount(int records) {
-        int allPlayersCount = playerService.getAllPlayersCount();
-        if (allPlayersCount<getPageSize()) {
+    public int getTotalPageCount(int records) {
+        Integer pagesCount = records / getPageSize();
+        if (records / getPageSize() == 0) {
             return 0;
+        } else {
+            if (records % getPageSize() != 0) {
+                return (pagesCount + 1);
+            } else {
+                return (pagesCount);
+            }
         }
-        return allPlayersCount/getPageSize();
     }
+
+
 }

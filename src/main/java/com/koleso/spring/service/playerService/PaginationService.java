@@ -4,6 +4,5 @@ public interface PaginationService {
 
     int getPageSize();
 
-    int getActualPageCount(int records);
-
+    int getTotalPageCount(int records);
 }
