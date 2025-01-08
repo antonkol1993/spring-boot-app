@@ -20,7 +20,7 @@ public class PlayerController {
     @RequestMapping(method = RequestMethod.GET)
     public ModelAndView getPlayers(@RequestParam(value = "page", defaultValue = "1") int page, ModelAndView modelAndView) {
         modelAndView.addObject("players", playerService.getPlayers(page, paginationService.getPageSize()));
-        modelAndView.addObject("pageCount", paginationService.getActualPageCount(playerService.getAllPlayersCount()));
+//        modelAndView.addObject("pageCount", paginationService.getActualPageCount(playerService.getAllPlayersCount()));
         modelAndView.setViewName("getPlayers");
         return modelAndView;
     }

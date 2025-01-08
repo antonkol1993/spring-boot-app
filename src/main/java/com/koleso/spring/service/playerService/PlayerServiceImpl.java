@@ -12,22 +12,37 @@ import java.util.List;
 public class PlayerServiceImpl implements PlayerService {
 
     private final PlayerRepository playerRepository;
+    private final PaginationService paginationService;
 
     @Override
     public List<Player> getPlayers() {
-        return playerRepository.findAll();
+        int pageSize = paginationService.getPageSize();
+        List<Player> players = playerRepository.findAll();
+        int fromIndex = 0;
+        int toIndex = fromIndex + pageSize;
+        if (toIndex > players.size()) {
+            toIndex = players.size();
+        }
+        players = players.subList(fromIndex, toIndex);
+        return players;
     }
 
     @Override
     public List<Player> getPlayers(int page, int pageSize) {
-        //todo
-        return playerRepository.findAll();
+
+        List<Player> players = playerRepository.findAll();
+        int fromIndex = (page-1) * pageSize;
+        int toIndex = fromIndex + pageSize;
+        if (toIndex > players.size()) {
+            toIndex = players.size();
+        }
+        players = players.subList(fromIndex, toIndex);
+        return players;
     }
 
     @Override
     public int getAllPlayersCount() {
-        //todo
-        return 0;
+        return getPlayers().size();
     }
 
     @Override
