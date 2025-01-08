@@ -1,9 +1,12 @@
-package com.koleso.spring.service.playerService;
+package com.koleso.spring.service.playerService.pagination;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Service;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -19,7 +22,7 @@ public class PaginationServiceImpl implements PaginationService {
     }
 
     @Override
-    public int getTotalPageCount(int records) {
+    public int getTotalPageCountOld(int records) {
         Integer pagesCount = records / getPageSize();
         if (records / getPageSize() == 0) {
             return 0;
@@ -30,6 +33,25 @@ public class PaginationServiceImpl implements PaginationService {
                 return (pagesCount);
             }
         }
+    }
+
+    public List<PageQuantity> getTotalPageCountNew(int records) {
+        Integer pagesCount = records / getPageSize();
+        List<PageQuantity> pageQuantityList = new ArrayList<>();
+
+        if (pagesCount == 0) {
+            pagesCount = 0;
+        } else {
+            if (records % getPageSize() != 0) {
+                pagesCount = pagesCount + 1;
+            }
+        }
+        for (int i = 0; i < pagesCount; i++) {
+            PageQuantity pageQuantity = new PageQuantity();
+            pageQuantity.setNumberOfPage(i + 1);
+            pageQuantityList.add(pageQuantity);
+        }
+        return pageQuantityList;
     }
 
 

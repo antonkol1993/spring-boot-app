@@ -1,4 +1,4 @@
-<html lang="aria-atomic" xmlns:background-color="http://www.w3.org/1999/xhtml">
+<html lang="aria-atomic" xmlns:background-color="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 
 <h2>Players</h2>
 <head>
@@ -106,10 +106,11 @@
     </tr>
 </table>
 
-<tr th:each="limit:${players}">
-    <a href="#" th:href="@{'players'(page=${1})}"> 1 </a>
+<tr th:each="page:${pageCount}">
+    <a href="#"
+       th:href="@{'players'(page=${page.numberOfPage})}"
+       th:text="${page.numberOfPage}"> </a>
 </tr>
-<!--    </tr>-->
 
 
 <a class="add_href" style="color: darkred" href="players/add">Add a new

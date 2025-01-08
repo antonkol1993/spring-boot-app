@@ -1,7 +1,7 @@
 package com.koleso.spring.controller;
 
 import com.koleso.spring.dto.Player;
-import com.koleso.spring.service.playerService.PaginationService;
+import com.koleso.spring.service.playerService.pagination.PaginationService;
 import com.koleso.spring.service.playerService.PlayerService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -13,14 +13,13 @@ import org.springframework.web.servlet.ModelAndView;
 @RequestMapping("/players")
 @RequiredArgsConstructor
 public class PlayerController {
-
     private final PlayerService playerService;
     private final PaginationService paginationService;
 
     @RequestMapping(method = RequestMethod.GET)
     public ModelAndView getPlayers(@RequestParam(value = "page", defaultValue = "1") int page, ModelAndView modelAndView) {
         modelAndView.addObject("players", playerService.getPlayers(page, paginationService.getPageSize()));
-        modelAndView.addObject("pageCount", paginationService.getTotalPageCount(playerService.getAllPlayersCount()));
+        modelAndView.addObject("pageCount", paginationService.getTotalPageCountNew(playerService.getAllPlayersCount()));
         modelAndView.setViewName("getPlayers");
         return modelAndView;
     }
