@@ -6,6 +6,5 @@ public interface PaginationService {
 
     int getPageSize();
 
-    int getTotalPageCountOld(int records);
-    public List<PageQuantity> getTotalPageCountNew(int records);
+    public List<PageQuantity> getTotalPageCount(int records);
 }

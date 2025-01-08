@@ -21,21 +21,7 @@ public class PaginationServiceImpl implements PaginationService {
         return Integer.parseInt(pageSize);
     }
 
-    @Override
-    public int getTotalPageCountOld(int records) {
-        Integer pagesCount = records / getPageSize();
-        if (records / getPageSize() == 0) {
-            return 0;
-        } else {
-            if (records % getPageSize() != 0) {
-                return (pagesCount + 1);
-            } else {
-                return (pagesCount);
-            }
-        }
-    }
-
-    public List<PageQuantity> getTotalPageCountNew(int records) {
+    public List<PageQuantity> getTotalPageCount(int records) {
         Integer pagesCount = records / getPageSize();
         List<PageQuantity> pageQuantityList = new ArrayList<>();
 
