@@ -1,6 +1,7 @@
 package com.koleso.spring.controller;
 
 import com.koleso.spring.dto.Player;
+import com.koleso.spring.dto.Team;
 import com.koleso.spring.service.playerService.pagination.PaginationService;
 import com.koleso.spring.service.playerService.PlayerService;
 import lombok.RequiredArgsConstructor;
@@ -38,12 +39,14 @@ public class PlayerController {
             @RequestParam String position, @RequestParam String rating, @RequestParam String team,
             ModelAndView modelAndView) {
         Player player = new Player();
+        Team teamObj = new Team();
+        teamObj.setName(team);
         player.setName(name);
         player.setAge(Integer.parseInt(age));
         player.setCountry(country);
         player.setPosition(position);
         player.setRating(rating);
-        player.setTeam(Integer.valueOf(team));
+//        player.setTeam(teamObj);
         playerService.addPlayer(player);
         modelAndView.addObject("players", playerService.getPlayers());
         modelAndView.setViewName("redirect:/players");
@@ -90,7 +93,7 @@ public class PlayerController {
         player.setCountry(country);
         player.setPosition(position);
         player.setRating(rating);
-        player.setTeam(Integer.valueOf(team));
+//        player.getTeam().setName(team);
         playerService.updatePlayer(player);
 
         modelAndView.addObject("players", playerService.getPlayers());

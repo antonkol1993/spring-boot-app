@@ -1,9 +1,10 @@
 package com.koleso.spring.dto;
 
-import jakarta.persistence.*;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 import lombok.*;
-
-import java.util.List;
 
 @Data
 @AllArgsConstructor
@@ -11,15 +12,10 @@ import java.util.List;
 @ToString
 @EqualsAndHashCode
 @Entity
-public class Team {
+public class Game {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String name;
-    private String country;
-    private String city;
-
-//    @OneToMany(mappedBy = "team")
-//    private List<Player> player;
 }

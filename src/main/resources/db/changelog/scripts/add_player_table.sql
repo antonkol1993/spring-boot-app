@@ -18,4 +18,24 @@ alter table player
 -- changeset antonio:3
 alter table player
     modify team int null;
+-- changeset anton:4
+create table team
+(
+    id       int auto_increment
+        primary key,
+    name varchar(255) null,
+    country varchar(255) null,
+    city varchar(255) null
+);
+-- changeset anton:5
+alter table player
+    modify team varchar(255) null;
+
+-- changeset anton:6
+create table game
+(
+    id       int auto_increment
+        primary key,
+    name varchar(255) null
+);
 

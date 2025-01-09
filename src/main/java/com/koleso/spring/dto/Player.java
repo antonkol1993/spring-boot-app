@@ -1,9 +1,6 @@
 package com.koleso.spring.dto;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -29,5 +26,8 @@ public class Player {
     private String country;
     private String position;
     private String rating;
-    private Integer team;
+
+
+//    @ManyToOne()
+//    private Team team;
 }
