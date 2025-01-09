@@ -25,7 +25,7 @@ public class PlayerController {
         return modelAndView;
     }
 
-    @GetMapping("/add")
+    @GetMapping("add")
     public ModelAndView addPlayerGet(ModelAndView modelAndView) {
         Player player = new Player();
         modelAndView.addObject("players", player);
@@ -33,14 +33,15 @@ public class PlayerController {
         return modelAndView;
     }
 
-    @PostMapping("/add")
+    @PostMapping("add")
     public ModelAndView addPlayerPost(
             @RequestParam String name, @RequestParam String age, @RequestParam String country,
-            @RequestParam String position, @RequestParam String rating, @RequestParam String team,
+            @RequestParam String position, @RequestParam String rating,
+//            @RequestParam String team,
             ModelAndView modelAndView) {
         Player player = new Player();
         Team teamObj = new Team();
-        teamObj.setName(team);
+//        teamObj.setName(team);
         player.setName(name);
         player.setAge(Integer.parseInt(age));
         player.setCountry(country);
@@ -53,16 +54,16 @@ public class PlayerController {
         return modelAndView;
     }
 
-    @GetMapping("get/*")
-    public ModelAndView getPlayerById(@RequestParam(value = "param") String id, ModelAndView modelAndView) {
+    @GetMapping("get")
+    public ModelAndView getPlayerById(@RequestParam String id, ModelAndView modelAndView) {
         Long playerId = Long.valueOf(id);
         modelAndView.addObject("player", playerService.getPlayerById(playerId));
         modelAndView.setViewName("showPlayer");
         return modelAndView;
     }
 
-    @GetMapping("remove/*")
-    public ModelAndView removePlayer(@RequestParam(value = "id") String id, ModelAndView modelAndView) {
+    @GetMapping("remove")
+    public ModelAndView removePlayer(@RequestParam String id, ModelAndView modelAndView) {
         Long playerId = Long.valueOf(id);
         playerService.removePlayer(playerId);
         modelAndView.addObject("players", playerService.getPlayers());
@@ -71,8 +72,8 @@ public class PlayerController {
     }
 
 
-    @GetMapping("update/*")
-    public ModelAndView editPlayerGet(@RequestParam(value = "id") String id, ModelAndView modelAndView) {
+    @GetMapping("update")
+    public ModelAndView editPlayerGet(@RequestParam String id, ModelAndView modelAndView) {
         Long playerId = Long.valueOf(id);
         Player player = playerService.getPlayerById(playerId);
         modelAndView.addObject("player", player);
@@ -81,11 +82,13 @@ public class PlayerController {
     }
 
 
-    @PostMapping("update/*")
+    @PostMapping("update")
     public ModelAndView editPlayerPost(
+            @RequestParam String id,
             @RequestParam String name, @RequestParam String age, @RequestParam String country,
-            @RequestParam String position, @RequestParam String rating, @RequestParam String team,
-            @RequestParam(value = "id") String id, ModelAndView modelAndView) {
+            @RequestParam String position, @RequestParam String rating,
+//            @RequestParam String team,
+            ModelAndView modelAndView) {
         Long playerId = Long.valueOf(id);
         Player player = playerService.getPlayerById(playerId);
         player.setName(name);
