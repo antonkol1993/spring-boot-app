@@ -3,3 +3,5 @@ databaseChangeLog:
       file: classpath:db/changelog/scripts/add_player_table.sql
   - include:
       file: classpath:db/changelog/scripts/add_initial_players.sql
+  - include:
+      file: db/changelog/scripts/add_initial_persons.sql
