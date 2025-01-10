@@ -1,4 +1,4 @@
-package com.koleso.spring.service.playerService.pagination;
+package com.koleso.spring.service.pagination;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;

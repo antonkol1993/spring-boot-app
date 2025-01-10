@@ -1,4 +1,4 @@
-package com.koleso.spring.service.playerService;
+package com.koleso.spring.service.player_service;
 
 import com.koleso.spring.dto.Player;
 

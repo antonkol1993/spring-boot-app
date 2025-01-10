@@ -2,8 +2,8 @@ package com.koleso.spring.controller;
 
 import com.koleso.spring.dto.Player;
 import com.koleso.spring.dto.Team;
-import com.koleso.spring.service.playerService.pagination.PaginationService;
-import com.koleso.spring.service.playerService.PlayerService;
+import com.koleso.spring.service.pagination.PaginationService;
+import com.koleso.spring.service.player_service.PlayerService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;

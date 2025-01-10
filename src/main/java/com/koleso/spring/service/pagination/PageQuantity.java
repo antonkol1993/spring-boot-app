@@ -1,4 +1,4 @@
-package com.koleso.spring.service.playerService.pagination;
+package com.koleso.spring.service.pagination;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
