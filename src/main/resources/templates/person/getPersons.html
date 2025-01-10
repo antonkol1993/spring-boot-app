@@ -1,0 +1,115 @@
+<html lang="aria-atomic" xmlns:background-color="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<h2>Persons</h2>
+<head>
+
+    <style>
+        body {
+            background-image: url(https://plus.unsplash.com/premium_photo-1689539137236-b68e436248de?q=80&w=2071&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D.jpg);
+            background-color: whitesmoke;
+            background-size: 2000px;
+        }
+
+        table {
+            font-family: arial, sans-serif;
+            border-collapse: separate;
+            width: 20%;
+        }
+
+        th {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+            background-color: cadetblue;
+        }
+
+        td {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+            background-color: darkgray;
+        }
+
+        tr:nth-child(even) {
+            background-color: darkgray;
+        }
+
+        .add_submit {
+            width: 250px;
+            height: 40px;
+            background: burlywood;
+            font-size: large;
+            font-weight: bold;
+        }
+
+
+        .delete_submit {
+            background: aquamarine;
+            font-weight: bold;
+        }
+
+        .edit_submit {
+            background: bisque;
+            font-weight: bold;
+        }
+
+        .to_form_submit {
+            background: darkseagreen;
+            font-weight: bold;
+        }
+
+        .add_href {
+            font-weight: bold;
+            font-size: large;
+        }
+    </style>
+    <title>Persons list</title>
+</head>
+
+<body>
+<table>
+    <tr>
+        <th>Id</th>
+        <th>Firstname</th>
+        <th>Lastname</th>
+        <th>Age</th>
+    </tr>
+    <tr th:each="person: ${persons}">
+        <td th:text="${person.id}"></td>
+        <td><a class="add_href"
+               style="color: darkslategray"
+               href="#"
+               th:href="@{'persons/get'(id=${person.id})}"
+               th:text="${person.firstName}"></a></td>
+        <td th:text="${person.lastName}"></td>
+        <td th:text="${person.age}"></td>
+        <!--        <td th:text="${player.team}"></td>-->
+
+                <td><a class="delete_submit"
+                       style="color: darkred"
+                       href="#"
+                       th:href="@{'persons/remove'(id=${person.id})}"
+                       th:text="Remove"></a>
+
+                    <a class="edit_submit"
+                       style="color: lightcoral"
+                       href="#"
+                       th:href="@{'persons/update'(id=${person.id})}"
+                       th:text="Edit"></a>
+                </td>
+
+    </tr>
+</table>
+
+<tr th:each="page:${pageCount}">
+    <a href="#"
+       th:href="@{'persons'(page=${page.numberOfPage})}"
+       th:text="${page.numberOfPage}"> </a>
+</tr>
+
+
+<a class="add_href" style="color: darkred" href="persons/add">Add a new
+    person</a>
+
+</body>
+</html>

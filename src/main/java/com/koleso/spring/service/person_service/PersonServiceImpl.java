@@ -31,12 +31,19 @@ public class PersonServiceImpl implements PersonService {
 
     @Override
     public List<Person> getPersons(int page, int pageSize) {
-        return List.of();
+        List<Person> persons = personRepository.findAll();
+        int fromIndex = (page-1) * pageSize;
+        int toIndex = fromIndex + pageSize;
+        if (toIndex > persons.size()) {
+            toIndex = persons.size();
+        }
+        persons = persons.subList(fromIndex, toIndex);
+        return persons;
     }
 
     @Override
     public int getAllPersonsCount() {
-        return 0;
+        return personRepository.findAll().size();
     }
 
     @Override

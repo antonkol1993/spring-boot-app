@@ -1,19 +1,26 @@
 package com.koleso.spring.controller;
 
-import com.koleso.spring.dto.Person;
-import org.hibernate.annotations.Cascade;
+import com.koleso.spring.service.pagination.PaginationService;
+import com.koleso.spring.service.person_service.PersonService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import java.util.List;
-
 @Controller
+@RequiredArgsConstructor
 @RequestMapping("/persons")
 public class PersonController {
+    private final PersonService personService;
+    private final PaginationService paginationService;
 
-    @RequestMapping()
-    public List<Person> getPersons(ModelAndView modelAndView) {
-
+    @RequestMapping(method = RequestMethod.GET)
+    public ModelAndView getPersons(@RequestParam(value = "page", defaultValue = "1") int page, ModelAndView modelAndView) {
+        modelAndView.addObject("persons", personService.getPersons(page, paginationService.getPageSize()));
+        modelAndView.addObject("pageCount", paginationService.getTotalPageCount(personService.getAllPersonsCount()));
+        modelAndView.setViewName("person/getPersons");
+        return modelAndView;
     }
 }

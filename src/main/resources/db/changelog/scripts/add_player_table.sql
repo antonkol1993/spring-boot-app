@@ -43,7 +43,7 @@ create table person
 (
     id int auto_increment
         primary key,
-    firstName varchar(255),
-    lastName varchar(255),
+    first_name varchar(255),
+    last_name varchar(255),
     age int
 )

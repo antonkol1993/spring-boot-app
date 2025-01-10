@@ -21,7 +21,7 @@ public class PlayerController {
     public ModelAndView getPlayers(@RequestParam(value = "page", defaultValue = "1") int page, ModelAndView modelAndView) {
         modelAndView.addObject("players", playerService.getPlayers(page, paginationService.getPageSize()));
         modelAndView.addObject("pageCount", paginationService.getTotalPageCount(playerService.getAllPlayersCount()));
-        modelAndView.setViewName("getPlayers");
+        modelAndView.setViewName("player/getPlayers");
         return modelAndView;
     }
 
@@ -29,7 +29,7 @@ public class PlayerController {
     public ModelAndView addPlayerGet(ModelAndView modelAndView) {
         Player player = new Player();
         modelAndView.addObject("players", player);
-        modelAndView.setViewName("formAdd");
+        modelAndView.setViewName("player/formAdd");
         return modelAndView;
     }
 
@@ -58,7 +58,7 @@ public class PlayerController {
     public ModelAndView getPlayerById(@RequestParam String id, ModelAndView modelAndView) {
         Long playerId = Long.valueOf(id);
         modelAndView.addObject("player", playerService.getPlayerById(playerId));
-        modelAndView.setViewName("showPlayer");
+        modelAndView.setViewName("player/showPlayer");
         return modelAndView;
     }
 
@@ -77,7 +77,7 @@ public class PlayerController {
         Long playerId = Long.valueOf(id);
         Player player = playerService.getPlayerById(playerId);
         modelAndView.addObject("player", player);
-        modelAndView.setViewName("formUpdate");
+        modelAndView.setViewName("player/formUpdate");
         return modelAndView;
     }
 
