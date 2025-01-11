@@ -21,7 +21,7 @@ public class PaginationServiceImpl implements PaginationService {
         return Integer.parseInt(pageSize);
     }
 
-    public List<PageQuantity> getTotalPageCount(int records) {
+    public int getTotalPageCount(int records) {
         Integer pagesCount = records / getPageSize();
         List<PageQuantity> pageQuantityList = new ArrayList<>();
 
@@ -37,7 +37,7 @@ public class PaginationServiceImpl implements PaginationService {
             pageQuantity.setNumberOfPage(i + 1);
             pageQuantityList.add(pageQuantity);
         }
-        return pageQuantityList;
+        return 4;
     }
 
 

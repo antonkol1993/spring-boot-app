@@ -4,6 +4,8 @@ import com.koleso.spring.dto.Player;
 import com.koleso.spring.repository.PlayerRepository;
 import com.koleso.spring.service.pagination.PaginationService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -31,6 +33,7 @@ public class PlayerServiceImpl implements PlayerService {
     @Override
     public List<Player> getPlayers(int page, int pageSize) {
 
+        Page<Player> all = playerRepository.findAll(PageRequest.of(page, pageSize));
         List<Player> players = playerRepository.findAll();
         int fromIndex = (page-1) * pageSize;
         int toIndex = fromIndex + pageSize;

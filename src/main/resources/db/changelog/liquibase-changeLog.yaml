@@ -1,6 +1,6 @@
 databaseChangeLog:
   - include:
-      file: classpath:db/changelog/scripts/add_player_table.sql
+      file: classpath:db/changelog/scripts/init_tables.sql
   - include:
       file: classpath:db/changelog/scripts/add_initial_players.sql
   - include:
