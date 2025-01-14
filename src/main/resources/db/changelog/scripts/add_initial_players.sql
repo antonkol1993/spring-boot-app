@@ -6,7 +6,7 @@ values (30, 1, 'messi', 'forward'),
        (35, 3, 'Antonio', 'forward'),
        (35, 4, 'Henry', 'forward'),
        (null, 5, 'Leonardo', 'defender'),
-    (null , 6, 'Jamal', 'defender'),
-    (null , 7, 'Rafinha', 'defender'),
-    (null , 8, 'Vinchenso', 'defender'),
-    (null , 9, 'Lewandovsky', 'defender');
+       (null, 6, 'Jamal', 'defender'),
+       (null, 7, 'Rafinha', 'defender'),
+       (null, 8, 'Vinchenso', 'defender'),
+       (null, 9, 'Lewandovsky', 'defender');

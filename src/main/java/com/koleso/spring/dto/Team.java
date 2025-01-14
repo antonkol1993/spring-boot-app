@@ -20,6 +20,6 @@ public class Team {
     private String country;
     private String city;
 
-    @OneToMany(mappedBy = "team")
-    private List<Player> player;
+//    @OneToMany(mappedBy = "team")
+//    private List<Player> player;
 }
