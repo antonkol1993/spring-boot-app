@@ -20,8 +20,7 @@ public class PlayerServiceImpl implements PlayerService {
 
     @Override
     public List<Player> getPlayers(int page, int pageSize) {
-
-        Page<Player> players = playerRepository.findAll(PageRequest.of(page, pageSize));
+        Page<Player> players = playerRepository.findAll(PageRequest.of(page-1, pageSize));
         return players.getContent();
     }
 

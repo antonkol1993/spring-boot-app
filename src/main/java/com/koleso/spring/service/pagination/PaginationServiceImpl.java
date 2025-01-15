@@ -1,17 +1,10 @@
 package com.koleso.spring.service.pagination;
 
-import com.koleso.spring.dto.Player;
-import com.koleso.spring.service.player_service.PlayerService;
-import com.koleso.spring.service.player_service.PlayerServiceImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.PropertySource;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -26,8 +19,15 @@ public class PaginationServiceImpl implements PaginationService {
     }
 
     public int getTotalPageCount(int records) {
-        return (records / getPageSize()) + 1;
+        if (records < getPageSize()) {
+            return 1;
+        } else if (records % getPageSize() > 0) {
+            return (records / getPageSize()) + 1;
+        }
+        return records / getPageSize();
     }
 
-
 }
+
+
+

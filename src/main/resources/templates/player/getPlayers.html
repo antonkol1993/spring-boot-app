@@ -114,14 +114,19 @@
 <!--https://stackoverflow.com/questions/42216529/how-to-loop-through-1-to-5-in-thymeleaf-->
 
 
+<tr th:each="page: ${#numbers.sequence(1, pageCount)}">
+    <a href="#"
+       th:href="@{'players'(page=${page})}"
+       th:text="${page}"> </a>
+</tr>>
+<!--        <td th:text="${page}"></td>-->
 
 
-<tr th:if="${pageCount == 1}" th:text="'nothing'">nothing</tr>
-<tr th:else="${pageCount > 1}" th:text="'more'">more</tr>
+<!--    <td th:if="${pageCount == 1}" th:text="'nothing'"></td>-->
+<!--    <td th:unless="${pageCount > 1}" th:text="'more'"></td>-->
+</tr>
+
 <!--    th:each="page: ${#numbers.sequence(1, pageCount)}"-->
-<!--    <a href="#"-->
-<!--   th:href="@{'players'(page=${page})}"-->
-<!--   th:text="${page}"></tr>-->
 
 
 
@@ -132,8 +137,8 @@
 <!--    </tr>-->
 
 
-    <a class="add_href" style="color: darkred" href="players/add">Add a new
-        player</a>
+<a class="add_href" style="color: darkred" href="players/add">Add a new
+    player</a>
 
 </body>
 </html>

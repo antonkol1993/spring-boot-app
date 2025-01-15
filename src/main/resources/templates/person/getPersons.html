@@ -85,28 +85,27 @@
         <td th:text="${person.age}"></td>
         <!--        <td th:text="${player.team}"></td>-->
 
-                <td><a class="delete_submit"
-                       style="color: darkred"
-                       href="#"
-                       th:href="@{'persons/remove'(id=${person.id})}"
-                       th:text="Remove"></a>
+        <td><a class="delete_submit"
+               style="color: darkred"
+               href="#"
+               th:href="@{'persons/remove'(id=${person.id})}"
+               th:text="Remove"></a>
 
-                    <a class="edit_submit"
-                       style="color: lightcoral"
-                       href="#"
-                       th:href="@{'persons/update'(id=${person.id})}"
-                       th:text="Edit"></a>
-                </td>
+            <a class="edit_submit"
+               style="color: lightcoral"
+               href="#"
+               th:href="@{'persons/update'(id=${person.id})}"
+               th:text="Edit"></a>
+        </td>
 
     </tr>
+
+    <tr th:each="page:${pageCount}">
+        <a href="#"
+           th:href="@{'persons'(page=${page})}"
+           th:text="${page}"> </a>
+    </tr>
 </table>
-
-<tr th:each="page:${pageCount}">
-    <a href="#"
-       th:href="@{'persons'(page=${page.numberOfPage})}"
-       th:text="${page.numberOfPage}"> </a>
-</tr>
-
 
 <a class="add_href" style="color: darkred" href="persons/add">Add a new
     person</a>
