@@ -49,7 +49,7 @@ public class PlayerController {
         player.setRating(rating);
 //        player.setTeam(teamObj);
         playerService.addPlayer(player);
-        modelAndView.addObject("players", playerService.getPlayers());
+        modelAndView.addObject("players", playerService.getPlayers(1,paginationService.getPageSize()));
         modelAndView.setViewName("redirect:/players");
         return modelAndView;
     }
@@ -66,7 +66,7 @@ public class PlayerController {
     public ModelAndView removePlayer(@RequestParam String id, ModelAndView modelAndView) {
         Long playerId = Long.valueOf(id);
         playerService.removePlayer(playerId);
-        modelAndView.addObject("players", playerService.getPlayers());
+        modelAndView.addObject("players", playerService.getPlayers(1,paginationService.getPageSize()));
         modelAndView.setViewName("redirect:/players");
         return modelAndView;
     }
@@ -99,7 +99,7 @@ public class PlayerController {
 //        player.getTeam().setName(team);
         playerService.updatePlayer(player);
 
-        modelAndView.addObject("players", playerService.getPlayers());
+        modelAndView.addObject("players", playerService.getPlayers(1,paginationService.getPageSize()));
         modelAndView.setViewName("redirect:/players");
         return modelAndView;
     }

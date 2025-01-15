@@ -1,8 +1,13 @@
 package com.koleso.spring.service.pagination;
 
+import com.koleso.spring.dto.Player;
+import com.koleso.spring.service.player_service.PlayerService;
+import com.koleso.spring.service.player_service.PlayerServiceImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.PropertySource;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -15,29 +20,13 @@ public class PaginationServiceImpl implements PaginationService {
     @Value("${spring.application.settings.pageSize}")
     private String pageSize;
 
-
     @Override
     public int getPageSize() {
         return Integer.parseInt(pageSize);
     }
 
     public int getTotalPageCount(int records) {
-        Integer pagesCount = records / getPageSize();
-        List<PageQuantity> pageQuantityList = new ArrayList<>();
-
-        if (pagesCount == 0) {
-            pagesCount = 0;
-        } else {
-            if (records % getPageSize() != 0) {
-                pagesCount = pagesCount + 1;
-            }
-        }
-        for (int i = 0; i < pagesCount; i++) {
-            PageQuantity pageQuantity = new PageQuantity();
-            pageQuantity.setNumberOfPage(i + 1);
-            pageQuantityList.add(pageQuantity);
-        }
-        return 4;
+        return (records / getPageSize()) + 1;
     }
 
 

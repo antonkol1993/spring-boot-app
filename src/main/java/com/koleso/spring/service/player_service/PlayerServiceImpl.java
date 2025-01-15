@@ -17,31 +17,12 @@ public class PlayerServiceImpl implements PlayerService {
     private final PlayerRepository playerRepository;
     private final PaginationService paginationService;
 
-    @Override
-    public List<Player> getPlayers() {
-        int pageSize = paginationService.getPageSize();
-        List<Player> players = playerRepository.findAll();
-        int fromIndex = 0;
-        int toIndex = fromIndex + pageSize;
-        if (toIndex > players.size()) {
-            toIndex = players.size();
-        }
-        players = players.subList(fromIndex, toIndex);
-        return players;
-    }
 
     @Override
     public List<Player> getPlayers(int page, int pageSize) {
 
-        Page<Player> all = playerRepository.findAll(PageRequest.of(page, pageSize));
-        List<Player> players = playerRepository.findAll();
-        int fromIndex = (page-1) * pageSize;
-        int toIndex = fromIndex + pageSize;
-        if (toIndex > players.size()) {
-            toIndex = players.size();
-        }
-        players = players.subList(fromIndex, toIndex);
-        return players;
+        Page<Player> players = playerRepository.findAll(PageRequest.of(page, pageSize));
+        return players.getContent();
     }
 
     @Override
