@@ -2,7 +2,7 @@ spring:
   application:
     name: spring-boot-app
     settings:
-      pageSize: 3
+      pageSize: 10
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://localhost:3306/springboot?createDatabaseIfNotExist=true
