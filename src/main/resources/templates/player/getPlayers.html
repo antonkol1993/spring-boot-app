@@ -88,8 +88,13 @@
         <td th:text="${player.country}"></td>
         <td th:text="${player.position}"></td>
         <td th:text="${player.rating}"></td>
-            <td th:if="${player.team.getName()}" th:text="${player.team.getName()}"></td>
-<!--                <td th:text="${player.team.getName()}"></td>-->
+        <td th:if="${player.team.getName() != null}" th:text="${player.team.getName()}">
+<!--            <td th:if="${player.team.getName() == null}" th:text="${player.rating}">-->
+        </td>
+
+<!--        <td th:unless="${player.team.getName() == null}" th:text=""></td>-->
+
+        <!--                <td th:text="${player.team.getName()}"></td>-->
 
         <td><a class="delete_submit"
                style="color: darkred"
@@ -117,23 +122,8 @@
     <a href="#"
        th:href="@{'players'(page=${page})}"
        th:text="${page}"> </a>
-</tr>>
-<!--        <td th:text="${page}"></td>-->
-
-
-<!--    <td th:if="${pageCount == 1}" th:text="'nothing'"></td>-->
-<!--    <td th:unless="${pageCount > 1}" th:text="'more'"></td>-->
 </tr>
-
-<!--    th:each="page: ${#numbers.sequence(1, pageCount)}"-->
-
-
-
-<!--    <tr th:each="page: ${#numbers.sequence(1, pageCount)}">-->
-<!--        <a href="#"-->
-<!--           th:href="@{'players'(page=${page})}"-->
-<!--           th:text="${page}"> </a>-->
-<!--    </tr>-->
+>
 
 
 <a class="add_href" style="color: darkred" href="players/add">Add a new

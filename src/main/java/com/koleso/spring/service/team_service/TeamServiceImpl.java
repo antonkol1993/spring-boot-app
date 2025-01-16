@@ -4,6 +4,9 @@ import com.koleso.spring.dto.Team;
 import com.koleso.spring.repository.TeamRepository;
 import com.koleso.spring.service.pagination_service.PaginationService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.Collections;
@@ -20,12 +23,13 @@ public class TeamServiceImpl implements TeamService {
 
     @Override
     public List<Team> getTeams(int page, int pageSize) {
-        return List.of();
+        Page<Team> teams = teamRepository.findAll(PageRequest.of(page, pageSize));
+        return teams.getContent();
     }
 
     @Override
     public int getAllTeamsCount() {
-        return 0;
+        return teamRepository.findAll().size();
     }
 
     @Override
@@ -41,7 +45,7 @@ public class TeamServiceImpl implements TeamService {
 
     @Override
     public void addTeam(Team team) {
-       teamRepository.save(team);
+        teamRepository.save(team);
     }
 
     @Override

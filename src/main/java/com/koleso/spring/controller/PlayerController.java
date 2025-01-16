@@ -19,7 +19,6 @@ public class PlayerController {
     private final PlayerService playerService;
     private final PaginationService paginationService;
     private final TeamService teamService;
-    private final TeamRepository teamRepository;
 
     @RequestMapping(method = RequestMethod.GET)
     public ModelAndView getPlayers(@RequestParam(value = "page", defaultValue = "1") int page, ModelAndView modelAndView) {
@@ -58,7 +57,6 @@ public class PlayerController {
             Team currentFirstTeam = teamService.getTeamByName(team).getFirst();
             player.setTeam(currentFirstTeam);
         }
-
         playerService.addPlayer(player);
         modelAndView.addObject("players", playerService.getPlayers(1,paginationService.getPageSize()));
         modelAndView.setViewName("redirect:/players");
@@ -98,7 +96,7 @@ public class PlayerController {
             @RequestParam String id,
             @RequestParam String name, @RequestParam String age, @RequestParam String country,
             @RequestParam String position, @RequestParam String rating,
-//            @RequestParam String team,
+            @RequestParam String team,
             ModelAndView modelAndView) {
         Long playerId = Long.valueOf(id);
         Player player = playerService.getPlayerById(playerId);
@@ -107,7 +105,14 @@ public class PlayerController {
         player.setCountry(country);
         player.setPosition(position);
         player.setRating(rating);
-//        player.getTeam().setName(team);
+        if (teamService.getTeamByName(team).isEmpty()){
+        modelAndView.addObject("player", player);
+            modelAndView.setViewName("redirect:/errorDataPlayer.html");
+        } else {
+            Team currentFirstTeam = teamService.getTeamByName(team).getFirst();
+            player.setTeam(currentFirstTeam);
+        }
+        player.getTeam().setName(team);
         playerService.updatePlayer(player);
 
         modelAndView.addObject("players", playerService.getPlayers(1,paginationService.getPageSize()));

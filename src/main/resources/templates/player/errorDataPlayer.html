@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Erroneous data</title>
+
+</head>
+<body>
+<td th:object="${player}">
+    <tr th:text="${player.na}">uncorrectly information</tr>
+</td>
+<a class="add_href" style="color: darkred" href="/players">BACK TO PLAYERS</a>
+
+</body>
+</html>
