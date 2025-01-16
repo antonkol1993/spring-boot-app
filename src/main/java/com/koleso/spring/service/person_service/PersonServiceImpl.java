@@ -2,7 +2,7 @@ package com.koleso.spring.service.person_service;
 
 import com.koleso.spring.dto.Person;
 import com.koleso.spring.repository.PersonRepository;
-import com.koleso.spring.service.pagination.PaginationService;
+import com.koleso.spring.service.pagination_service.PaginationService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

@@ -28,6 +28,6 @@ public class Player {
     private String rating;
 
 
-//    @ManyToOne
-//    private Team team;
+    @ManyToOne
+    private Team team;
 }

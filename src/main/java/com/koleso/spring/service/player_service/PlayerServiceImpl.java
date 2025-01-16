@@ -2,7 +2,7 @@ package com.koleso.spring.service.player_service;
 
 import com.koleso.spring.dto.Player;
 import com.koleso.spring.repository.PlayerRepository;
-import com.koleso.spring.service.pagination.PaginationService;
+import com.koleso.spring.service.pagination_service.PaginationService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
