@@ -84,11 +84,13 @@
                href="#"
                th:href="@{'players/get'(id=${player.id})}"
                th:text="${player.name}"></a></td>
-        <td th:text="${player.age}"></td>
+        <td th:if="${player.age == null}" th:text="${player.age}"></td>
+        <td th:if="${player.age != null}" th:text="${player.age}"></td>
         <td th:text="${player.country}"></td>
         <td th:text="${player.position}"></td>
         <td th:text="${player.rating}"></td>
-        <td th:if="${player.team.getName() != null}" th:text="${player.team.getName()}">
+        <td th:if="${player.team != null}" th:text="${player.team.getName()}">
+        <td th:if="${player.team == null}" th:text="">
 <!--            <td th:if="${player.team.getName() == null}" th:text="${player.rating}">-->
         </td>
 

@@ -38,17 +38,24 @@ public class PlayerController {
 
     @PostMapping("add")
     public ModelAndView addPlayerPost(
-            @RequestParam String name, @RequestParam String age, @RequestParam String country,
+            @RequestParam String name, @RequestParam(defaultValue = "0") String age, @RequestParam String country,
             @RequestParam String position, @RequestParam String rating,
             @RequestParam String team,
             ModelAndView modelAndView) {
         Player player = new Player();
+        if (name.isEmpty()) {
+            modelAndView.setViewName("player/errorDataPlayer");
+                    return modelAndView;
+        }
         player.setName(name);
-        player.setAge(Integer.parseInt(age));
+        int intAge = Integer.parseInt(age);
+        if (intAge != 0) {
+            player.setAge(Integer.parseInt(age));
+        }
         player.setCountry(country);
         player.setPosition(position);
         player.setRating(rating);
-        if (teamService.getTeamByName(team).isEmpty()){
+        if (teamService.getTeamByName(team).isEmpty()) {
             Team newTeam = new Team();
             teamService.addTeam(newTeam);
             newTeam.setName(team);
@@ -58,7 +65,7 @@ public class PlayerController {
             player.setTeam(currentFirstTeam);
         }
         playerService.addPlayer(player);
-        modelAndView.addObject("players", playerService.getPlayers(1,paginationService.getPageSize()));
+        modelAndView.addObject("players", playerService.getPlayers(1, paginationService.getPageSize()));
         modelAndView.setViewName("redirect:/players");
         return modelAndView;
     }
@@ -75,7 +82,7 @@ public class PlayerController {
     public ModelAndView removePlayer(@RequestParam String id, ModelAndView modelAndView) {
         Long playerId = Long.valueOf(id);
         playerService.removePlayer(playerId);
-        modelAndView.addObject("players", playerService.getPlayers(1,paginationService.getPageSize()));
+        modelAndView.addObject("players", playerService.getPlayers(1, paginationService.getPageSize()));
         modelAndView.setViewName("redirect:/players");
         return modelAndView;
     }
@@ -105,8 +112,8 @@ public class PlayerController {
         player.setCountry(country);
         player.setPosition(position);
         player.setRating(rating);
-        if (teamService.getTeamByName(team).isEmpty()){
-        modelAndView.addObject("player", player);
+        if (teamService.getTeamByName(team).isEmpty()) {
+            modelAndView.addObject("player", player);
             modelAndView.setViewName("redirect:/errorDataPlayer.html");
         } else {
             Team currentFirstTeam = teamService.getTeamByName(team).getFirst();
@@ -115,7 +122,7 @@ public class PlayerController {
         player.getTeam().setName(team);
         playerService.updatePlayer(player);
 
-        modelAndView.addObject("players", playerService.getPlayers(1,paginationService.getPageSize()));
+        modelAndView.addObject("players", playerService.getPlayers(1, paginationService.getPageSize()));
         modelAndView.setViewName("redirect:/players");
         return modelAndView;
     }
