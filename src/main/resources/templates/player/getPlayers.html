@@ -90,7 +90,7 @@
         <td th:text="${player.position}"></td>
         <td th:text="${player.rating}"></td>
         <td th:if="${player.team != null}" th:text="${player.team.getName()}">
-        <td th:if="${player.team == null}" th:text="">
+        <td th:if="${player.team == null}" th:text="''">
 <!--            <td th:if="${player.team.getName() == null}" th:text="${player.rating}">-->
         </td>
 
