@@ -1,15 +1,13 @@
-package com.koleso.spring.service.team_service;
+package com.koleso.spring.service;
 
 import com.koleso.spring.dto.Team;
 import com.koleso.spring.repository.TeamRepository;
-import com.koleso.spring.service.pagination_service.PaginationService;
+import com.koleso.spring.service.pagination.PaginationService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 

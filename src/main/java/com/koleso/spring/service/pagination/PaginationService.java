@@ -1,4 +1,4 @@
-package com.koleso.spring.service.pagination_service;
+package com.koleso.spring.service.pagination;
 
 public interface PaginationService {
 

@@ -1,7 +1,7 @@
 package com.koleso.spring.controller;
 
-import com.koleso.spring.service.pagination_service.PaginationService;
-import com.koleso.spring.service.person_service.PersonService;
+import com.koleso.spring.service.pagination.PaginationService;
+import com.koleso.spring.service.PersonService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;

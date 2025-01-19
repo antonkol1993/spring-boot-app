@@ -2,10 +2,9 @@ package com.koleso.spring.controller;
 
 import com.koleso.spring.dto.Player;
 import com.koleso.spring.dto.Team;
-import com.koleso.spring.repository.TeamRepository;
-import com.koleso.spring.service.pagination_service.PaginationService;
-import com.koleso.spring.service.player_service.PlayerService;
-import com.koleso.spring.service.team_service.TeamService;
+import com.koleso.spring.service.pagination.PaginationService;
+import com.koleso.spring.service.PlayerService;
+import com.koleso.spring.service.TeamService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -45,7 +44,7 @@ public class PlayerController {
         Player player = new Player();
         if (name.isEmpty()) {
             modelAndView.setViewName("player/errorDataPlayer");
-                    return modelAndView;
+            return modelAndView;
         }
         player.setName(name);
         int intAge = Integer.parseInt(age);
@@ -79,7 +78,7 @@ public class PlayerController {
     }
 
     @GetMapping("remove")
-    public ModelAndView removePlayer(@RequestParam String id, ModelAndView modelAndView) {
+    public ModelAndView removePlayer(@RequestParam (value = "{id}")String id, ModelAndView modelAndView) {
         Long playerId = Long.valueOf(id);
         playerService.removePlayer(playerId);
         modelAndView.addObject("players", playerService.getPlayers(1, paginationService.getPageSize()));
@@ -88,7 +87,7 @@ public class PlayerController {
     }
 
 
-    @GetMapping("update")
+    @GetMapping("update{id}")
     public ModelAndView editPlayerGet(@RequestParam String id, ModelAndView modelAndView) {
         Long playerId = Long.valueOf(id);
         Player player = playerService.getPlayerById(playerId);

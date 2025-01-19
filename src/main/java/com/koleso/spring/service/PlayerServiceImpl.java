@@ -1,14 +1,16 @@
-package com.koleso.spring.service.player_service;
+package com.koleso.spring.service;
 
 import com.koleso.spring.dto.Player;
+import com.koleso.spring.dto.Team;
 import com.koleso.spring.repository.PlayerRepository;
-import com.koleso.spring.service.pagination_service.PaginationService;
+import com.koleso.spring.service.pagination.PaginationService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -31,7 +33,10 @@ public class PlayerServiceImpl implements PlayerService {
 
     @Override
     public Player getPlayerById(Long id) {
-        return playerRepository.findById(id).orElseThrow();
+        Optional<Player> byId = playerRepository.findById(id);
+        Player player = byId.orElseThrow();
+        Team team = player.getTeam();
+        return player;
     }
 
     @Override
