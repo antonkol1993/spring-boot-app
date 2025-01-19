@@ -97,7 +97,7 @@ public class PlayerController {
     }
 
 
-    @PostMapping("update")
+    @PostMapping("update{id}")
     public ModelAndView editPlayerPost(
             @RequestParam String id,
             @RequestParam String name, @RequestParam String age, @RequestParam String country,
