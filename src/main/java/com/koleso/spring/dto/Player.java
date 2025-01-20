@@ -17,11 +17,13 @@ public class Player {
     private Integer id;
     private String name;
     private Integer age;
-    private String country;
-    private String position;
+
     private String rating;
 
-
+    @ManyToOne
+    private Position position;
+    @ManyToOne
+    private Country country;
     @ManyToOne
     private Team team;
 }

@@ -1,10 +1,9 @@
 package com.koleso.spring.dto;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.*;
+
+import java.util.List;
 
 @Getter
 @Setter
@@ -18,5 +17,8 @@ public class Country {
     private int id;
     private String name;
     private String capitalCity;
+
+    @OneToMany(mappedBy = "country")
+    private List<Player> players;
 
 }

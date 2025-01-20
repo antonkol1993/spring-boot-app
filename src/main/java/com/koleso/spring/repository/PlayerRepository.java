@@ -13,7 +13,6 @@ public interface PlayerRepository extends JpaRepository<Player, Long> {
 
     List<Player> findByName(String name);
 
-    Optional<List<Player>> findByAgeLessThanEqualAndPosition(Integer age, String position);
 
     @Query("""
             SELECT p FROM Player p

@@ -87,3 +87,45 @@ CREATE TABLE IF NOT EXISTS `springboot`.`person` (
     `age` INT NULL,
     PRIMARY KEY (`id`))
     ENGINE = InnoDB;
+
+
+--changeset anton:2
+
+ALTER TABLE `springboot`.`player`
+DROP COLUMN `position`,
+DROP COLUMN `country`,
+ADD COLUMN `country_id` INT(11) NULL DEFAULT NULL AFTER `game_id`,
+ADD COLUMN `position_id` INT(11) NULL DEFAULT NULL AFTER `country_id`,
+ADD INDEX `fk_player_country1_idx` (`country_id` ASC) VISIBLE,
+ADD INDEX `fk_player_position1_idx` (`position_id` ASC) VISIBLE;
+;
+
+CREATE TABLE IF NOT EXISTS `springboot`.`country` (
+                                                      `id` INT(11) NOT NULL AUTO_INCREMENT,
+    `name` VARCHAR(45) NULL DEFAULT NULL,
+    `capital_city` VARCHAR(45) NULL DEFAULT NULL,
+    PRIMARY KEY (`id`))
+    ENGINE = InnoDB
+    DEFAULT CHARACTER SET = utf8mb4
+    COLLATE = utf8mb4_0900_ai_ci;
+
+CREATE TABLE IF NOT EXISTS `springboot`.`position` (
+                                                       `id` INT(11) NOT NULL AUTO_INCREMENT,
+    `name` VARCHAR(45) NULL DEFAULT NULL,
+    PRIMARY KEY (`id`))
+    ENGINE = InnoDB
+    DEFAULT CHARACTER SET = utf8mb4
+    COLLATE = utf8mb4_0900_ai_ci
+    COMMENT = '			';
+
+ALTER TABLE `springboot`.`player`
+    ADD CONSTRAINT `fk_player_country1`
+        FOREIGN KEY (`country_id`)
+            REFERENCES `springboot`.`country` (`id`)
+            ON DELETE NO ACTION
+            ON UPDATE NO ACTION,
+ADD CONSTRAINT `fk_player_position1`
+  FOREIGN KEY (`position_id`)
+  REFERENCES `springboot`.`position` (`id`)
+  ON DELETE NO ACTION
+  ON UPDATE NO ACTION;

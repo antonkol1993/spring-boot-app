@@ -51,8 +51,8 @@ public class PlayerController {
         if (intAge != 0) {
             player.setAge(Integer.parseInt(age));
         }
-        player.setCountry(country);
-        player.setPosition(position);
+//        player.setCountry(country);
+//        player.setPosition(position);
         player.setRating(rating);
         if (teamService.getTeamByName(team).isEmpty()) {
             Team newTeam = new Team();
@@ -108,8 +108,8 @@ public class PlayerController {
         Player player = playerService.getPlayerById(playerId);
         player.setName(name);
         player.setAge(Integer.parseInt(age));
-        player.setCountry(country);
-        player.setPosition(position);
+//        player.setCountry(country);
+//        player.setPosition(position);
         player.setRating(rating);
         if (teamService.getTeamByName(team).isEmpty()) {
             modelAndView.addObject("player", player);

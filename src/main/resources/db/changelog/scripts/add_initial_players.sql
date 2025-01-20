@@ -1,12 +1,12 @@
 -- liquibase formatted sql
 -- changeset antonio:1
-insert into player (age, name, position)
-values (30, 'messi', 'forward'),
-       (59, 'Maradonna', null),
-       (35, 'Antonio', 'forward'),
-       (35, 'Henry', 'forward'),
-       (null, 'Leonardo', 'defender'),
-       (null, 'Jamal', 'defender'),
-       (null, 'Rafinha', 'defender'),
-       (null, 'Vinchenso', 'defender'),
-       (null, 'Lewandovsky', 'defender');
+insert into player (age, name)
+values (30, 'messi'),
+       (59, 'Maradonna'),
+       (35, 'Antonio'),
+       (35, 'Henry'),
+       (null, 'Leonardo'),
+       (null, 'Jamal'),
+       (null, 'Rafinha'),
+       (null, 'Vinchenso'),
+       (null, 'Lewandovsky');
