@@ -1,5 +1,5 @@
 -- liquibase formatted sql
--- changeset antonio:1
+-- changeset player:1
 insert into player (age, name)
 values (30, 'messi'),
        (59, 'Maradonna'),
@@ -9,4 +9,8 @@ values (30, 'messi'),
        (null, 'Jamal'),
        (null, 'Rafinha'),
        (null, 'Vinchenso'),
+       (null, 'Carvalho'),
+       (null, 'Narut'),
+       (null, 'Carlos'),
+       (null, 'Ibrahimovich'),
        (null, 'Lewandovsky');

@@ -1,5 +1,5 @@
 -- liquibase formatted sql
--- changeset antonio:1
+-- changeset person:1
 insert into person (first_name, last_name, age)
 values ('Anton', 'Kolesnikov', 31),
        ('Andrey', 'Narut', 33),

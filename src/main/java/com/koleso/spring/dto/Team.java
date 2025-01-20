@@ -17,9 +17,14 @@ public class Team {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String name;
-    private String country;
     private String city;
 
     @OneToMany(mappedBy = "team")
     private List<Player> player;
+
+    @ManyToOne
+    private Country country;
+
+    @ManyToOne
+    private Game game;
 }
