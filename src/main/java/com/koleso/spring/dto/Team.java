@@ -25,6 +25,5 @@ public class Team {
     @ManyToOne
     private Country country;
 
-    @ManyToOne
-    private Game game;
+
 }

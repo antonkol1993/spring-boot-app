@@ -18,10 +18,12 @@ public class Game {
     private Integer id;
     private String name;
 
-    @OneToMany(mappedBy = "game")
-    List<Team> homeTeam;
+    @OneToOne
+    @MapsId
+    Team homeTeam;
 
-    @OneToMany(mappedBy = "game")
-    List<Team> awayTeam;
+    @OneToOne
+    @MapsId
+    Team awayTeam;
 
 }
