@@ -2,7 +2,6 @@ package com.koleso.spring.service;
 
 import com.koleso.spring.dto.Team;
 import com.koleso.spring.repository.TeamRepository;
-import com.koleso.spring.service.pagination.PaginationService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -16,7 +15,6 @@ import java.util.Optional;
 public class TeamServiceImpl implements TeamService {
 
     private final TeamRepository teamRepository;
-    private final PaginationService paginationService;
 
 
     @Override
@@ -48,11 +46,11 @@ public class TeamServiceImpl implements TeamService {
 
     @Override
     public void removeTeam(Long id) {
-
+    teamRepository.deleteById(id);
     }
 
     @Override
     public void updateTeam(Team team) {
-
+        teamRepository.save(team);
     }
 }

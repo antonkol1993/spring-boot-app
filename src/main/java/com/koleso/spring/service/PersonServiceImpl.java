@@ -2,43 +2,24 @@ package com.koleso.spring.service;
 
 import com.koleso.spring.dto.Person;
 import com.koleso.spring.repository.PersonRepository;
-import com.koleso.spring.service.pagination.PaginationService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
 public class PersonServiceImpl implements PersonService {
 
     private final PersonRepository personRepository;
-    private final PaginationService paginationService;
-
-
-    @Override
-    public List<Person> getPersons() {
-        int pageSize = paginationService.getPageSize();
-        List<Person> persons = personRepository.findAll();
-        int fromIndex = 0;
-        int toIndex = fromIndex + pageSize;
-        if (toIndex > persons.size()) {
-            toIndex = persons.size();
-        }
-        persons = persons.subList(fromIndex, toIndex);
-        return persons;
-    }
 
     @Override
     public List<Person> getPersons(int page, int pageSize) {
-        List<Person> persons = personRepository.findAll();
-        int fromIndex = (page-1) * pageSize;
-        int toIndex = fromIndex + pageSize;
-        if (toIndex > persons.size()) {
-            toIndex = persons.size();
-        }
-        persons = persons.subList(fromIndex, toIndex);
-        return persons;
+        Page<Person> persons = personRepository.findAll(PageRequest.of(page, pageSize));
+        return persons.getContent();
     }
 
     @Override
@@ -48,60 +29,28 @@ public class PersonServiceImpl implements PersonService {
 
     @Override
     public Person getPersonById(Long id) {
-        return null;
+        Optional<Person> person = personRepository.findById(id);
+        return person.orElseThrow();
     }
 
     @Override
-    public void addPerson(Person person) {
+    public List<Person> getPersonByName(String name) {
+        return personRepository.findAllByName(name);
+    }
 
+    @Override
+    public void addPerson(Person Person) {
+        personRepository.save(Person);
     }
 
     @Override
     public void removePerson(Long id) {
-
+        personRepository.deleteById(id);
     }
 
     @Override
     public void updatePerson(Person person) {
-
+        personRepository.save(person);
     }
-
-
-//    @Override
-//    public List<Player> getPlayers(int page, int pageSize) {
-//
-//        List<Player> players = playerRepository.findAll();
-//        int fromIndex = (page-1) * pageSize;
-//        int toIndex = fromIndex + pageSize;
-//        if (toIndex > players.size()) {
-//            toIndex = players.size();
-//        }
-//        players = players.subList(fromIndex, toIndex);
-//        return players;
-//    }
-//
-//    @Override
-//    public int getAllPlayersCount() {
-//        return playerRepository.findAll().size();
-//    }
-//
-//    @Override
-//    public Player getPlayerById(Long id) {
-//        return playerRepository.findById(id).orElseThrow();
-//    }
-//
-//    @Override
-//    public void addPlayer(Player player) {
-//        playerRepository.save(player);
-//    }
-//
-//    @Override
-//    public void removePlayer(Long id) {
-//        playerRepository.deleteById(id);
-//    }
-//
-//    @Override
-//    public void updatePlayer(Player player) {
-//        playerRepository.save(player);
-//    }
+    
 }
