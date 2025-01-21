@@ -6,10 +6,21 @@ values ('Manchester Utd', 'Manchester'),
        ('Barcelona', 'Barcelona'),
        ('Dinamo', 'Minsk'),
        ('PSG', 'Paris'),
-       ('Athletico', 'Madrid'),
+       ('Atletico', 'Madrid'),
        ('Milan', 'Milan'),
        ('Manchester City', 'Manchester'),
        ('Liverpool', 'Liverpool'),
        ('Bayern M', 'Munich'),
-       ('Borussia', 'Dortmund');
+       ('Borussia', 'Dortmund'),
+       ('Arsenal', 'London'),
+       ('Aston Villa', 'Birmingham'),
+       ('Internazionale', 'Milan'),
+       ('Atalanta', 'Atalanta'),
+       ('Juventus', 'Torino'),
+       ('Benfica', 'lisbon'),
+       ('Club Brugge', 'Brugge'),
+       ('PSV Eindhoven', 'Eindhoven'),
+       ('Shakhtar', 'Donetsk'),
+       ('RB Leipzig', 'Leipzig');
+
 
