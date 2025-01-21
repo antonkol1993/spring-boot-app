@@ -2,9 +2,8 @@ package com.koleso.spring.controller;
 
 import com.koleso.spring.dto.Player;
 import com.koleso.spring.dto.Team;
+import com.koleso.spring.service.*;
 import com.koleso.spring.service.pagination.PaginationService;
-import com.koleso.spring.service.PlayerService;
-import com.koleso.spring.service.TeamService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -15,9 +14,12 @@ import org.springframework.web.servlet.ModelAndView;
 @RequestMapping("/players")
 @RequiredArgsConstructor
 public class PlayerController {
+    private final CountryService countryService;
+    private final GameService gameService;
     private final PlayerService playerService;
-    private final PaginationService paginationService;
+    private final PositionService positionService;
     private final TeamService teamService;
+    private final PaginationService paginationService;
 
     @RequestMapping(method = RequestMethod.GET)
     public ModelAndView getPlayers(@RequestParam(value = "page", defaultValue = "1") int page, ModelAndView modelAndView) {
