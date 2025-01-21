@@ -1,5 +1,6 @@
 package com.koleso.spring.controller;
 
+import com.koleso.spring.dto.Country;
 import com.koleso.spring.dto.Player;
 import com.koleso.spring.dto.Team;
 import com.koleso.spring.service.*;
@@ -8,6 +9,9 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+
+import java.util.ArrayList;
+import java.util.List;
 
 
 @Controller
@@ -33,16 +37,22 @@ public class PlayerController {
     @GetMapping("add")
     public ModelAndView addPlayerGet(ModelAndView modelAndView) {
         Player player = new Player();
+        List<Country> countries = countryService.getAllCountries();
+        countries.addFirst(new Country());
         modelAndView.addObject("players", player);
+        modelAndView.addObject("countries", countries);
         modelAndView.setViewName("player/formAdd");
         return modelAndView;
     }
 
     @PostMapping("add")
     public ModelAndView addPlayerPost(
-            @RequestParam String name, @RequestParam(defaultValue = "0") String age, @RequestParam String country,
-            @RequestParam String position, @RequestParam String rating,
-            @RequestParam String team,
+            @RequestParam String name,
+            @RequestParam(defaultValue = "0") String age,
+            @RequestParam String country,
+//            @RequestParam String position,
+//            @RequestParam String rating,
+//            @RequestParam String team,
             ModelAndView modelAndView) {
         Player player = new Player();
         if (name.isEmpty()) {
@@ -56,16 +66,16 @@ public class PlayerController {
         }
 //        player.setCountry(country);
 //        player.setPosition(position);
-        player.setRating(rating);
-        if (teamService.getTeamByName(team).isEmpty()) {
-            Team newTeam = new Team();
-            teamService.addTeam(newTeam);
-            newTeam.setName(team);
-            player.setTeam(newTeam);
-        } else {
-            Team currentFirstTeam = teamService.getTeamByName(team).getFirst();
-            player.setTeam(currentFirstTeam);
-        }
+//        player.setRating(rating);
+//        if (teamService.getTeamByName(team).isEmpty()) {
+//            Team newTeam = new Team();
+//            teamService.addTeam(newTeam);
+//            newTeam.setName(team);
+//            player.setTeam(newTeam);
+//        } else {
+//            Team currentFirstTeam = teamService.getTeamByName(team).getFirst();
+//            player.setTeam(currentFirstTeam);
+//        }
         playerService.addPlayer(player);
         modelAndView.addObject("players", playerService.getPlayers(1, paginationService.getPageSize()));
         modelAndView.setViewName("redirect:/players");

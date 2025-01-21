@@ -7,6 +7,7 @@ import java.util.List;
 public interface CountryService {
 
     List<Country> getCountries(int page, int pageSize);
+    List<Country> getAllCountries();
 
     int getAllCountriesCount();
 

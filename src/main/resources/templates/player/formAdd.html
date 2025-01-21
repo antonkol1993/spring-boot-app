@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
@@ -10,14 +10,19 @@
     <h1>Add a new player</h1>
     <form th:action="@{/players/add}" th:modelAttribute="players" method="post">
         <label>
-            Name: <input type="text" name="name" th:value="${players.name}" class="form-control"/> <br>
-            Age: <input type="number" name="age" th:value="${players.age}" class="form-control"/> <br>
-            Country: <input type="text" name="country" th:value="${players.country}" class="form-control"/> <br>
-            Position: <input type="text" name="position" th:value="${players.position}" class="form-control"/> <br>
-            Rating: <input type="number" name="rating" th:value="${players.rating}" class="form-control"/> <br>
-            Team: <input type="text" name="team" th:value="${players.team}" class="form-control"/> <br>
+            Name: <input type="text" name="name" th:value="${players.name}"/> <br>
+            Age: <input type="number" name="age" th:value="${players.age}"/> <br>
+            Country: <select th:name="'country'">
+            <option th:each="country : ${countries}"
+                    th:text="${countries.size() > 1 && country.name != null} ? ${country.getName()} : ''"></option>
+            </select> <br>
+<!--            Position: <select name="country">-->
+<!--            <option th:each="country : ${countries}" th:name="'country'"-->
+<!--                    th:text="${countries.size() > 1 && country.name != null} ? ${country.getName()} : ''"></option>-->
+<!--        </select> <br>-->
+<!--            Rating: <input type="number" name="rating" th:value="${players.rating}"/> <br>-->
+<!--            Team: <input type="text" name="team" th:value="${players.team}"/> <br>-->
         </label>
-        <!--    <input type="hidden" name="id" th:value="${players.id}">-->
         <button type="submit" class="btn btn-success">CREATE</button>
     </form>
 </div>
