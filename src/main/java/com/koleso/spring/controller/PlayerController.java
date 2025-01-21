@@ -25,6 +25,7 @@ public class PlayerController {
     public ModelAndView getPlayers(@RequestParam(value = "page", defaultValue = "1") int page, ModelAndView modelAndView) {
         modelAndView.addObject("players", playerService.getPlayers(page, paginationService.getPageSize()));
         modelAndView.addObject("pageCount", paginationService.getTotalPageCount(playerService.getAllPlayersCount()));
+        modelAndView.addObject("currentPage", page);
         modelAndView.setViewName("player/getPlayers");
         return modelAndView;
     }

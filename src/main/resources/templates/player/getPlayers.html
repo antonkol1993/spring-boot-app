@@ -81,7 +81,7 @@
 
     <tr th:each="player,count: ${players}">
 
-        <td th:text="${count.count}"></td>
+        <td th:text="(${count.count} + (${currentPage} -1) * 10)"></td>
         <td><a class="add_href"
                style="color: darkslategray"
                href="#"
