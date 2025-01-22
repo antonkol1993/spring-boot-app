@@ -18,9 +18,14 @@ public class GameServiceImpl implements GameService {
 
 
     @Override
-    public List<Game> getGames(int page, int pageSize) {
+    public List<Game> getGamesFromPage(int page, int pageSize) {
         Page<Game> countries = gameRepository.findAll(PageRequest.of(page, pageSize));
         return countries.getContent();
+    }
+
+    @Override
+    public List<Game> getAllGames() {
+        return gameRepository.findAll();
     }
 
     @Override

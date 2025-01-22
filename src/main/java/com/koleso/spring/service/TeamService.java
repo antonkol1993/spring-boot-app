@@ -6,7 +6,8 @@ import java.util.List;
 
 public interface TeamService {
 
-    List<Team> getTeams(int page, int pageSize);
+    List<Team> getTeamFromPage(int page, int pageSize);
+    List<Team> getAllTeams();
 
     int getAllTeamsCount();
 

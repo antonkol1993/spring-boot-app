@@ -18,9 +18,14 @@ public class TeamServiceImpl implements TeamService {
 
 
     @Override
-    public List<Team> getTeams(int page, int pageSize) {
+    public List<Team> getTeamFromPage(int page, int pageSize) {
         Page<Team> teams = teamRepository.findAll(PageRequest.of(page, pageSize));
         return teams.getContent();
+    }
+
+    @Override
+    public List<Team> getAllTeams() {
+        return teamRepository.findAll();
     }
 
     @Override

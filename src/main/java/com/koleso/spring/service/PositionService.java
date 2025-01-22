@@ -6,7 +6,8 @@ import java.util.List;
 
 public interface PositionService {
 
-    List<Position> getPositions(int page, int pageSize);
+    List<Position> getPositionsFromPage(int page, int pageSize);
+    List<Position> getAllPositions();
 
     int getAllPositionsCount();
 

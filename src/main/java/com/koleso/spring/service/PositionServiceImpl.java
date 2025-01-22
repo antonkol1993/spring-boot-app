@@ -18,9 +18,14 @@ public class PositionServiceImpl implements PositionService {
 
 
     @Override
-    public List<Position> getPositions(int page, int pageSize) {
+    public List<Position> getPositionsFromPage(int page, int pageSize) {
         Page<Position> positions = positionRepository.findAll(PageRequest.of(page, pageSize));
         return positions.getContent();
+    }
+
+    @Override
+    public List<Position> getAllPositions() {
+        return positionRepository.findAll();
     }
 
     @Override

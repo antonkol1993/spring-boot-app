@@ -6,7 +6,8 @@ import java.util.List;
 
 public interface GameService {
 
-    List<Game> getGames(int page, int pageSize);
+    List<Game> getGamesFromPage(int page, int pageSize);
+    List<Game> getAllGames();
 
     int getAllGamesCount();
 
