@@ -104,6 +104,7 @@ public class PlayerController {
         return modelAndView;
     }
 
+    //+++++++++
     @GetMapping("remove{id}")
     public ModelAndView removePlayer(@RequestParam String id, ModelAndView modelAndView) {
         Long playerId = Long.valueOf(id);
