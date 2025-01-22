@@ -104,8 +104,8 @@ public class PlayerController {
         return modelAndView;
     }
 
-    @GetMapping("remove")
-    public ModelAndView removePlayer(@RequestParam(value = "{id}") String id, ModelAndView modelAndView) {
+    @GetMapping("remove{id}")
+    public ModelAndView removePlayer(@RequestParam String id, ModelAndView modelAndView) {
         Long playerId = Long.valueOf(id);
         playerService.removePlayer(playerId);
         modelAndView.addObject("players", playerService.getPlayersFromPage(1, paginationService.getPageSize()));
@@ -113,7 +113,7 @@ public class PlayerController {
         return modelAndView;
     }
 
-
+    //+++++++++
     @GetMapping("update{id}")
     public ModelAndView editPlayerGet(@RequestParam String id, ModelAndView modelAndView) {
         Long playerId = Long.valueOf(id);
@@ -132,7 +132,7 @@ public class PlayerController {
         return modelAndView;
     }
 
-
+    //+++++++++
     @PostMapping("update{id}")
     public ModelAndView editPlayerPost(
             @RequestParam(value = "id") String id,
