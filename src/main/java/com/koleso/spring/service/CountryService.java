@@ -12,7 +12,7 @@ public interface CountryService {
     int getAllCountriesCount();
 
     Country getCountryById(Long id);
-    List<Country> getCountryByName(String name);
+    List<Country> getCountriesByName(String name);
 
     void addCountry(Country Country);
 
