@@ -1,4 +1,4 @@
-<html lang="aria-atomic" xmlns:background-color="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<html lang="aria-atomic" xmlns:th="http://www.thymeleaf.org">
 
 <h2>Players</h2>
 <head>
@@ -34,15 +34,6 @@
             background-color: darkgray;
         }
 
-        .add_submit {
-            width: 250px;
-            height: 40px;
-            background: burlywood;
-            font-size: large;
-            font-weight: bold;
-        }
-
-
         .delete_submit {
             background: aquamarine;
             font-weight: bold;
@@ -50,11 +41,6 @@
 
         .edit_submit {
             background: bisque;
-            font-weight: bold;
-        }
-
-        .to_form_submit {
-            background: darkseagreen;
             font-weight: bold;
         }
 
@@ -108,13 +94,12 @@
                th:text="Edit"></a>
         </td>
 
-    </tr>
 
+    </tr>
     <a class="add_href" style="color: darkred" href="players/add">Add a new
         player</a>
-</table>
 
-<!--https://stackoverflow.com/questions/42216529/how-to-loop-through-1-to-5-in-thymeleaf-->
+</table>
 
 <tr th:if="${pageCount > 1}" th:each="page: ${#numbers.sequence(1, pageCount)}">
     <a href="#"

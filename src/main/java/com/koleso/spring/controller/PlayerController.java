@@ -53,6 +53,7 @@ public class PlayerController {
         return modelAndView;
     }
 
+    //+++++++++
     @PostMapping("add")
     public ModelAndView addPlayerPost(
             @RequestParam String name,
@@ -94,6 +95,7 @@ public class PlayerController {
         return modelAndView;
     }
 
+    //+++++++++
     @GetMapping("get")
     public ModelAndView getPlayerById(@RequestParam String id, ModelAndView modelAndView) {
         Long playerId = Long.valueOf(id);
@@ -133,48 +135,53 @@ public class PlayerController {
 
     @PostMapping("update{id}")
     public ModelAndView editPlayerPost(
-            @PathVariable String id,
-            @RequestParam (defaultValue = "0")String name,
+            @RequestParam(value = "id") String id,
+            @RequestParam(defaultValue = "") String name,
             @RequestParam(defaultValue = "0") String age,
-//            @RequestParam (defaultValue = "0")String country,
-//            @RequestParam (defaultValue = "0")String position,
-//            @RequestParam(defaultValue = "0") String rating,
-//            @RequestParam (defaultValue = "0")String team,
+            @RequestParam(defaultValue = "") String country,
+            @RequestParam(defaultValue = "") String position,
+            @RequestParam(defaultValue = "0") String rating,
+            @RequestParam(defaultValue = "") String team,
             ModelAndView modelAndView) {
         Long playerId = Long.valueOf(id);
         Player player = playerService.getPlayerById(playerId);
-        player.setName(name);
+        if (name.isEmpty()) {
+            modelAndView.setViewName("player/errorDataPlayer");
+            return modelAndView;
+        } else {
+            player.setName(name);
+        }
         int intAge = Integer.parseInt(age);
         if (intAge > 0) {
             player.setAge(Integer.parseInt(age));
         } else {
             player.setAge(null);
         }
-//        if (!country.isEmpty()) {
-//            List<Country> countryByName = countryService.getCountriesByName(country);
-//            player.setCountry(countryByName.getFirst());
-//        }else {
-//            player.setCountry(null);
-//        }
-//        if (!country.isEmpty()) {
-//            List<Position> positionByName = positionService.getPositionByName(position);
-//            player.setPosition(positionByName.getFirst());
-//        }else {
-//            player.setPosition(null);
-//        }
-//        int intRating = Integer.parseInt(rating);
-//        if (intRating > 0) {
-//            player.setRating(rating);
-//        }else {
-//            player.setRating(null);
-//        }
-//        if (!team.isEmpty()) {
-//            List<Team> teamByName = teamService.getTeamByName(team);
-//            player.setTeam(teamByName.getFirst());
-//        }else {
-//            player.setTeam(null);
-//        }
-        modelAndView.addObject("players", playerService.getPlayersFromPage(1, paginationService.getPageSize()));
+        if (!country.isEmpty()) {
+            List<Country> countryByName = countryService.getCountriesByName(country);
+            player.setCountry(countryByName.getFirst());
+        } else {
+            player.setCountry(null);
+        }
+        if (!position.isEmpty()) {
+            List<Position> positionByName = positionService.getPositionByName(position);
+            player.setPosition(positionByName.getFirst());
+        } else {
+            player.setPosition(null);
+        }
+        int intRating = Integer.parseInt(rating);
+        if (intRating > 0) {
+            player.setRating(rating);
+        } else {
+            player.setRating(null);
+        }
+        if (!team.isEmpty()) {
+            List<Team> teamByName = teamService.getTeamByName(team);
+            player.setTeam(teamByName.getFirst());
+        } else {
+            player.setTeam(null);
+        }
+        playerService.updatePlayer(player);
         modelAndView.setViewName("redirect:/players");
         return modelAndView;
     }
