@@ -15,9 +15,11 @@ public class Game {
     private String name;
 
     @ManyToOne()
+    @JoinColumn(name = "home_team")
     Team homeTeam;
 
     @ManyToOne
+    @JoinColumn(name = "away_team")
     Team awayTeam;
 
 

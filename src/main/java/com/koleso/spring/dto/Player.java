@@ -21,9 +21,12 @@ public class Player {
     private String rating;
 
     @ManyToOne
+    @JoinColumn(name = "position_id")
     private Position position;
     @ManyToOne
+    @JoinColumn(name = "country_id")
     private Country country;
     @ManyToOne
+    @JoinColumn(name = "team_id")
     private Team team;
 }
