@@ -14,10 +14,10 @@ import java.util.List;
 public class Position {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id  ;
+    private Long id;
     private String name;
 
-    @OneToMany(mappedBy = "position")
+    @OneToMany(mappedBy = "position", cascade = CascadeType.ALL)
     private List<Player> players;
 
 }

@@ -31,6 +31,7 @@ public class PlayerController {
         modelAndView.addObject("players", playerService.getPlayersFromPage(page, paginationService.getPageSize()));
         modelAndView.addObject("pageCount", paginationService.getTotalPageCount(playerService.getAllPlayersCount()));
         modelAndView.addObject("currentPage", page);
+        modelAndView.addObject("pageSize", paginationService.getPageSize());
         modelAndView.setViewName("player/getPlayers");
         return modelAndView;
     }

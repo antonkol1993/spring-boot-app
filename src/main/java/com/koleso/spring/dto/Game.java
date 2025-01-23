@@ -5,11 +5,7 @@ import lombok.*;
 
 import java.util.List;
 
-@Getter
-@Setter
-@AllArgsConstructor
-@NoArgsConstructor
-@EqualsAndHashCode
+@Data
 @Entity
 public class Game {
 
@@ -18,12 +14,11 @@ public class Game {
     private Long id  ;
     private String name;
 
-    @OneToOne
-    @MapsId
+    @ManyToOne()
     Team homeTeam;
 
-    @OneToOne
-    @MapsId
+    @ManyToOne
     Team awayTeam;
+
 
 }

@@ -18,9 +18,9 @@ public class Country {
     private String name;
     private String capitalCity;
 
-    @OneToMany(mappedBy = "country")
+    @OneToMany(mappedBy = "country", cascade = CascadeType.ALL)
     private List<Player> players;
-    @OneToMany(mappedBy = "country")
+    @OneToMany(mappedBy = "country", cascade = CascadeType.ALL)
     private List<Team> teams;
 
 }

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<div class="container mt-5">
+    <h1>Update a player</h1>
+
+<!--    th:modelAttribute="player"-->
+
+    <form th:action="@{'/players/update'(id=${player.id})}" method="post">
+
+        <label>
+            Name: <input type="text" name="name" th:value="${player.name}"/> <br>
+            Age: <input type="number" name="age" th:value="${player.age != null} ? ${player.age} : '' "/> <br>
+
+            Country: <select name="country">
+            <option th:each="country : ${countries}"
+                    th:text="${country != null} ? ${country.name} : ''">
+                    th:selected="${player.country !=null} ? ${player.country.name} : ${countries.get(0)}"
+            </option>
+        </select><br>
+
+            Position: <select name="position">
+            <option th:each="pos : ${positions}"
+                    th:text="${pos != null} ? ${pos.name} : '' "
+                    th:selected="${player.position !=null} ? ${player.position.name} : ${positions.get(0)}"
+            ></option>
+        </select><br>
+
+            Rating: <input type="number" name="rating" th:value="${player.rating != null} ? ${player.rating} : '' "/> <br>
+
+            Team: <select name="team">
+            <option th:each="t : ${teams}"
+                    th:text="${t != null} ? ${t.name} : '' "
+                    th:selected="${player.team !=null} ? ${player.team.name} : ${teams.get(0)}"
+            ></option>
+        </select><br>
+        </label>
+
+        <button type="submit" >Update</button>
+    </form>
+</div>
+
+</body>
+</html>

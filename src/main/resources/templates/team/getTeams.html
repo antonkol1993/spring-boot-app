@@ -1,0 +1,114 @@
+<html lang="aria-atomic" xmlns:th="http://www.thymeleaf.org">
+
+<h2>Players</h2>
+<head>
+
+    <style>
+        body {
+            background-image: url(https://kartinki.pics/uploads/posts/2022-02/thumbs/1645546915_2-kartinkin-net-p-kartinki-futbolistov-2.jpg);
+            background-color: whitesmoke;
+            background-size: 2000px;
+        }
+
+        table {
+            font-family: arial, sans-serif;
+            border-collapse: separate;
+            width: 20%;
+        }
+
+        th {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+            background-color: cadetblue;
+        }
+
+        td {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+            background-color: darkgray;
+        }
+
+        tr:nth-child(even) {
+            background-color: darkgray;
+        }
+
+        .delete_submit {
+            background: aquamarine;
+            font-weight: bold;
+        }
+
+        .edit_submit {
+            background: bisque;
+            font-weight: bold;
+        }
+
+        .add_href {
+            font-weight: bold;
+            font-size: large;
+        }
+    </style>
+    <title>Players list</title>
+</head>
+
+<body>
+<table>
+    <tr>
+        <th>№</th>
+        <th>Name</th>
+        <th>City</th>
+        <th>Country</th>
+        <th>Away games</th>
+        <th>Home games</th>
+        <th>Total Games</th>
+        <th>Id</th>
+    </tr>
+
+    <tr th:each="team,count: ${teams}">
+
+        <td th:text="(${count.count} + (${currentPage} -1) * ${pageSize})"></td>
+        <td><a class="add_href"
+               style="color: darkslategray"
+               href="#"
+               th:href="@{'teams/get'(id=${team.id})}"
+               th:text="${team.name}"></a></td>
+        <td th:text="${team.city != null} ? ${team.city} : '' "></td>
+        <td th:text="${team.country != null} ? ${team.country.name} : '' "></td>
+        <td th:text="${team.awayGames ==null} ? '${team.awayGames.size()}' : '' "></td>
+<!--        <td th:text="${team.homeGames !=null } ? ${team.homeGames.size()} : '' "></td>-->
+<!--        <td th:text="${team.homeGames !=null && team.awayGames !=null } ? ${team.homeGames.size() + team.awayGames.size()} : '' "></td>-->
+        <td th:text="${team.id}"></td>
+
+
+<!--        <td><a class="delete_submit"-->
+<!--               style="color: darkred"-->
+<!--               href="#"-->
+<!--               th:href="@{'players/remove'(id=${player.id})}"-->
+<!--               th:text="Remove"></a>-->
+
+<!--            <a class="edit_submit"-->
+<!--               style="color: lightcoral"-->
+<!--               href="#"-->
+<!--               th:href="@{'players/update'(id=${player.id})}"-->
+<!--               th:text="Edit"></a>-->
+<!--        </td>-->
+
+
+<!--    </tr>-->
+<!--    <a class="add_href" style="color: darkred" href="players/add">Add a new-->
+<!--        player</a>-->
+
+<!--</table>-->
+
+<!--<tr th:if="${pageCount > 1}" th:each="page: ${#numbers.sequence(1, pageCount)}">-->
+<!--    <a href="#"-->
+<!--       th:href="@{'players'(page=${page})}"-->
+<!--       th:text="${page}"> </a>-->
+<!--</tr>-->
+
+<!--<a class="add_href" style="color: darkred" href="players/add">Add a new-->
+<!--    player</a>-->
+
+</body>
+</html>

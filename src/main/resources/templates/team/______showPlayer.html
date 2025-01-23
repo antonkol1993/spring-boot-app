@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        body {
+            background-color: lightblue;
+            background-size: 8000px;
+        }
+
+        table {
+            font-family: arial, sans-serif;
+            border-collapse: collapse;
+            width: 20%;
+        }
+
+        th {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+            background-color: cadetblue;
+        }
+
+        td {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+            background-color: darkgray;
+        }
+
+        tr:nth-child(even) {
+            background-color: darkgray;
+        }
+
+        .add_href {
+            font-weight: bold;
+            font-size: large;
+        }
+    </style>
+</head>
+<body>
+
+<table>
+<tr>
+    Name: <td th:text="${player.name}"></td>
+    Age: <td th:text="${player.age != null} ? ${player.age} : 'ND' "></td>
+    Country: <td th:text="${player.country != null} ? ${player.country.name} : 'ND' "></td>
+    Position:<td th:text="${player.position != null} ? ${player.position.name} : 'ND' "></td>
+    Rating: <td th:text="${player.rating != null} ? ${player.rating} : 'ND' "></td>
+    Team: <td th:text="${player.team != null} ? ${player.team.name} : 'ND' "></td>
+    Id: <td th:text="${player.id}"></td>
+    Link: <td th:text="${player}"></td>
+</tr>
+</table>
+
+<a class="add_href" style="color: darkred" href="/players">BACK TO PLAYERS</a>
+
+</body>
+</html>

@@ -129,3 +129,10 @@ CREATE TABLE IF NOT EXISTS `springboot`.`player` (
     AUTO_INCREMENT = 14
     DEFAULT CHARACTER SET = utf8mb4
     COLLATE = utf8mb4_0900_ai_ci;
+
+-- changeset update table 'Team':2
+-- -----------------------------------------------------
+-- Table `springboot`.`team`   ( Delete column country )
+-- -----------------------------------------------------
+ALTER TABLE `springboot`.`team`
+DROP COLUMN `country`;
