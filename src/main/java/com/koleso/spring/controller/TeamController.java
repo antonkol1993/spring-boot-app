@@ -7,6 +7,7 @@ import com.koleso.spring.service.TeamService;
 import com.koleso.spring.service.pagination.PaginationService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -23,13 +24,24 @@ public class TeamController {
     private final TeamService teamService;
     private final GameService gameService;
 
+    //+++++++++
     @RequestMapping(method = RequestMethod.GET)
     public ModelAndView getTeams(@RequestParam (defaultValue = "1") int page, ModelAndView modelAndView)  {
         List<Team> teamFromPage = teamService.getTeamFromPage(page, paginationService.getPageSize());
         modelAndView.addObject("teams", teamFromPage);
         modelAndView.addObject("currentPage", page);
         modelAndView.addObject("pageSize", paginationService.getPageSize());
+        modelAndView.addObject("pageCount", paginationService.getTotalPageCount(teamService.getAllTeamsCount()));
         modelAndView.setViewName("team/getTeams");
+        return modelAndView;
+    }
+
+
+    @GetMapping("remove{id}")
+    public ModelAndView removePlayer(@RequestParam String id, ModelAndView modelAndView) {
+        Long teamId = Long.valueOf(id);
+        teamService.removeTeam(teamId);
+        modelAndView.setViewName("redirect:/teams");
         return modelAndView;
     }
 

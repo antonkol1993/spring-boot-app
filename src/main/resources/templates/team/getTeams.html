@@ -83,11 +83,11 @@
         <td th:text="${team.id}"></td>
 
 
-<!--        <td><a class="delete_submit"-->
-<!--               style="color: darkred"-->
-<!--               href="#"-->
-<!--               th:href="@{'players/remove'(id=${player.id})}"-->
-<!--               th:text="Remove"></a>-->
+        <td><a class="delete_submit"
+               style="color: darkred"
+               href="#"
+               th:href="@{'teams/remove'(id=${team.id})}"
+               th:text="Remove"></a>
 
 <!--            <a class="edit_submit"-->
 <!--               style="color: lightcoral"-->
@@ -97,17 +97,17 @@
 <!--        </td>-->
 
 
-<!--    </tr>-->
+    </tr>
 <!--    <a class="add_href" style="color: darkred" href="players/add">Add a new-->
 <!--        player</a>-->
 
-<!--</table>-->
+</table>
 
-<!--<tr th:if="${pageCount > 1}" th:each="page: ${#numbers.sequence(1, pageCount)}">-->
-<!--    <a href="#"-->
-<!--       th:href="@{'players'(page=${page})}"-->
-<!--       th:text="${page}"> </a>-->
-<!--</tr>-->
+<tr th:if="${pageCount > 1}" th:each="page: ${#numbers.sequence(1, pageCount)}">
+    <a href="#"
+       th:href="@{'/teams'(page=${page})}"
+       th:text="${page}"> </a>
+</tr>
 
 <!--<a class="add_href" style="color: darkred" href="players/add">Add a new-->
 <!--    player</a>-->
