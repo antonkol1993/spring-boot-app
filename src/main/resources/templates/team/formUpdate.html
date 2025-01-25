@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<div class="container mt-5">
+    <h1>Update a team</h1>
+
+<!--    th:modelAttribute="player"-->
+
+    <form th:action="@{'/teams/update'(id=${team.id})}" method="post">
+
+        <label>
+            Name: <input type="text" name="name" th:value="${team.name}"/> <br>
+            City: <input type="text" name="city" th:value="${team.city != null} ? ${team.city} : '' "/> <br>
+
+            Country: <select name="country">
+            <option th:each="country : ${countries}"
+                    th:text="${country != null} ? ${country.name} : '' "
+                    th:selected="${team.country !=null} ? ${team.country.name} : ${countries.get(0)}">
+            </option>
+        </select><br>
+        </label>
+
+        <button type="submit" >Update</button>
+    </form>
+</div>
+
+</body>
+</html>

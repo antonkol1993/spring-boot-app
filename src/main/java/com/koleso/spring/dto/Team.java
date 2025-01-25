@@ -20,13 +20,13 @@ public class Team {
     private String name;
     private String city;
 
-    @OneToMany(mappedBy = "team", cascade = CascadeType.ALL)
-    private List<Player> player;
-
     @ManyToOne
     @JoinColumn (name = "country_id", referencedColumnName = "id")
     private Country country;
 
+    @OneToMany(mappedBy = "team", cascade = CascadeType.ALL)
+    private List<Player> player;
+    
     @OneToMany(mappedBy = "awayTeam", cascade = CascadeType.ALL)
     private List<Game> awayGames;
 

@@ -66,7 +66,7 @@ public class PlayerController {
             ModelAndView modelAndView) {
         Player player = new Player();
         if (name.isEmpty()) {
-            modelAndView.setViewName("player/errorDataPlayer");
+            modelAndView.setViewName("errorDataTeam");
             return modelAndView;
         }
         player.setName(name);
@@ -117,7 +117,7 @@ public class PlayerController {
 
     //+++++++++
     @GetMapping("update{id}")
-    public ModelAndView editPlayerGet(@RequestParam String id, ModelAndView modelAndView) {
+    public ModelAndView updatePlayerGet(@RequestParam String id, ModelAndView modelAndView) {
         Long playerId = Long.valueOf(id);
         Player player = playerService.getPlayerById(playerId);
         List<Country> countries = countryService.getAllCountries();
@@ -136,7 +136,7 @@ public class PlayerController {
 
     //+++++++++
     @PostMapping("update{id}")
-    public ModelAndView editPlayerPost(
+    public ModelAndView updatePlayerPost(
             @RequestParam(value = "id") String id,
             @RequestParam(defaultValue = "") String name,
             @RequestParam(defaultValue = "0") String age,
@@ -148,7 +148,7 @@ public class PlayerController {
         Long playerId = Long.valueOf(id);
         Player player = playerService.getPlayerById(playerId);
         if (name.isEmpty()) {
-            modelAndView.setViewName("player/errorDataPlayer");
+            modelAndView.setViewName("errorDataTeam");
             return modelAndView;
         } else {
             player.setName(name);
