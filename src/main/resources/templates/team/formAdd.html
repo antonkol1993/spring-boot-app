@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<div class="container mt-5">
+    <h1>Add a new team</h1>
+    <form th:action="@{'/teams/add'}" th:modelAttribute="${team}" method="post">
+        <label>
+            Name: <input type="text" name="name" th:value="${team.name}"/> <br>
+            City: <input type="text" name="city" th:value="${team.city != null} ? team.city : '' "/> <br>
+            Country: <select th:name="'country'">
+            <option th:each="country : ${countries}"
+                    th:text="${country != null && country.name != null } ? ${country.getName()} : ''"></option>
+            </select> <br>
+
+        </label>
+        <button type="submit" >CREATE</button>
+    </form>
+</div>
+
+</body>
+</html>

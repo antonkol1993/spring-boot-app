@@ -25,7 +25,6 @@ public class PlayerController {
     private final TeamService teamService;
     private final PaginationService paginationService;
 
-    //+++++++++
     @RequestMapping(method = RequestMethod.GET)
     public ModelAndView getPlayers(@RequestParam(value = "page", defaultValue = "1") int page, ModelAndView modelAndView) {
         modelAndView.addObject("players", playerService.getPlayersFromPage(page, paginationService.getPageSize()));
@@ -36,7 +35,6 @@ public class PlayerController {
         return modelAndView;
     }
 
-    //+++++++++
     @GetMapping("add")
     public ModelAndView addPlayerGet(ModelAndView modelAndView) {
         Player player = new Player();
@@ -54,7 +52,6 @@ public class PlayerController {
         return modelAndView;
     }
 
-    //+++++++++
     @PostMapping("add")
     public ModelAndView addPlayerPost(
             @RequestParam String name,
@@ -66,7 +63,7 @@ public class PlayerController {
             ModelAndView modelAndView) {
         Player player = new Player();
         if (name.isEmpty()) {
-            modelAndView.setViewName("errorDataTeam");
+            modelAndView.setViewName("player/errorDataPlayer");
             return modelAndView;
         }
         player.setName(name);
@@ -96,7 +93,6 @@ public class PlayerController {
         return modelAndView;
     }
 
-    //+++++++++
     @GetMapping("get")
     public ModelAndView getPlayerById(@RequestParam String id, ModelAndView modelAndView) {
         Long playerId = Long.valueOf(id);
@@ -105,7 +101,6 @@ public class PlayerController {
         return modelAndView;
     }
 
-    //+++++++++
     @GetMapping("remove{id}")
     public ModelAndView removePlayer(@RequestParam String id, ModelAndView modelAndView) {
         Long playerId = Long.valueOf(id);
@@ -115,7 +110,6 @@ public class PlayerController {
         return modelAndView;
     }
 
-    //+++++++++
     @GetMapping("update{id}")
     public ModelAndView updatePlayerGet(@RequestParam String id, ModelAndView modelAndView) {
         Long playerId = Long.valueOf(id);
@@ -134,7 +128,6 @@ public class PlayerController {
         return modelAndView;
     }
 
-    //+++++++++
     @PostMapping("update{id}")
     public ModelAndView updatePlayerPost(
             @RequestParam(value = "id") String id,
@@ -148,7 +141,7 @@ public class PlayerController {
         Long playerId = Long.valueOf(id);
         Player player = playerService.getPlayerById(playerId);
         if (name.isEmpty()) {
-            modelAndView.setViewName("errorDataTeam");
+            modelAndView.setViewName("player/errorDataPlayer");
             return modelAndView;
         } else {
             player.setName(name);

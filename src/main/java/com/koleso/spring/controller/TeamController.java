@@ -1,6 +1,8 @@
 package com.koleso.spring.controller;
 
 import com.koleso.spring.dto.Country;
+import com.koleso.spring.dto.Player;
+import com.koleso.spring.dto.Position;
 import com.koleso.spring.dto.Team;
 import com.koleso.spring.service.CountryService;
 import com.koleso.spring.service.GameService;
@@ -23,7 +25,6 @@ public class TeamController {
     private final GameService gameService;
     private final CountryService countryService;
 
-    //+++++++++
     @RequestMapping(method = RequestMethod.GET)
     public ModelAndView getTeams(@RequestParam(defaultValue = "1") int page, ModelAndView modelAndView) {
         List<Team> teamFromPage = teamService.getTeamFromPage(page, paginationService.getPageSize());
@@ -35,7 +36,6 @@ public class TeamController {
         return modelAndView;
     }
 
-    //+++++++++
     @GetMapping("remove{id}")
     public ModelAndView removeTeam(@RequestParam String id, ModelAndView modelAndView) {
         Long teamId = Long.valueOf(id);
@@ -88,5 +88,38 @@ public class TeamController {
         return modelAndView;
     }
 
+    @GetMapping("add")
+    public ModelAndView addTeamGet(ModelAndView modelAndView) {
+        Team team = new Team();
+        List<Country> countries = countryService.getAllCountries();
+        countries.addFirst(null);
+
+        modelAndView.addObject("team", team);
+        modelAndView.addObject("countries", countries);
+        modelAndView.setViewName("team/formAdd");
+        return modelAndView;
+    }
+
+    @PostMapping("add")
+    public ModelAndView addTeamPost(
+            @RequestParam String name,
+            @RequestParam String city,
+            @RequestParam String country,
+            ModelAndView modelAndView) {
+        Team team = new Team();
+        if (!name.isEmpty()) {
+            team.setName(name);
+        }
+        if (!city.isEmpty()) {
+            team.setCity(city);
+        }
+        if(!country.isEmpty()) {
+            List<Country> countriesByName = countryService.getCountriesByName(country);
+            team.setCountry(countriesByName.getFirst());
+        }
+        teamService.addTeam(team);
+        modelAndView.setViewName("redirect:/teams");
+        return modelAndView;
+    }
 
 }
