@@ -1,9 +1,6 @@
 package com.koleso.spring.controller;
 
-import com.koleso.spring.dto.Country;
-import com.koleso.spring.dto.Player;
-import com.koleso.spring.dto.Position;
-import com.koleso.spring.dto.Team;
+import com.koleso.spring.dto.*;
 import com.koleso.spring.service.CountryService;
 import com.koleso.spring.service.GameService;
 import com.koleso.spring.service.TeamService;
@@ -45,7 +42,10 @@ public class TeamController {
     }
 
     @GetMapping("update{id}")
-    public ModelAndView updateTeamGet(@RequestParam String id, ModelAndView modelAndView) {
+    public ModelAndView updateTeamGet(
+            @RequestParam String id,
+            @RequestParam (defaultValue = "numberOfPlayers")String numberOfPlayers,
+            ModelAndView modelAndView) {
         Long teamId = Long.valueOf(id);
         Team teamById = teamService.getTeamById(teamId);
         List<Country> countries = countryService.getAllCountries();
@@ -58,7 +58,7 @@ public class TeamController {
     }
 
     @PostMapping("update{id}")
-    public ModelAndView updateTeamGetPost(
+    public ModelAndView updateTeamPost(
             @RequestParam(defaultValue = "") String id,
             @RequestParam(defaultValue = "") String name,
             @RequestParam(defaultValue = "") String city,
@@ -120,6 +120,38 @@ public class TeamController {
         teamService.addTeam(team);
         modelAndView.setViewName("redirect:/teams");
         return modelAndView;
+    }
+
+
+    @GetMapping("update/extra{id}")
+    public ModelAndView updateExtraTeam(
+            @RequestParam String id,
+            @RequestParam (defaultValue = "") String games,
+            @RequestParam (defaultValue = "") String players,
+            ModelAndView modelAndView) {
+
+        if(games.equals("games")){
+            Long teamId = Long.valueOf(id);
+            Team teamObject = teamService.getTeamById(teamId);
+            List<Game> awayGames = teamObject.getAwayGames();
+            List<Game> homeGames = teamObject.getHomeGames();
+
+            modelAndView.addObject("awayGames", awayGames);
+            modelAndView.addObject("homeGames", homeGames);
+            modelAndView.setViewName("team/pageUpdateGamesIntoTeam");
+            return modelAndView;
+        }
+        if(players.equals("players")){
+            Long teamId = Long.valueOf(id);
+            Team teamObject = teamService.getTeamById(teamId);
+            List<Player> playerObjects = teamObject.getPlayers();
+            modelAndView.addObject("players", playerObjects);
+            modelAndView.setViewName("team/pageUpdatePlayersIntoTeam");
+            return modelAndView;
+        }
+
+
+        return null;
     }
 
 }

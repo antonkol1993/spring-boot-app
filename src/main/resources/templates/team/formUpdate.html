@@ -25,6 +25,14 @@
         </select><br>
         </label>
 
+        <button th:href="@{'/teams/update/extra'(id=${team.id})}"
+                th:name="'players'"
+                th:value="'players'">Update players</button><br>
+
+        <button th:href="@{'/teams/update/extra'(id=${team.id})}"
+                      th:name="'games'"
+                      th:value="'games'">Update games</button><br>
+
         <button type="submit" >Update</button>
     </form>
 </div>

@@ -25,7 +25,7 @@ public class Team {
     private Country country;
 
     @OneToMany(mappedBy = "team", cascade = CascadeType.ALL)
-    private List<Player> player;
+    private List<Player> players;
     
     @OneToMany(mappedBy = "awayTeam", cascade = CascadeType.ALL)
     private List<Game> awayGames;
