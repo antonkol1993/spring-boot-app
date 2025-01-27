@@ -11,11 +11,11 @@ import org.springframework.stereotype.Service;
 @PropertySource(value = "classpath:application.yaml", ignoreResourceNotFound = true)
 public class PaginationServiceImpl implements PaginationService {
     @Value("${spring.application.settings.pageSize}")
-    private String pageSize;
+    private int pageSize;
 
     @Override
     public int getPageSize() {
-        return Integer.parseInt(pageSize);
+        return pageSize;
     }
 
     public int getTotalPageCount(int records) {
