@@ -24,6 +24,11 @@ public class PlayerServiceImpl implements PlayerService {
     }
 
     @Override
+    public List<Player> getAllPlayers() {
+        return playerRepository.findAll();
+    }
+
+    @Override
     public int getAllPlayersCount() {
         return playerRepository.findAll().size();
     }

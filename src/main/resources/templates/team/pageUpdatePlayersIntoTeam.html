@@ -2,8 +2,21 @@
 
 <h2>Teams</h2>
 <head>
-    <title></title>
+    <title>Update players into team </title>
+    <style>
+    </style>
 </head>
 <body>
-PLAYERS
+<form th:action="@{'/teams/update/players'(id=${team.id})}" method="post">
+    <th:block  th:each="player,iterator : ${allPlayers}">
+        <td>
+        <input type="checkbox"
+               th:checked="${player.team !=null && player.team.id == team.id} ? true : false"
+               th:text="${player.name}"
+        > </input>
+        </td>
+    </th:block>
+    <button type="submit">Save</button>
+</form>
+
 </body>

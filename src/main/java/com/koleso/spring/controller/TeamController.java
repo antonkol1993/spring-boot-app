@@ -3,6 +3,7 @@ package com.koleso.spring.controller;
 import com.koleso.spring.dto.*;
 import com.koleso.spring.service.CountryService;
 import com.koleso.spring.service.GameService;
+import com.koleso.spring.service.PlayerService;
 import com.koleso.spring.service.TeamService;
 import com.koleso.spring.service.pagination.PaginationService;
 import lombok.RequiredArgsConstructor;
@@ -20,6 +21,7 @@ public class TeamController {
     private final PaginationService paginationService;
     private final TeamService teamService;
     private final GameService gameService;
+    private final PlayerService playerService;
     private final CountryService countryService;
 
     @RequestMapping(method = RequestMethod.GET)
@@ -123,35 +125,54 @@ public class TeamController {
     }
 
 
-    @GetMapping("update/extra{id}")
-    public ModelAndView updateExtraTeam(
+//    @GetMapping("update/games{id}")
+//    public ModelAndView updateGamesIntoTeamGet(
+//            @RequestParam String id,
+//            ModelAndView modelAndView) {
+//
+//            Long teamId = Long.valueOf(id);
+//            Team teamObject = teamService.getTeamById(teamId);
+//            List<Game> awayGames = teamObject.getAwayGames();
+//            List<Game> homeGames = teamObject.getHomeGames();
+//
+//            modelAndView.addObject("awayGames", awayGames);
+//            modelAndView.addObject("homeGames", homeGames);
+//            modelAndView.setViewName("team/pageUpdateGamesIntoTeam");
+//            return modelAndView;
+//
+//    }
+//
+//    @PostMapping("update/games{id}")
+//    public ModelAndView updateGamesIntoTeamPost(
+//            @RequestParam String id,
+//            ModelAndView modelAndView) {
+//        return modelAndView;
+//    }
+
+
+    @GetMapping("update/players{id}")
+    public ModelAndView updatePlayersIntoTeamGet(
             @RequestParam String id,
-            @RequestParam (defaultValue = "") String games,
-            @RequestParam (defaultValue = "") String players,
             ModelAndView modelAndView) {
-
-        if(games.equals("games")){
             Long teamId = Long.valueOf(id);
             Team teamObject = teamService.getTeamById(teamId);
-            List<Game> awayGames = teamObject.getAwayGames();
-            List<Game> homeGames = teamObject.getHomeGames();
-
-            modelAndView.addObject("awayGames", awayGames);
-            modelAndView.addObject("homeGames", homeGames);
-            modelAndView.setViewName("team/pageUpdateGamesIntoTeam");
-            return modelAndView;
-        }
-        if(players.equals("players")){
-            Long teamId = Long.valueOf(id);
-            Team teamObject = teamService.getTeamById(teamId);
-            List<Player> playerObjects = teamObject.getPlayers();
-            modelAndView.addObject("players", playerObjects);
+            List<Player> playersIntoTeam = teamObject.getPlayers();
+            List<Player> allPlayers = playerService.getAllPlayers();
+            modelAndView.addObject("playersIntoTeam", playersIntoTeam);
+            modelAndView.addObject("allPlayers", allPlayers);
+            modelAndView.addObject("team", teamObject);
             modelAndView.setViewName("team/pageUpdatePlayersIntoTeam");
             return modelAndView;
         }
 
-
-        return null;
+    @PostMapping("update/players{id}")
+    public ModelAndView updatePlayersIntoTeamPost(
+            @RequestParam String id,
+            ModelAndView modelAndView) {
+        return modelAndView;
     }
+
+
+
 
 }

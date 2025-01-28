@@ -7,6 +7,7 @@ import java.util.List;
 public interface PlayerService {
 
     List<Player> getPlayersFromPage(int page, int pageSize);
+    List<Player> getAllPlayers();
 
     int getAllPlayersCount();
 

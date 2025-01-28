@@ -23,21 +23,18 @@
                     th:selected="${team.country !=null} ? ${team.country.name} : ${countries.get(0)}">
             </option>
         </select><br>
+        <button type="submit" >Update</button>                   <br> <br> <br> <br>
         </label>
-        <button
-                th:class="'button-style'"
-                th:href="@{'/teams/update/extra'(id=${team.id})}"
-                th:name="'players'"
-                th:value="'players'">Update players</button><br>
-
-        <button type="reset"
-                th:href="@{'/teams/update/extra'(id=${team.id})}"
-                th:name="'games'"
-                th:value="'games'">Update games</button><br>
-
-
-        <button type="submit" >Update</button>
     </form>
+
+    <a href="#" th:href="@{'/teams/update/players'((id=${team.id}))}">
+        Update players</a>><br>
+    <a href="#" th:href="@{'/teams/update/games'((id=${team.id}))}">
+        Update games</a>><br>
+<!--        <form th:action="@{'/teams/update/extra'(id=${team.id})}" th:name="'games'" th:value="'games'" method="get">-->
+<!--            <button type="submit" >Update games</button>-->
+<!--        </form>><br>-->
+
 </div>
 
 
