@@ -11,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -156,9 +157,9 @@ public class TeamController {
             ModelAndView modelAndView) {
             Long teamId = Long.valueOf(id);
             Team teamObject = teamService.getTeamById(teamId);
-            List<Player> playersIntoTeam = teamObject.getPlayers();
             List<Player> allPlayers = playerService.getAllPlayers();
-            modelAndView.addObject("playersIntoTeam", playersIntoTeam);
+            List<Integer> setPlayers = new ArrayList<Integer>();
+        modelAndView.addObject("setPlayers", setPlayers);
             modelAndView.addObject("allPlayers", allPlayers);
             modelAndView.addObject("team", teamObject);
             modelAndView.setViewName("team/pageUpdatePlayersIntoTeam");
@@ -168,7 +169,9 @@ public class TeamController {
     @PostMapping("update/players{id}")
     public ModelAndView updatePlayersIntoTeamPost(
             @RequestParam String id,
-            ModelAndView modelAndView) {
+            ModelAndView modelAndView,
+            @RequestAttribute List<Integer> setPlayers) {
+
         return modelAndView;
     }
 

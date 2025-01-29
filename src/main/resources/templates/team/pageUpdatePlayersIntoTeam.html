@@ -7,12 +7,13 @@
     </style>
 </head>
 <body>
-<form th:action="@{'/teams/update/players'(id=${team.id})}" method="post">
+<form th:action="@{'/teams/update/players'(id=${team.id})}" th:object="${setPlayers}" method="post">
     <th:block  th:each="player,iterator : ${allPlayers}">
         <td>
-        <input type="checkbox"
+        <input type="checkbox" name="RAZ"
                th:checked="${player.team !=null && player.team.id == team.id} ? true : false"
                th:text="${player.name}"
+               th:field="${player.id}"
         > </input>
         </td>
     </th:block>
