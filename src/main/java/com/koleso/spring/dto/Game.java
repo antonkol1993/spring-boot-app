@@ -11,10 +11,10 @@ public class Game {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id  ;
+    private Long id;
     private String name;
 
-    @ManyToOne()
+    @ManyToOne
     @JoinColumn(name = "home_team")
     Team homeTeam;
 

@@ -5,7 +5,6 @@ databaseChangeLog:
       file: classpath:db/changelog/scripts/add_initial_players.sql
   - include:
       file: db/changelog/scripts/add_initial_persons.sql
-
   - include:
       file: db/changelog/scripts/add_initial_positions.sql
   - include:
