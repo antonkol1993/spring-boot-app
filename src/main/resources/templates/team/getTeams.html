@@ -88,13 +88,13 @@
         <td><a class="delete_submit"
                style="color: darkred"
                href="#"
-               th:href="@{'teams/remove/'(id=${team.id})}"
+               th:href="@{'teams/remove/{id}'(id=${team.id})}"
                th:text="Remove"></a>
 
             <a class="edit_submit"
                style="color: lightcoral"
                href="#"
-               th:href="@{'teams/update/'(id=${team.id})}"
+               th:href="@{'teams/update/{id}'(id=${team.id})}"
                th:text="Edit"></a>
         </td>
 

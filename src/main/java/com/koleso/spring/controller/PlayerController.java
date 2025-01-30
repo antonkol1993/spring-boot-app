@@ -26,7 +26,9 @@ public class PlayerController {
     private final PaginationService paginationService;
 
     @RequestMapping(method = RequestMethod.GET)
-    public ModelAndView getPlayers(@RequestParam(value = "page", defaultValue = "1") int page, ModelAndView modelAndView) {
+    public ModelAndView getPlayers(
+            @RequestParam(value = "page", defaultValue = "1") int page,
+            ModelAndView modelAndView) {
         modelAndView.addObject("players", playerService.getPlayersFromPage(page, paginationService.getPageSize()));
         modelAndView.addObject("pageCount", paginationService.getTotalPageCount(playerService.getAllPlayersCount()));
         modelAndView.addObject("currentPage", page);
@@ -93,8 +95,10 @@ public class PlayerController {
         return modelAndView;
     }
 
-    @GetMapping("get")
-    public ModelAndView getPlayerById(@RequestParam String id, ModelAndView modelAndView) {
+    @GetMapping("get/{id}")
+    public ModelAndView getPlayerById(
+            @PathVariable String id,
+            ModelAndView modelAndView) {
         Long playerId = Long.valueOf(id);
         modelAndView.addObject("player", playerService.getPlayerById(playerId));
         modelAndView.setViewName("player/showPlayer");
@@ -102,7 +106,9 @@ public class PlayerController {
     }
 
     @GetMapping("remove/{id}")
-    public ModelAndView removePlayer(@RequestParam String id, ModelAndView modelAndView) {
+    public ModelAndView removePlayer(
+            @PathVariable String id,
+            ModelAndView modelAndView) {
         Long playerId = Long.valueOf(id);
         playerService.removePlayer(playerId);
         modelAndView.addObject("players", playerService.getPlayersFromPage(1, paginationService.getPageSize()));
@@ -111,7 +117,9 @@ public class PlayerController {
     }
 
     @GetMapping("update/{id}")
-    public ModelAndView updatePlayerGet(@RequestParam String id, ModelAndView modelAndView) {
+    public ModelAndView updatePlayerGet(
+            @PathVariable String id,
+            ModelAndView modelAndView) {
         Long playerId = Long.valueOf(id);
         Player player = playerService.getPlayerById(playerId);
         List<Country> countries = countryService.getAllCountries();
@@ -130,7 +138,7 @@ public class PlayerController {
 
     @PostMapping("update/{id}")
     public ModelAndView updatePlayerPost(
-            @RequestParam(value = "id") String id,
+            @PathVariable String id,
             @RequestParam(defaultValue = "") String name,
             @RequestParam(defaultValue = "0") String age,
             @RequestParam(defaultValue = "") String country,

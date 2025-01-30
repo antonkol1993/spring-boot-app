@@ -11,7 +11,7 @@
 
 <!--    th:modelAttribute="player"-->
 
-    <form th:action="@{'/teams/update/'(id=${team.id})}" method="post">
+    <form th:action="@{'/teams/update/{id}'(id=${team.id})}" method="post">
 
         <label>
             Name: <input type="text" name="name" th:value="${team.name}"/> <br>
@@ -27,9 +27,9 @@
         </label>
     </form>
 
-    <a href="#" th:href="@{'/teams/update/players/'((id=${team.id}))}">
+    <a href="#" th:href="@{'/teams/update/players/{id}'((id=${team.id}))}">
         Update players</a>><br>
-    <a href="#" th:href="@{'/teams/update/games/'((id=${team.id}))}">
+    <a href="#" th:href="@{'/teams/update/games/{id}'((id=${team.id}))}">
         Update games</a>><br>
 <!--        <form th:action="@{'/teams/update/extra'(id=${team.id})}" th:name="'games'" th:value="'games'" method="get">-->
 <!--            <button type="submit" >Update games</button>-->

@@ -37,7 +37,7 @@ public class TeamController {
     }
 
     @GetMapping("remove/{id}")
-    public ModelAndView removeTeam(@RequestParam String id, ModelAndView modelAndView) {
+    public ModelAndView removeTeam(@PathVariable String id, ModelAndView modelAndView) {
         Long teamId = Long.valueOf(id);
         teamService.removeTeam(teamId);
         modelAndView.setViewName("redirect:/teams");
@@ -46,7 +46,7 @@ public class TeamController {
 
     @GetMapping("update/{id}")
     public ModelAndView updateTeamGet(
-            @RequestParam String id,
+            @PathVariable String id,
             @RequestParam (defaultValue = "numberOfPlayers")String numberOfPlayers,
             ModelAndView modelAndView) {
         Long teamId = Long.valueOf(id);
@@ -62,7 +62,7 @@ public class TeamController {
 
     @PostMapping("update/{id}")
     public ModelAndView updateTeamPost(
-            @RequestParam(defaultValue = "") String id,
+            @PathVariable String id,
             @RequestParam(defaultValue = "") String name,
             @RequestParam(defaultValue = "") String city,
             @RequestParam(defaultValue = "") String country,
@@ -128,7 +128,7 @@ public class TeamController {
 
 //    @GetMapping("update/games/{id}")
 //    public ModelAndView updateGamesIntoTeamGet(
-//            @RequestParam String id,
+//            @PathVariable String id,
 //            ModelAndView modelAndView) {
 //
 //            Long teamId = Long.valueOf(id);
@@ -145,7 +145,7 @@ public class TeamController {
 //
 //    @PostMapping("update/games/{id}")
 //    public ModelAndView updateGamesIntoTeamPost(
-//            @RequestParam String id,
+//            @PathVariable String id,
 //            ModelAndView modelAndView) {
 //        return modelAndView;
 //    }
@@ -168,12 +168,13 @@ public class TeamController {
 
     @PostMapping("update/players/{id}")
     public ModelAndView updatePlayersIntoTeamPost(
-            @RequestParam String id,
-            ModelAndView modelAndView,
-            @RequestAttribute List<Integer> setPlayers) {
+            @PathVariable String id,
+            ModelAndView modelAndView) {
 
         return modelAndView;
     }
+
+
 
     @GetMapping("get/{id}")
     public ModelAndView getTeamById(

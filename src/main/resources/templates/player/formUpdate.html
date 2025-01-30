@@ -9,7 +9,7 @@
 <div class="container mt-5">
     <h1>Update a player</h1>
 
-    <form th:action="@{'/players/update/'(id=${player.id})}" th:modelAttribute="player" method="post">
+    <form th:action="@{'/players/update/{id}'(id=${player.id})}" th:modelAttribute="player" method="post">
 
         <label>
             Name: <input type="text" name="name" th:value="${player.name}"/> <br>

@@ -8,7 +8,7 @@
 
 <div class="container mt-5">
     <h1>Add a new team</h1>
-    <form th:action="@{'/teams/add'}" th:modelAttribute="${team}" method="post">
+    <form th:action="@{'/teams/add'}" method="post">
         <label>
             Name: <input type="text" name="name" th:value="${team.name}"/> <br>
             City: <input type="text" name="city" th:value="${team.city != null} ? team.city : '' "/> <br>
