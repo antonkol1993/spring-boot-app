@@ -69,13 +69,12 @@ public class TeamController {
 
     @PostMapping("update/{id}")
     public ModelAndView updateTeamPost(
-            @PathVariable String id,
+            @PathVariable Long id,
             @RequestParam(defaultValue = "") String name,
             @RequestParam(defaultValue = "") String city,
             @RequestParam(defaultValue = "") String country,
             ModelAndView modelAndView) {
-        Long teamId = Long.valueOf(id);
-        Team teamById = teamService.getTeamById(teamId);
+        Team teamById = teamService.getTeamById(id);
         if (name.isEmpty()) {
             modelAndView.setViewName("team/errorDataTeam");
             return modelAndView;
