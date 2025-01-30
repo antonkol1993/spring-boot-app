@@ -1,34 +1,51 @@
 <html lang="aria-atomic" xmlns:th="http://www.thymeleaf.org">
 
-<!--<fragment: title="Update players into team"/>-->
 
-
-<!--<head>-->
-<!--    <title>Update players into team </title>-->
-<!--    <style>-->
-<!--        .wrapper {-->
-<!--            display: grid;-->
-<!--            grid-template-columns: 20% 20% 20% 20% 20%;-->
-<!--        }-->
-<!--    </style>-->
-<!--    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">-->
-<!--    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>-->
-<!--</head>-->
+<head>
+    <title>Update players into team </title>
+    <style>
+    </style>
+</head>
 <body>
 <h2>Teams</h2>
-<form th:action="@{'/teams/update/players{id}'(id=${team.id})}" method="post">
-    <div class="wrapper form-check" >
-    <th:block th:each="player,iterator : ${allPlayers}">
-        <div>
-            <input class="form-check-input" type="checkbox" name="RAZ"
-                   th:checked="${player.team !=null && player.team.id == team.id} ? true : false"
-                   th:text="${player.name}">
-            <!--               th:field="${player.id}"-->
-            </input>
-        </div>
+
+<form th:action="@{'/teams/update/players'(id=${team.id})}" method="post">
+    <th:block  th:each="player : ${allPlayers}">
+        <td>
+        <input type="checkbox" name="playerIds"
+               th:checked="${player.team !=null && player.team.id == team.id} ? true : false"
+               th:text="${player.name}"
+               th:value="${player.id}"
+        > </input>
+        </td>
     </th:block>
-    </div>
-    <button class="btn btn-primary" type="submit">Save</button>
+    <button type="submit" >Save</button>
 </form>
 
+<script>
+console.log("DSAASDDASAADSDAS");
+document.querySelector("button").addEventListener("click", function(event) {
+    event.preventDefault(); // Prevent default form submission
+
+    let selectedPlayers = [];
+    document.querySelectorAll("input[name='playerIds']:checked").forEach(checkbox => {
+        selectedPlayers.push(checkbox.value);
+    });
+
+    fetch("/teams/update/players?id=" + [[${team.id}]], {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({ playerIds: selectedPlayers })
+    }).then(response => response.json())
+        .then(data => console.log(data))
+        .catch(error => console.error("Error:", error));
+});
+
+
+</script>
+
 </body>
+
+</html>
