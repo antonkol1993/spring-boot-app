@@ -101,7 +101,7 @@ public class PlayerController {
         return modelAndView;
     }
 
-    @GetMapping("remove{id}")
+    @GetMapping("remove/{id}")
     public ModelAndView removePlayer(@RequestParam String id, ModelAndView modelAndView) {
         Long playerId = Long.valueOf(id);
         playerService.removePlayer(playerId);
@@ -110,7 +110,7 @@ public class PlayerController {
         return modelAndView;
     }
 
-    @GetMapping("update{id}")
+    @GetMapping("update/{id}")
     public ModelAndView updatePlayerGet(@RequestParam String id, ModelAndView modelAndView) {
         Long playerId = Long.valueOf(id);
         Player player = playerService.getPlayerById(playerId);
@@ -128,7 +128,7 @@ public class PlayerController {
         return modelAndView;
     }
 
-    @PostMapping("update{id}")
+    @PostMapping("update/{id}")
     public ModelAndView updatePlayerPost(
             @RequestParam(value = "id") String id,
             @RequestParam(defaultValue = "") String name,

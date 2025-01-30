@@ -71,7 +71,7 @@
         <td><a class="add_href"
                style="color: darkslategray"
                href="#"
-               th:href="@{'players/get'(id=${player.id})}"
+               th:href="@{'players/get/'(id=${player.id})}"
                th:text="${player.name}"></a></td>
         <td th:text="${player.age != null} ? ${player.age} : '' "></td>
         <td th:text="${player.country != null} ? ${player.country.name} : '' "></td>
@@ -84,13 +84,13 @@
         <td><a class="delete_submit"
                style="color: darkred"
                href="#"
-               th:href="@{'players/remove'(id=${player.id})}"
+               th:href="@{'players/remove/'(id=${player.id})}"
                th:text="Remove"></a>
 
             <a class="edit_submit"
                style="color: lightcoral"
                href="#"
-               th:href="@{'players/update'(id=${player.id})}"
+               th:href="@{'players/update/'(id=${player.id})}"
                th:text="Edit"></a>
         </td>
 

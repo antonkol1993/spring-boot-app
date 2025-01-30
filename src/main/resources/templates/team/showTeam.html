@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        body {
+            background-color: lightblue;
+            background-size: 8000px;
+        }
+
+        table {
+            font-family: arial, sans-serif;
+            border-collapse: separate;
+            width: 20%;
+        }
+
+        th {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+            background-color: cadetblue;
+        }
+
+        td {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+            background-color: darkgray;
+        }
+
+        tr:nth-child(even) {
+            background-color: darkgray;
+        }
+
+        .add_href {
+            font-weight: bold;
+            font-size: large;
+        }
+    </style>
+</head>
+<body>
+
+<table>
+    <tr>
+        <th>Name</th>
+        <th>City</th>
+        <th>Country</th>
+        <th>Away games</th>
+        <th>Home games</th>
+        <th>Total Games</th>
+        <th>Quantity Players</th>
+        <th>Id</th>
+        <th>Link</th>
+    </tr>
+<tr>
+    <td th:text="${team.name}"></td>
+    <td th:text="${team.city != null} ? ${team.city} : 'ND' "></td>
+    <td th:text="${team.country != null} ? ${team.country.name} : 'ND' "></td>
+    <td th:text="${team.awayGames != null} ? ${team.awayGames.size()} : 'ND' "></td>
+    <td th:text="${team.homeGames != null} ? ${team.homeGames.size()} : 'ND' "></td>
+    <td th:text="${team.homeGames !=null && team.awayGames !=null } ?
+        ${team.homeGames.size() + team.awayGames.size()} : '' "></td>
+    <td th:text="${team.players !=null } ? ${team.players.size()} : '' "></td>
+    <td th:text="${team.id}"></td>
+    <td th:text="${team}"></td>
+</tr>
+</table>
+
+<a class="add_href" style="color: darkred" href="/teams">BACK TO TEAMS</a>
+
+</body>
+</html>

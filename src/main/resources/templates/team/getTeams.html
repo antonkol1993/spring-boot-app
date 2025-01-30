@@ -1,6 +1,6 @@
 <html lang="aria-atomic" xmlns:th="http://www.thymeleaf.org">
 
-<h2>Teams</h2>
+
 <fragment: title="Update players into team"/>
 <head>
 
@@ -52,7 +52,7 @@
     </style>
     <title>Team list</title>
 </head>
-
+<h2>Teams</h2>
 <body>
 <table>
     <tr>
@@ -73,13 +73,14 @@
         <td><a class="add_href"
                style="color: darkslategray"
                href="#"
-               th:href="@{'teams/get'(id=${team.id})}"
+               th:href="@{'teams/get/{id}'(id = ${team.id})} "
                th:text="${team.name}"></a></td>
         <td th:text="${team.city != null} ? ${team.city} : '' "></td>
         <td th:text="${team.country != null} ? ${team.country.name} : 'No dates' "></td>
         <td th:text="${team.awayGames !=null} ? ${team.awayGames.size()} : '' "></td>
         <td th:text="${team.homeGames !=null } ? ${team.homeGames.size()} : '' "></td>
-        <td th:text="${team.homeGames !=null && team.awayGames !=null } ? ${team.homeGames.size() + team.awayGames.size()} : '' "></td>
+        <td th:text="${team.homeGames !=null && team.awayGames !=null } ?
+        ${team.homeGames.size() + team.awayGames.size()} : '' "></td>
         <td th:text="${team.players !=null } ? ${team.players.size()} : '' "></td>
         <td th:text="${team.id}"></td>
 
@@ -87,13 +88,13 @@
         <td><a class="delete_submit"
                style="color: darkred"
                href="#"
-               th:href="@{'teams/remove'(id=${team.id})}"
+               th:href="@{'teams/remove/'(id=${team.id})}"
                th:text="Remove"></a>
 
             <a class="edit_submit"
                style="color: lightcoral"
                href="#"
-               th:href="@{'teams/update'(id=${team.id})}"
+               th:href="@{'teams/update/'(id=${team.id})}"
                th:text="Edit"></a>
         </td>
 
@@ -110,8 +111,6 @@
        th:text="${page}"> </a>
 </tr>
 
-<!--<a class="add_href" style="color: darkred" href="players/add">Add a new-->
-<!--    player</a>-->
 
 </body>
 </html>
