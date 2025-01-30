@@ -6,12 +6,15 @@ import com.koleso.spring.service.GameService;
 import com.koleso.spring.service.PlayerService;
 import com.koleso.spring.service.TeamService;
 import com.koleso.spring.service.pagination.PaginationService;
+import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Enumeration;
 import java.util.List;
 
 @Controller
@@ -26,7 +29,9 @@ public class TeamController {
     private final CountryService countryService;
 
     @RequestMapping(method = RequestMethod.GET)
-    public ModelAndView getTeams(@RequestParam(defaultValue = "1") int page, ModelAndView modelAndView) {
+    public ModelAndView getTeams(
+            @RequestParam(defaultValue = "1") int page,
+            ModelAndView modelAndView) {
         List<Team> teamFromPage = teamService.getTeamFromPage(page, paginationService.getPageSize());
         modelAndView.addObject("teams", teamFromPage);
         modelAndView.addObject("currentPage", page);
@@ -37,7 +42,9 @@ public class TeamController {
     }
 
     @GetMapping("remove/{id}")
-    public ModelAndView removeTeam(@PathVariable String id, ModelAndView modelAndView) {
+    public ModelAndView removeTeam(
+            @PathVariable String id,
+            ModelAndView modelAndView) {
         Long teamId = Long.valueOf(id);
         teamService.removeTeam(teamId);
         modelAndView.setViewName("redirect:/teams");
@@ -153,7 +160,7 @@ public class TeamController {
 
     @GetMapping("update/players/{id}")
     public ModelAndView updatePlayersIntoTeamGet(
-            @RequestParam String id,
+            @PathVariable String id,
             ModelAndView modelAndView) {
             Long teamId = Long.valueOf(id);
             Team teamObject = teamService.getTeamById(teamId);
@@ -169,7 +176,19 @@ public class TeamController {
     @PostMapping("update/players/{id}")
     public ModelAndView updatePlayersIntoTeamPost(
             @PathVariable String id,
-            ModelAndView modelAndView) {
+            HttpServletRequest request,
+            ModelAndView modelAndView) throws IOException {
+        StringBuilder body = new StringBuilder();
+        String line;
+        while ((line = request.getReader().readLine()) != null) {
+            body.append(line);
+        }
+        Object playerIds = request.getAttribute("playerIds");
+        Enumeration<String> attributeNames = request.getAttributeNames();
+        request.getMethod();
+        request.getHeaderNames();
+
+        String postBody = body.toString();
 
         return modelAndView;
     }
