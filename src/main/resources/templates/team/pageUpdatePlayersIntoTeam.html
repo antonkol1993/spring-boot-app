@@ -9,7 +9,7 @@
 <body>
 <h2>Teams</h2>
 
-<form th:action="@{'/teams/update/players'(id=${team.id})}" method="post">
+<form th:action="@{'/teams/update/players{id}'(id=${team.id})}" method="post">
     <th:block  th:each="player : ${allPlayers}">
         <td>
         <input type="checkbox" name="playerIds"

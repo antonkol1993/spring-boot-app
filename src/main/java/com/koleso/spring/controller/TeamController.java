@@ -6,6 +6,8 @@ import com.koleso.spring.service.GameService;
 import com.koleso.spring.service.PlayerService;
 import com.koleso.spring.service.TeamService;
 import com.koleso.spring.service.pagination.PaginationService;
+import com.koleso.spring.service.support.SupportService;
+import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -16,6 +18,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Enumeration;
 import java.util.List;
+import java.util.Optional;
 
 @Controller
 @RequestMapping("/teams")
@@ -27,6 +30,8 @@ public class TeamController {
     private final GameService gameService;
     private final PlayerService playerService;
     private final CountryService countryService;
+    private final SupportService supportService;
+
 
     @RequestMapping(method = RequestMethod.GET)
     public ModelAndView getTeams(
@@ -54,7 +59,7 @@ public class TeamController {
     @GetMapping("update/{id}")
     public ModelAndView updateTeamGet(
             @PathVariable String id,
-            @RequestParam (defaultValue = "numberOfPlayers")String numberOfPlayers,
+            @RequestParam(defaultValue = "numberOfPlayers") String numberOfPlayers,
             ModelAndView modelAndView) {
         Long teamId = Long.valueOf(id);
         Team teamById = teamService.getTeamById(teamId);
@@ -122,7 +127,7 @@ public class TeamController {
         if (!city.isEmpty()) {
             team.setCity(city);
         }
-        if(!country.isEmpty()) {
+        if (!country.isEmpty()) {
             List<Country> countriesByName = countryService.getCountriesByName(country);
             team.setCountry(countriesByName.getFirst());
         }
@@ -161,37 +166,35 @@ public class TeamController {
     public ModelAndView updatePlayersIntoTeamGet(
             @PathVariable String id,
             ModelAndView modelAndView) {
-            Long teamId = Long.valueOf(id);
-            Team teamObject = teamService.getTeamById(teamId);
-            List<Player> allPlayers = playerService.getAllPlayers();
-            List<Integer> setPlayers = new ArrayList<Integer>();
+        Long teamId = Long.valueOf(id);
+        Team teamObject = teamService.getTeamById(teamId);
+        List<Player> allPlayers = playerService.getAllPlayers();
+        List<Integer> setPlayers = new ArrayList<Integer>();
         modelAndView.addObject("setPlayers", setPlayers);
-            modelAndView.addObject("allPlayers", allPlayers);
-            modelAndView.addObject("team", teamObject);
-            modelAndView.setViewName("team/pageUpdatePlayersIntoTeam");
-            return modelAndView;
-        }
-
-    @PostMapping("update/players/{id}")
-    public ModelAndView updatePlayersIntoTeamPost(
-            @PathVariable String id,
-            HttpServletRequest request,
-            ModelAndView modelAndView) throws IOException {
-        StringBuilder body = new StringBuilder();
-        String line;
-        while ((line = request.getReader().readLine()) != null) {
-            body.append(line);
-        }
-        Object playerIds = request.getAttribute("playerIds");
-        Enumeration<String> attributeNames = request.getAttributeNames();
-        request.getMethod();
-        request.getHeaderNames();
-
-        String postBody = body.toString();
-
+        modelAndView.addObject("allPlayers", allPlayers);
+        modelAndView.addObject("team", teamObject);
+        modelAndView.setViewName("team/pageUpdatePlayersIntoTeam");
         return modelAndView;
     }
 
+    @PostMapping("update/players{id}")
+    public ModelAndView updatePlayersIntoTeamPost(
+            @RequestParam String id,
+            HttpServletRequest request,
+            ModelAndView modelAndView) throws IOException, ServletException {
+        List<Long> listPlayerIds = supportService.readerIdsFromClient(request);
+
+        List<Player> playersToTeam = new ArrayList<>();
+        for (int i = 0; i < listPlayerIds.size(); i++) {
+            Player playerById = playerService.getPlayerById(listPlayerIds.get(i));
+            playersToTeam.add(playerById);
+        }
+        Team teamById = teamService.getTeamById(Long.valueOf(id));
+        teamById.setPlayers(playersToTeam);
+        teamService.updateTeam(teamById);
+        modelAndView.setViewName("redirect:/teams");
+        return modelAndView;
+    }
 
 
     @GetMapping("get/{id}")
@@ -203,8 +206,6 @@ public class TeamController {
         modelAndView.setViewName("team/showTeam");
         return modelAndView;
     }
-
-
 
 
 }
