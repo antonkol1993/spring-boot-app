@@ -182,16 +182,16 @@ public class TeamController {
             @RequestParam String id,
             HttpServletRequest request,
             ModelAndView modelAndView) throws IOException, ServletException {
-        List<Long> listPlayerIds = supportService.readerIdsFromClient(request);
-
-        List<Player> playersToTeam = new ArrayList<>();
-        for (int i = 0; i < listPlayerIds.size(); i++) {
-            Player playerById = playerService.getPlayerById(listPlayerIds.get(i));
-            playersToTeam.add(playerById);
-        }
-        Team teamById = teamService.getTeamById(Long.valueOf(id));
-        teamById.setPlayers(playersToTeam);
-        teamService.updateTeam(teamById);
+//        List<Long> listPlayerIds = supportService.readerIdsFromClient(request);
+//
+//        List<Player> playersToTeam = new ArrayList<>();
+//        for (int i = 0; i < listPlayerIds.size(); i++) {
+//            Player playerById = playerService.getPlayerById(listPlayerIds.get(i));
+//            playersToTeam.add(playerById);
+//        }
+//        Team teamById = teamService.getTeamById(Long.valueOf(id));
+//        teamById.setPlayers(playersToTeam);
+//        teamService.updateTeam(teamById);
         modelAndView.setViewName("redirect:/teams");
         return modelAndView;
     }
