@@ -207,5 +207,13 @@ public class TeamController {
         return modelAndView;
     }
 
+    @GetMapping("some/path")
+    public ModelAndView getTeamById(
+            ModelAndView modelAndView) {
+        modelAndView.setViewName("menu/menu");
+        return modelAndView;
+    }
+
+
 
 }
