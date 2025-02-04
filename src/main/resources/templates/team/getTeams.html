@@ -1,12 +1,10 @@
 <html lang="aria-atomic" xmlns:th="http://www.thymeleaf.org">
 
-
-<fragment: title="Update players into team"/>
 <head>
-
+    <title>Team list</title>
     <style>
         body {
-            background-image: url(https://kartinki.pics/uploads/posts/2022-02/thumbs/1645546915_2-kartinkin-net-p-kartinki-futbolistov-2.jpg);
+            background-image: url(https://img3.akspic.ru/previews/7/6/5/5/7/175567/175567-lionel_messi-skotiabank_arena-chempionat_mira_2022_goda-final_chempionata_mira_po_futbolu_2022_goda-fk_barselona-x750.jpg);
             background-color: whitesmoke;
             background-size: 2000px;
         }
@@ -50,10 +48,18 @@
             font-size: large;
         }
     </style>
-    <title>Team list</title>
 </head>
-<h2>Teams</h2>
+
 <body>
+<h2 style="color:whitesmoke">Teams</h2>
+
+<!--header-->
+<div th:replace="~{fragments/headerOfPage :: header-of-page}"></div>
+
+<!-- main info -->
+<main style="font-size: large; color: whitesmoke"   class="container mt-4">
+    List of Teams
+</main>
 <table>
     <tr>
         <th>№</th>
@@ -97,22 +103,22 @@
                th:href="@{'teams/update/{id}'(id=${team.id})}"
                th:text="Edit"></a>
         </td>
-
-
     </tr>
-    <a class="add_href" style="color: darkred" href="teams/add">Add a new
-        team</a>
 
 </table>
 
+<div>
 <tr th:if="${pageCount > 1}" th:each="page: ${#numbers.sequence(1, pageCount)}">
     <a href="#"
        th:href="@{'/teams'(page=${page})}"
        th:text="${page}"> </a>
 </tr>
+<a class="add_href" style="color: yellowgreen" href="teams/add">Add a new
+    team</a>
+</div>
 
 
-<a class="add_href" style="color: darkred" href="teams/some/path">Menu</a>
+    <div th:replace="~{fragments/menu :: footer}"></div>
 
 </body>
 </html>

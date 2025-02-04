@@ -1,8 +1,8 @@
 <html lang="aria-atomic" xmlns:th="http://www.thymeleaf.org">
 
-<h2>Players</h2>
-<head>
 
+<head>
+    <title>Players</title>
     <style>
         body {
             background-image: url(https://kartinki.pics/uploads/posts/2022-02/thumbs/1645546915_2-kartinkin-net-p-kartinki-futbolistov-2.jpg);
@@ -14,6 +14,7 @@
             font-family: arial, sans-serif;
             border-collapse: separate;
             width: 20%;
+            flex: 1;
         }
 
         th {
@@ -49,11 +50,21 @@
             font-size: large;
         }
     </style>
-    <title>Players list</title>
 </head>
 
 <body>
-<table>
+<h2 style="color:whitesmoke">Players</h2>
+
+<!--header-->
+<div th:replace="~{fragments/headerOfPage :: header-of-page}"></div>
+
+<!-- main info -->
+<main style="font-size: large; color: whitesmoke" class="container mt-4">
+    List of players
+</main>
+
+
+<table style="flex: 1">
     <tr>
         <th>№</th>
         <th>Player</th>
@@ -94,19 +105,19 @@
                th:text="Edit"></a>
         </td>
 
-
+    </tr>
+</table>
+<div>
+    <tr th:if="${pageCount > 1}" th:each="page: ${#numbers.sequence(1, pageCount)}">
+        <a href="#"
+           th:href="@{'players'(page=${page})}"
+           th:text="${page}"> </a>
     </tr>
 
-</table>
-
-<tr th:if="${pageCount > 1}" th:each="page: ${#numbers.sequence(1, pageCount)}">
-    <a href="#"
-       th:href="@{'players'(page=${page})}"
-       th:text="${page}"> </a>
-</tr>
-
-<a class="add_href" style="color: darkred" href="players/add">Add a new
-    player</a>
+    <a class="add_href" style="color: darkred" href="players/add">Add a new
+        player</a>
+</div>
+<div th:replace="~{fragments/menu :: footer}"></div>
 
 </body>
 </html>

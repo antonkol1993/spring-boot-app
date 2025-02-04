@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+</head>
+<body>
+<!-- th:fragment -->
+<header th:fragment="header-of-page">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+            <!-- logo -->
+            <a style="color: whitesmoke" class="navbar-brand" href="#">
+                <img src="http://localhost:8080/images/logo.bmp" alt="logo" width="50" height="45"
+                     class="d-inline-block align-text-top">
+            </a>
+
+            <!-- navigation menu -->
+            <div class="collapse navbar-collapse" id="navbarNav">
+
+                <ul class="navbar-nav ms-auto">
+                    <li style="color: lightblue; font-size: large" class="nav-item">
+                        <a class="add_href" style="color: whitesmoke"
+                           xmlns:th="http://www.thymeleaf.org"
+                           href="/players">
+                            <img src="https://azertag.az/files/2020/3/1200x630/16063104241170526193_1200x630.jpg"
+                                 class="img-thumbnail" alt="Players" width="70px" height="70px">Players</a>
+                    </li>
+                    <li style="color: lightblue; font-size: large" class="nav-item">
+                        <a class="add_href" style="color: whitesmoke"
+                           xmlns:th="http://www.thymeleaf.org"
+                           href="/teams">
+                            <img src="https://football-fun-live.com/uploads/37/posts/real-madrid-sostav-e1554416588596.jpg"
+                                 class="img-thumbnail" alt="Teams" width="70px" height="70px">Teams</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</header>
+</body>
+</html>
