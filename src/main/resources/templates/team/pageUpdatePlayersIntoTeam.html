@@ -32,13 +32,27 @@ document.querySelector("button").addEventListener("click", function(event) {
         selectedPlayers.push(checkbox.value);
     });
 
-    fetch("/teams/update/players?id=" + [[${team.id}]], {
+    fetch("/teams/update/players/" + [[${team.id}]], {
         method: "POST",
         headers: {
             "Content-Type": "application/json"
         },
-        body: JSON.stringify({ playerIds: selectedPlayers })
-    });
+        body: JSON.stringify({ playerIds: selectedPlayers, name: "Manchester", short_name: "MU", established: 1888 })
+    })
+        .then( response => {
+            window.history.pushState({}, null, response.url);
+            return response.text()
+        } )
+        .then( result => {
+            let parser = new DOMParser();
+            doc = parser.parseFromString( result, 'text/html' );
+            document.replaceChild( doc.documentElement, document.documentElement );
+        } )
+        // .then(response => {
+        //     console.log(response)
+        //     // window.location.replace(response.url)
+        //     // window.location.replace('/teams')
+        // });
 });
 </script>
 
