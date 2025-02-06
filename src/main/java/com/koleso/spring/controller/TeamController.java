@@ -188,16 +188,8 @@ public class TeamController {
             @PathVariable Long id,
             @RequestBody PlayerCollectionDTO playerCollection,
             ModelAndView modelAndView) throws IOException, ServletException {
-//        List<Long> listPlayerIds = supportService.readerIdsFromClient(request);
-//
-//        List<Player> playersToTeam = new ArrayList<>();
-//        for (int i = 0; i < listPlayerIds.size(); i++) {
-//            Player playerById = playerService.getPlayerById(listPlayerIds.get(i));
-//            playersToTeam.add(playerById);
-//        }
-//        Team teamById = teamService.getTeamById(Long.valueOf(id));
-//        teamById.setPlayers(playersToTeam);
-//        teamService.updateTeam(teamById);
+
+
         modelAndView.setViewName("redirect:/teams");
         return modelAndView;
     }
@@ -213,12 +205,12 @@ public class TeamController {
         return modelAndView;
     }
 
-    @GetMapping("some/path")
-    public ModelAndView getTeamById(
-            ModelAndView modelAndView) {
-        modelAndView.setViewName("menu/menu");
-        return modelAndView;
-    }
+//    @GetMapping("some/path")
+//    public ModelAndView getTeamById(
+//            ModelAndView modelAndView) {
+//        modelAndView.setViewName("menu/menu");
+//        return modelAndView;
+//    }
 
 
 

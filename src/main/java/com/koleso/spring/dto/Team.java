@@ -19,6 +19,8 @@ public class Team {
     private Long id;
     private String name;
     private String city;
+    @Column(name = "logo_url")
+    private String logoURL;
 
     @ManyToOne
     @JoinColumn (name = "country_id", referencedColumnName = "id")
@@ -33,6 +35,5 @@ public class Team {
     @OneToMany(mappedBy = "homeTeam", cascade = CascadeType.ALL)
     private List<Game> homeGames;
 
-    private String logoURL;
 
 }

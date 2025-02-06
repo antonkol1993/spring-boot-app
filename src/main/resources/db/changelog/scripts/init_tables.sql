@@ -136,3 +136,7 @@ CREATE TABLE IF NOT EXISTS `springboot`.`player` (
 -- -----------------------------------------------------
 ALTER TABLE `springboot`.`team`
 DROP COLUMN `country`;
+
+-- changeset add to table 'Team' column:3
+ALTER TABLE `springboot`.`team`
+    ADD COLUMN `logo_url` VARCHAR(225) NULL DEFAULT NULL AFTER `country_id`;
