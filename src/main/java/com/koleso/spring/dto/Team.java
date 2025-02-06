@@ -33,5 +33,6 @@ public class Team {
     @OneToMany(mappedBy = "homeTeam", cascade = CascadeType.ALL)
     private List<Game> homeGames;
 
+    private String logoURL;
 
 }

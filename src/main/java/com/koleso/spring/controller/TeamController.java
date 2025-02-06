@@ -8,7 +8,6 @@ import com.koleso.spring.service.TeamService;
 import com.koleso.spring.service.pagination.PaginationService;
 import com.koleso.spring.service.support.SupportService;
 import jakarta.servlet.ServletException;
-import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -16,9 +15,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Enumeration;
 import java.util.List;
-import java.util.Optional;
 
 @Controller
 @RequestMapping("/teams")
@@ -177,10 +174,19 @@ public class TeamController {
         return modelAndView;
     }
 
-    @PostMapping("update/players{id}")
+//    @PostMapping("update/players/{id}")
+//    public ModelAndView updatePlayersIntoTeamPost(
+//            @PathVariable Long id,
+//            @RequestBody String text,
+//            ModelAndView modelAndView) throws IOException, ServletException {
+//
+//        return modelAndView;
+//    }
+
+    @PostMapping("update/players/{id}")
     public ModelAndView updatePlayersIntoTeamPost(
-            @RequestParam String id,
-            HttpServletRequest request,
+            @PathVariable Long id,
+            @RequestBody PlayerCollectionDTO playerCollection,
             ModelAndView modelAndView) throws IOException, ServletException {
 //        List<Long> listPlayerIds = supportService.readerIdsFromClient(request);
 //
