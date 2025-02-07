@@ -14,12 +14,13 @@ databaseChangeLog:
   - include:
       file: db/changelog/scripts/ver_1.0/add_initial_games.sql
   - include:
-      file: db/changelog/scripts/ver_1.01/update_team.sql
+      file: db/changelog/scripts/ver_1.01/update_team_table.sql
   - include:
-      file: db/changelog/scripts/ver_1.01/add_logo_wiki.sql
+      file: db/changelog/scripts/ver_1.01/add_logo_wiki_team_table.sql
   - include:
-      file: db/changelog/scripts/ver_1.01/add_team_to players.sql
-
-
-
+      file: db/changelog/scripts/ver_1.01/add_team_id_to_player_table.sql
+  - include:
+      file: db/changelog/scripts/ver_1.01/update_player_table.sql
+  - include:
+      file: db/changelog/scripts/ver_1.01/add_wiki_image_player_table.sql
 

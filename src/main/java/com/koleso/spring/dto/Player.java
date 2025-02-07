@@ -17,8 +17,12 @@ public class Player {
     private Long id  ;
     private String name;
     private Integer age;
-
     private String rating;
+    @Column(name = "image_url")
+    private String imageURL;
+    @Column(name = "wiki_url")
+    private String wikiURL;
+
 
     @ManyToOne
     @JoinColumn(name = "position_id")
@@ -31,7 +35,4 @@ public class Player {
     private Team team;
 
 
-//    private String imageURL = "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b4/Lionel-Messi-Argentina-2022-FIFA-World-Cup_%28cropped%29.jpg/250px-Lionel-Messi-Argentina-2022-FIFA-World-Cup_%28cropped%29.jpg";
-
-//    private String wikiURL;
 }

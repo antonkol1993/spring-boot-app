@@ -51,5 +51,56 @@
     </div>
 </div>
 
+<div th:fragment="personalCardPlayer">
+    <div class="card" style="width: 18rem;">
+        <img style="max-width: 250px; max-height: 300px" th:src="@{${player.imageURL}}" class="card-img-top"
+             alt="logoOfTeam">
+        <div class="card-body">
+            <h5 class="card-title" th:text="${player.name}"></h5>
+            <p class="card-text"></p>
+        </div>
+        <div class="lists">
+            <ul>
+                <li class="list-group-item" style="color: black">Profile:</li>
+                <li class="list-group-item" style="color: black">Age:</li>
+                <li class="list-group-item"
+                    style="color: black">Rating:
+                </li>
+                <li class="list-group-item"
+                    style="color: black">Position:
+                </li>
+                <li class="list-group-item"
+                    style="color: black">Country:
+                </li>
+            </ul>
+            <ul>
+                <li class="list-group-item"
+                    style="color: black">
+                    <a class="card-link" href="#"
+                       th:href="${player.wikiURL}"
+                       th:text="${player.team !=null} ? 'link' : ''"></a>
+                </li>
+                <li class="list-group-item"
+                    style="color: black" th:text="${player.age!=null} ? ${player.age} : 'ND'"></li>
+                <li class="list-group-item"
+                    style="color: black" th:text="${player.rating!=null} ? ${player.rating} : 'ND'"></li>
+                <li class="list-group-item"
+                    style="color: black" th:text="${player.position!=null} ? ${player.position.name} : 'ND'"></li>
+                <li class="list-group-item"
+                    style="color: black" th:text="${player.country!=null} ? ${player.country.name} : 'ND'"></li>
+            </ul>
+        </div>
+    </div>
+</div>
+<div th:fragment="personalCardPlayerUnderBody">
+    <div class="card-body">
+        <h1 class="text-center mb-4">Team</h1>
+        <a class="card-link" href="#"
+           th:href="@{(id=${player.team!=null} ? '/teams/get/{id}' + ${player.team.id} : '')}"
+           th:text="${player.team !=null} ? ${player.team.name} : ''"></a>
+    </div>
+</div>
+
+
 </body>
 </html>
