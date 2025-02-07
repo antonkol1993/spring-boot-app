@@ -1,15 +1,25 @@
 databaseChangeLog:
   - include:
-      file: classpath:db/changelog/scripts/init_tables.sql
+      file: db/changelog/scripts/ver_1.0/init_tables.sql
   - include:
-      file: classpath:db/changelog/scripts/add_initial_players.sql
+      file: db/changelog/scripts/ver_1.0/add_initial_players.sql
   - include:
-      file: db/changelog/scripts/add_initial_persons.sql
+      file: db/changelog/scripts/ver_1.0/add_initial_persons.sql
   - include:
-      file: db/changelog/scripts/add_initial_positions.sql
+      file: db/changelog/scripts/ver_1.0/add_initial_positions.sql
   - include:
-      file: db/changelog/scripts/add_initial_countries.sql
+      file: db/changelog/scripts/ver_1.0/add_initial_countries.sql
   - include:
-      file: db/changelog/scripts/add_initial_teams.sql
+      file: db/changelog/scripts/ver_1.0/add_initial_teams.sql
   - include:
-      file: db/changelog/scripts/add_initial_games.sql
+      file: db/changelog/scripts/ver_1.0/add_initial_games.sql
+  - include:
+      file: db/changelog/scripts/ver_1.01/update_team.sql
+  - include:
+      file: db/changelog/scripts/ver_1.01/add_logo_wiki.sql
+  - include:
+      file: db/changelog/scripts/ver_1.01/add_team_to players.sql
+
+
+
+

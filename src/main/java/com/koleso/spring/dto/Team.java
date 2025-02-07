@@ -21,6 +21,8 @@ public class Team {
     private String city;
     @Column(name = "logo_url")
     private String logoURL;
+    @Column(name = "wiki_url")
+    private String teamWikiURL;
 
     @ManyToOne
     @JoinColumn (name = "country_id", referencedColumnName = "id")

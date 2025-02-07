@@ -2,7 +2,10 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Page of team</title>
+    <title></title>
+    <style>
+
+    </style>
 </head>
 <body>
 
@@ -14,18 +17,39 @@
             <h5 class="card-title" th:text="${team.name}"></h5>
             <p class="card-text"></p>
         </div>
-        <ul class="list-group list-group-flush" >
-            <li class="list-group-item" th:text="${team.city}"></li>
-            <li class="list-group-item">A second item</li>
-            <li class="list-group-item">A third item</li>
-        </ul>
-        <div class="card-body">
-            <a href="#" class="card-link">Card link</a>
-            <a href="#" class="card-link">Another link</a>
+        <div class="lists">
+            <ul>
+                <li class="list-group-item"
+                    style="font-weight: bold;
+                color: black;
+                font-size: 28px"
+                    th:text="'   City:'"></li>
+            </ul>
+            <ul>
+                <li class="list-group-item"
+                    style="font-weight: bold;
+                color: chocolate;
+                font-size: 28px"
+                    th:text="${team.city}"></li>
+            </ul>
+            <div class="card-body">
+                <a href="#" class="card-link">Card link</a>
+                <a href="#" class="card-link">Another link</a>
+            </div>
         </div>
     </div>
 </div>
 
+<div th:fragment="teamRoster">
+    <h1 class="text-center mb-4">Team roster</h1>
+    <div class="grid-container">
+        <div class="grid-item" th:each="player : ${team.players}">
+            <a href="#"
+               th:href="@{'/players/get/{id}'(id=${player.id})}"
+               th:text="${player.name}"></a>
+        </div>
+    </div>
+</div>
 
 </body>
 </html>
