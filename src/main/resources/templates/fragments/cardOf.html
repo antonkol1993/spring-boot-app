@@ -4,7 +4,21 @@
     <meta charset="UTF-8">
     <title></title>
     <style>
+        .green {
+            color: green;
+        }
 
+        .yellow {
+            color: yellow;
+        }
+
+        .red {
+            color: red;
+        }
+
+        .black {
+            color: black;
+        }
     </style>
 </head>
 <body>
@@ -82,8 +96,17 @@
                 </li>
                 <li class="list-group-item"
                     style="color: black" th:text="${player.age!=null} ? ${player.age} : 'ND'"></li>
-                <li class="list-group-item"
-                    style="color: black" th:text="${player.rating!=null} ? ${player.rating} : 'ND'"></li>
+                <li class="list-group-item">
+                    <span th:if="${player.rating !=null and player.rating > 75}" th:class="green"
+                    ></span>
+                    <span th:if="${player.rating !=null and player.rating > 50 and player.rating <76}"
+                          th:class="yellow"></span>
+                    <span th:if="${player.rating !=null and player.rating > 15 and player.rating < 51}"
+                          th:class="red"></span>
+                    <span th:if="${player.rating ==null or player.rating < 16}" th:class="black"></span>
+
+                    <span th:text="${player.rating!=null} ? ${player.rating} : 'ND'"></span>
+                </li>
                 <li class="list-group-item"
                     style="color: black" th:text="${player.position!=null} ? ${player.position.name} : 'ND'"></li>
                 <li class="list-group-item"
@@ -94,10 +117,12 @@
 </div>
 <div th:fragment="personalCardPlayerUnderBody">
     <div class="card-body">
-        <h1 class="text-center mb-4">Team</h1>
-        <a class="card-link" href="#"
-           th:href="@{(id=${player.team!=null} ? '/teams/get/{id}' + ${player.team.id} : '')}"
-           th:text="${player.team !=null} ? ${player.team.name} : ''"></a>
+        <h2 class="text-center mb-4">Team</h2>
+        <h1 class="text-center mb-4">
+            <a class="card-link" href="#"
+               th:href="@{(id=${player.team!=null} ? '/teams/get/{id}' + ${player.team.id} : '')}"
+               th:text="${player.team !=null} ? ${player.team.name} : ''"></a></h1>
+
     </div>
 </div>
 
