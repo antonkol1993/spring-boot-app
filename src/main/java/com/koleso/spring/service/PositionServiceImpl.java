@@ -51,7 +51,7 @@ public class PositionServiceImpl implements PositionService {
 
     @Override
     public void removePosition(Long id) {
-    positionRepository.deleteById(id);
+        positionRepository.deleteById(id);
     }
 
     @Override

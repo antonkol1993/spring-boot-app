@@ -34,14 +34,15 @@ public class CountryServiceImpl implements CountryService {
     }
 
     @Override
-    public Country getCountryById(Long id  ) {
+    public Country getCountryById(Long id) {
         Optional<Country> country = countryRepository.findById(id);
         return country.orElseThrow();
     }
 
     @Override
     public List<Country> getCountriesByName(String name) {
-        List<Country> allByName = countryRepository.findAllByName(name);        return countryRepository.findAllByName(name);
+        List<Country> allByName = countryRepository.findAllByName(name);
+        return countryRepository.findAllByName(name);
     }
 
     @Override
@@ -50,7 +51,7 @@ public class CountryServiceImpl implements CountryService {
     }
 
     @Override
-    public void removeCountry(Long id  ) {
+    public void removeCountry(Long id) {
         countryRepository.deleteById(id);
     }
 

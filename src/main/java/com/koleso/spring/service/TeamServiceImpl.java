@@ -19,7 +19,7 @@ public class TeamServiceImpl implements TeamService {
 
     @Override
     public List<Team> getTeamFromPage(int page, int pageSize) {
-        Page<Team> teams = teamRepository.findAll(PageRequest.of(page-1, pageSize));
+        Page<Team> teams = teamRepository.findAll(PageRequest.of(page - 1, pageSize));
         return teams.getContent();
     }
 
@@ -51,7 +51,7 @@ public class TeamServiceImpl implements TeamService {
 
     @Override
     public void removeTeam(Long id) {
-    teamRepository.deleteById(id);
+        teamRepository.deleteById(id);
     }
 
     @Override

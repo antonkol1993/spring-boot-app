@@ -52,5 +52,5 @@ public class PersonServiceImpl implements PersonService {
     public void updatePerson(Person person) {
         personRepository.save(person);
     }
-    
+
 }
