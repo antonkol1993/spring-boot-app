@@ -174,14 +174,6 @@ public class TeamController {
         return modelAndView;
     }
 
-//    @PostMapping("update/players/{id}")
-//    public ModelAndView updatePlayersIntoTeamPost(
-//            @PathVariable Long id,
-//            @RequestBody String text,
-//            ModelAndView modelAndView) throws IOException, ServletException {
-//
-//        return modelAndView;
-//    }
 
     @PostMapping("update/players/{id}")
     public ModelAndView updatePlayersIntoTeamPost(
@@ -191,8 +183,8 @@ public class TeamController {
 
         Team teamById = teamService.getTeamById(id);
         List<Long> ids = playerCollection.getIds();
-
         List<Player> players = teamById.getPlayers();
+
         for (Player player : players) {
             if (player.getTeam().getId().equals(teamById.getId())) {
                 player.setTeam(null);
@@ -208,7 +200,7 @@ public class TeamController {
         }
 
         teamService.updateTeam(teamById);
-        modelAndView.setViewName("redirect:/teams");
+        modelAndView.setViewName("redirect:/teams/update/{id}");
         return modelAndView;
     }
 
@@ -223,12 +215,6 @@ public class TeamController {
         return modelAndView;
     }
 
-//    @GetMapping("some/path")
-//    public ModelAndView getTeamById(
-//            ModelAndView modelAndView) {
-//        modelAndView.setViewName("menu/menu");
-//        return modelAndView;
-//    }
 
 
 }
