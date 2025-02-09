@@ -3,7 +3,6 @@ package com.koleso.spring.dto;
 import jakarta.persistence.*;
 import lombok.*;
 
-import java.util.List;
 
 @Data
 @Entity

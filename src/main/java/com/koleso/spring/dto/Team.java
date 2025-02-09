@@ -2,8 +2,6 @@ package com.koleso.spring.dto;
 
 import jakarta.persistence.*;
 import lombok.*;
-
-import java.util.ArrayList;
 import java.util.List;
 
 @Getter

@@ -2,18 +2,14 @@ package com.koleso.spring.controller;
 
 import com.koleso.spring.dto.*;
 import com.koleso.spring.service.CountryService;
-import com.koleso.spring.service.GameService;
 import com.koleso.spring.service.PlayerService;
 import com.koleso.spring.service.TeamService;
 import com.koleso.spring.service.pagination.PaginationService;
-import com.koleso.spring.service.support.SupportService;
-import jakarta.servlet.ServletException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,10 +20,8 @@ public class TeamController {
 
     private final PaginationService paginationService;
     private final TeamService teamService;
-    private final GameService gameService;
     private final PlayerService playerService;
     private final CountryService countryService;
-    private final SupportService supportService;
 
 
     @RequestMapping(method = RequestMethod.GET)
@@ -56,7 +50,6 @@ public class TeamController {
     @GetMapping("update/{id}")
     public ModelAndView updateTeamGet(
             @PathVariable String id,
-            @RequestParam(defaultValue = "numberOfPlayers") String numberOfPlayers,
             ModelAndView modelAndView) {
         Long teamId = Long.valueOf(id);
         Team teamById = teamService.getTeamById(teamId);
@@ -133,32 +126,6 @@ public class TeamController {
         return modelAndView;
     }
 
-
-//    @GetMapping("update/games/{id}")
-//    public ModelAndView updateGamesIntoTeamGet(
-//            @PathVariable String id,
-//            ModelAndView modelAndView) {
-//
-//            Long teamId = Long.valueOf(id);
-//            Team teamObject = teamService.getTeamById(teamId);
-//            List<Game> awayGames = teamObject.getAwayGames();
-//            List<Game> homeGames = teamObject.getHomeGames();
-//
-//            modelAndView.addObject("awayGames", awayGames);
-//            modelAndView.addObject("homeGames", homeGames);
-//            modelAndView.setViewName("team/pageUpdateGamesIntoTeam");
-//            return modelAndView;
-//
-//    }
-//
-//    @PostMapping("update/games/{id}")
-//    public ModelAndView updateGamesIntoTeamPost(
-//            @PathVariable String id,
-//            ModelAndView modelAndView) {
-//        return modelAndView;
-//    }
-
-
     @GetMapping("update/players/{id}")
     public ModelAndView updatePlayersIntoTeamGet(
             @PathVariable String id,
@@ -166,7 +133,7 @@ public class TeamController {
         Long teamId = Long.valueOf(id);
         Team teamObject = teamService.getTeamById(teamId);
         List<Player> allPlayers = playerService.getAllPlayers();
-        List<Integer> setPlayers = new ArrayList<Integer>();
+        List<Integer> setPlayers = new ArrayList<>();
         modelAndView.addObject("setPlayers", setPlayers);
         modelAndView.addObject("allPlayers", allPlayers);
         modelAndView.addObject("team", teamObject);
@@ -179,7 +146,7 @@ public class TeamController {
     public ModelAndView updatePlayersIntoTeamPost(
             @PathVariable Long id,
             @RequestBody PlayerCollectionDTO playerCollection,
-            ModelAndView modelAndView) throws IOException, ServletException {
+            ModelAndView modelAndView)  {
 
         Team teamById = teamService.getTeamById(id);
         List<Long> ids = playerCollection.getIds();

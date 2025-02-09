@@ -19,7 +19,6 @@ import java.util.List;
 @RequiredArgsConstructor
 public class PlayerController {
     private final CountryService countryService;
-    private final GameService gameService;
     private final PlayerService playerService;
     private final PositionService positionService;
     private final TeamService teamService;
