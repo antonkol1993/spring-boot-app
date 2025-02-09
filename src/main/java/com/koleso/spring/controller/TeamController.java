@@ -189,7 +189,25 @@ public class TeamController {
             @RequestBody PlayerCollectionDTO playerCollection,
             ModelAndView modelAndView) throws IOException, ServletException {
 
+        Team teamById = teamService.getTeamById(id);
+        List<Long> ids = playerCollection.getIds();
 
+        List<Player> players = teamById.getPlayers();
+        for (Player player : players) {
+            if (player.getTeam().getId().equals(teamById.getId())) {
+                player.setTeam(null);
+                playerService.updatePlayer(player);
+            }
+        }
+        players.clear();
+        for (Long aLong : ids) {
+            teamById.getPlayers().add(playerService.getPlayerById(aLong));
+            Player player = playerService.getPlayerById(aLong);
+            player.setTeam(teamById);
+            playerService.updatePlayer(player);
+        }
+
+        teamService.updateTeam(teamById);
         modelAndView.setViewName("redirect:/teams");
         return modelAndView;
     }
@@ -211,7 +229,6 @@ public class TeamController {
 //        modelAndView.setViewName("menu/menu");
 //        return modelAndView;
 //    }
-
 
 
 }

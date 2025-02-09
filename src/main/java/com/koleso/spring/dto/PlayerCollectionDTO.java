@@ -10,6 +10,4 @@ public class PlayerCollectionDTO {
 
     @JsonProperty("playerIds")
     List<Long> ids;
-    Long andrei;
-    Long antion;
 }

@@ -23,7 +23,6 @@
 </form>
 
 <script>
-console.log("DSAASDDASAADSDAS");
 document.querySelector("button").addEventListener("click", function(event) {
     event.preventDefault(); // Prevent default form submission
 
@@ -37,7 +36,7 @@ document.querySelector("button").addEventListener("click", function(event) {
         headers: {
             "Content-Type": "application/json"
         },
-        body: JSON.stringify({ playerIds: selectedPlayers, name: "Manchester", short_name: "MU", established: 1888 })
+        body: JSON.stringify({ playerIds: selectedPlayers})
     })
         .then( response => {
             window.history.pushState({}, null, response.url);
