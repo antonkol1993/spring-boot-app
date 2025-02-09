@@ -12,11 +12,14 @@
 <form th:action="@{'/teams/update/players{id}'(id=${team.id})}" method="post">
     <th:block  th:each="player : ${allPlayers}">
         <td>
-        <input type="checkbox" name="playerIds"
-               th:checked="${player.team !=null && player.team.id == team.id} ? true : false"
-               th:text="${player.name}"
-               th:value="${player.id}"
-        > </input>
+            <label>
+                <input type="checkbox" name="playerIds"
+                       th:checked="${player.team !=null && player.team.id == team.id} ?  true : false"
+                       th:text="${player.name}"
+                       th:value="${player.id}"
+                       th:disabled="${player.team !=null && player.team.id != team.id}"
+                >
+            </label>
         </td>
     </th:block>
     <button type="submit" >Save</button>
