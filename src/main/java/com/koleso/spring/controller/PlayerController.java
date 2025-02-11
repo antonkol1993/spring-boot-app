@@ -82,7 +82,7 @@ public class PlayerController {
         }
         int intRating = Integer.parseInt(rating);
         if (intRating > 0) {
-            player.setRating(rating);
+            player.setRating(Integer.valueOf(rating));
         }
         if (!team.isEmpty()) {
             List<Team> teamByName = teamService.getTeamByName(team);
@@ -173,7 +173,7 @@ public class PlayerController {
         }
         int intRating = Integer.parseInt(rating);
         if (intRating > 0) {
-            player.setRating(rating);
+            player.setRating(Integer.valueOf(rating));
         } else {
             player.setRating(null);
         }

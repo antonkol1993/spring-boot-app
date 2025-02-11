@@ -67,7 +67,7 @@
 
 <div th:fragment="personalCardPlayer">
     <div class="card" style="width: 18rem;">
-        <img style="max-width: 250px; max-height: 300px" th:src="@{${player.imageURL}}" class="card-img-top"
+        <img style="max-width: 250px; max-height: 300px" th:src="@{player.imageURL}" class="card-img-top"
              alt="logoOfTeam">
         <div class="card-body">
             <h5 class="card-title" th:text="${player.name}"></h5>
@@ -91,21 +91,24 @@
                 <li class="list-group-item"
                     style="color: black">
                     <a class="card-link" href="#"
-                       th:href="${player.wikiURL}"
-                       th:text="${player.team !=null} ? 'link' : ''"></a>
+                       th:href="${player.wikiURL !=null} ? ${player.wikiURL} : '#'"
+                       th:text="${player.wikiURL !=null} ? 'link' : 'no link'"></a>
                 </li>
-                <li class="list-group-item"
-                    style="color: black" th:text="${player.age!=null} ? ${player.age} : 'ND'"></li>
                 <li class="list-group-item">
-                    <span th:if="${player.rating !=null and player.rating > 75}" th:class="green"
-                    ></span>
-                    <span th:if="${player.rating !=null and player.rating > 50 and player.rating <76}"
-                          th:class="yellow"></span>
-                    <span th:if="${player.rating !=null and player.rating > 15 and player.rating < 51}"
-                          th:class="red"></span>
-                    <span th:if="${player.rating ==null or player.rating < 16}" th:class="black"></span>
-
-                    <span th:text="${player.rating!=null} ? ${player.rating} : 'ND'"></span>
+                    <div th:style="${player.age != null} ?
+                    (${player.age < 16} ? 'color: black;' :
+                     (${player.age >= 16 && player.age <= 23} ? 'color: green;' :
+                      (${player.age >= 24 && player.age <= 30} ? 'color: yellow;' : 'color: red'))) : 'color: black;'"
+                         th:text="${player.age != null} ? ${player.age} : 'ND'">
+                    </div>
+                </li>
+                <li class="list-group-item">
+                    <div th:style="${player.rating != null} ?
+                    (${player.rating < 16} ? 'color: black;' :
+                     (${player.rating >= 16 && player.rating <= 50} ? 'color: red;' :
+                      (${player.rating >= 51 && player.rating <= 75} ? 'color: yellow;' : 'color: green'))) : 'color: black;'"
+                         th:text="${player.rating != null} ? ${player.rating} : 'ND'">
+                    </div>
                 </li>
                 <li class="list-group-item"
                     style="color: black" th:text="${player.position!=null} ? ${player.position.name} : 'ND'"></li>
@@ -115,13 +118,16 @@
         </div>
     </div>
 </div>
+
 <div th:fragment="personalCardPlayerUnderBody">
     <div class="card-body">
         <h2 class="text-center mb-4">Team</h2>
         <h1 class="text-center mb-4">
             <a class="card-link" href="#"
-               th:href="@{(id=${player.team!=null} ? '/teams/get/{id}' + ${player.team.id} : '')}"
-               th:text="${player.team !=null} ? ${player.team.name} : ''"></a></h1>
+               th:href="${player.team != null} ? @{/teams/get/{id}(id=${player.team.id})} : '#'"
+               th:text="${player.team != null} ? ${player.team.name} : 'No Team'">
+            </a>
+        </h1>
 
     </div>
 </div>

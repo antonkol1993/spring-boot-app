@@ -17,7 +17,7 @@ public class Player {
     private Long id  ;
     private String name;
     private Integer age;
-    private String rating;
+    private Integer rating;
     @Column(name = "image_url")
     private String imageURL;
     @Column(name = "wiki_url")
