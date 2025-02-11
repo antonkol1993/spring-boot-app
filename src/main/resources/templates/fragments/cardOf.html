@@ -46,10 +46,11 @@
                 font-size: 28px"
                     th:text="${team.city}"></li>
             </ul>
-            <div class="card-body">
-                <a href="#" class="card-link">Card link</a>
-                <a href="#" class="card-link">Another link</a>
-            </div>
+        </div>
+        <div class="card-body">
+            <a class="card-link" href="#"
+               th:href="${team.teamWikiURL != null || !team.teamWikiURL.isEmpty()} ? ${team.teamWikiURL} : '#'"
+               th:text="${team.teamWikiURL != null} ? 'Link-Wiki' : 'No link'"></a>
         </div>
     </div>
 </div>
