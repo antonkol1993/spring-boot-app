@@ -66,22 +66,35 @@ CREATE TABLE IF NOT EXISTS `springboot`.`game` (
     DEFAULT CHARACTER SET = utf8mb4
     COLLATE = utf8mb4_0900_ai_ci;
 
+-- -----------------------------------------------------
+-- Table `springboot`.`role`
+-- -----------------------------------------------------
+
+CREATE TABLE IF NOT EXISTS roles (
+                       id INT AUTO_INCREMENT PRIMARY KEY,
+                       name ENUM('ADMIN', 'USER', 'MANAGER') UNIQUE NOT NULL
+);
 
 -- -----------------------------------------------------
 -- Table `springboot`.`person`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `springboot`.`person` (
-                                                     `id` INT NOT NULL AUTO_INCREMENT,
-                                                     `first_name` VARCHAR(45) NULL DEFAULT NULL,
-    `last_name` VARCHAR(45) NULL DEFAULT NULL,
-    `age` INT NULL DEFAULT NULL,
-    PRIMARY KEY (`id`))
-    ENGINE = InnoDB
-    AUTO_INCREMENT = 12
-    DEFAULT CHARACTER SET = utf8mb4
-    COLLATE = utf8mb4_0900_ai_ci;
+CREATE TABLE IF NOT EXISTS persons (
+                         id INT AUTO_INCREMENT PRIMARY KEY,
+                         username VARCHAR(255) UNIQUE NOT NULL,
+                         password VARCHAR(255) NOT NULL
+);
 
+-- -----------------------------------------------------
+-- Table person_roles
+-- -----------------------------------------------------
 
+CREATE TABLE person_roles (
+                              person_id INT,
+                              role_id INT,
+                              PRIMARY KEY (person_id, role_id),
+                              FOREIGN KEY (person_id) REFERENCES persons(id) ON DELETE CASCADE,
+                              FOREIGN KEY (role_id) REFERENCES roles(id) ON DELETE CASCADE
+);
 -- -----------------------------------------------------
 -- Table `springboot`.`position`
 -- -----------------------------------------------------
