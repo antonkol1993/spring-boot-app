@@ -5,13 +5,11 @@ import lombok.*;
 
 import java.util.List;
 
-@Getter
-@Setter
-@AllArgsConstructor
-@NoArgsConstructor
-@EqualsAndHashCode
 @Entity
 @Table(name = "roles")
+@Getter
+@NoArgsConstructor
+@AllArgsConstructor
 public class Role {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
