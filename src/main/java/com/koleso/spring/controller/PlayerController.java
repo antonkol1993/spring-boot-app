@@ -7,6 +7,8 @@ import com.koleso.spring.dto.Team;
 import com.koleso.spring.service.*;
 import com.koleso.spring.service.pagination.PaginationService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
@@ -99,6 +101,8 @@ public class PlayerController {
             @PathVariable String id,
             ModelAndView modelAndView) {
         Long playerId = Long.valueOf(id);
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        modelAndView.addObject("authentication", authentication);
         modelAndView.addObject("player", playerService.getPlayerById(playerId));
         modelAndView.setViewName("player/showPlayer");
         return modelAndView;

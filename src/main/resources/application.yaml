@@ -21,8 +21,16 @@ spring:
       hbm2ddl:
         auto: validate
       show_sql: true
+  thymeleaf:
+    cache: false
+
+logging:
+  level:
+    org:
+      springframework:
+        security: DEBUG
 
 server:
   servlet:
     session:
-      timeout: 5m
+      timeout: 15m

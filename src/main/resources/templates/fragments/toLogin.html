@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml" lang="en">
 <head>
     <meta charset="UTF-8">
     <title></title>
@@ -7,6 +7,21 @@
 <body>
 
 
+<div th:fragment="logOut" class="d-flex justify-content-end align-items-center gap-2 border p-3 rounded">
+    <!-- Показать имя пользователя, если он аутентифицирован -->
+    <span sec:authentication="name" class="fw-bold">Username</span>
+
+    <!-- Форма для выхода, только если пользователь аутентифицирован -->
+    <form sec:authorize="isAuthenticated()" th:action="@{/logout}" method="post">
+        <button type="submit" class="btn btn-danger">Log Out</button>
+    </form>
+
+    <!-- Ссылка на вход, если пользователь не аутентифицирован -->
+    <a sec:authorize="!isAuthenticated()" th:href="@{/login}" class="btn btn-primary">Login</a>
+
+    <!-- Дополнительная информация о текущем пользователе -->
+    <span sec:authentication="authorities" class="fw-bold"></span>
+</div>
 
 
 </body>

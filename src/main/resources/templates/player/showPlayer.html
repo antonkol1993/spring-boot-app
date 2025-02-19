@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <title>Card of Player</title>
@@ -51,22 +51,14 @@
     </style>
 </head>
 <body>
+
+<th:block th:replace="~{fragments/toLogin :: logOut}"></th:block>
 <th:block th:replace="~{fragments/cardOf :: personalCardPlayer}"></th:block>
 <th:block th:replace="~{fragments/cardOf :: personalCardPlayerUnderBody}"></th:block>
-<div th:fragment="logOut" class="d-flex align-items-center gap-2">
-    <span th:if="${#authorization.expression('isAuthenticated()')}" th:text="${#authentication.name}" class="fw-bold">
-        Username
-    </span>
 
-    <form th:if="${#authorization.expression('isAuthenticated()')}" th:action="@{/logout}" method="post">
-        <button type="submit" class="btn btn-danger">Log Out</button>
-    </form>
+<!--<span sec:authentication="roles" class="fw-bold">Username</span>-->
 
-    <a th:unless="${#authorization.expression('isAuthenticated()')}" th:href="@{/login}"
-       class="btn btn-primary">Login</a>
-    <span th:text="${#authentication}"></span>
-</div>
-<!--<th:block th:replace="~{fragments/toLogin :: logOut}"></th:block>-->
+
 
 <a class="add_href" style="color: darkred" href="/players">BACK TO PLAYERS</a>
 
