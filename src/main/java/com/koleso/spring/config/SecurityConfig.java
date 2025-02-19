@@ -37,7 +37,13 @@ public class SecurityConfig {
                         .loginPage("/login") // Страница входа
                         .permitAll() // Разрешить доступ к странице входа всем
                 )
-                .logout(LogoutConfigurer::permitAll // Разрешить выход всем
+                .logout(logout -> logout
+                        .logoutUrl("/logout")  // URL выхода
+                        .logoutSuccessUrl("/login?logout=true")  // Перенаправление после выхода
+                        .invalidateHttpSession(true)
+                        .clearAuthentication(true)
+                        .deleteCookies("JSESSIONID")
+                        .permitAll()  // Разрешаем всем вызывать logout
                 );
 
         return http.build();

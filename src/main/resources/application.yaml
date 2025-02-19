@@ -15,9 +15,14 @@ spring:
       password: ${spring.datasource.password}
   liquibase:
     change-log: classpath:db/changelog/liquibase-changeLog.yaml
-#    enabled: false
+  #    enabled: false
   jpa:
     properties:
-        hbm2ddl:
-          auto: validate
-        show_sql: true
+      hbm2ddl:
+        auto: validate
+      show_sql: true
+
+server:
+  servlet:
+    session:
+      timeout: 5m
