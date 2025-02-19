@@ -6,20 +6,7 @@
 </head>
 <body>
 
-<div th:fragment="logOut" class="d-flex align-items-center gap-2">
-    <span th:if="${#authorization.expression('isAuthenticated()')}" th:text="${#authentication.name}" class="fw-bold">
-        Username
-    </span>
 
-    <form th:if="${#authorization.expression('isAuthenticated()')}" th:action="@{/logout}" method="post">
-        <button type="submit" class="btn btn-danger">Log Out</button>
-    </form>
-
-    <a th:unless="${#authorization.expression('isAuthenticated()')}" th:href="@{/login}"
-       class="btn btn-primary">Login</a>
-    <a th:href="@{/login}"
-       class="btn btn-primary">Login</a>
-</div>
 
 
 </body>
