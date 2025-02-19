@@ -3,14 +3,13 @@ package com.koleso.spring.config;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
+import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
+import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.annotation.web.configurers.LogoutConfigurer;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-import org.springframework.security.core.userdetails.User;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.web.SecurityFilterChain;
 
 @Configuration
@@ -27,28 +26,21 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
-                .authorizeRequests()
-                .requestMatchers("/admin/**").hasRole("ADMIN")
-                .requestMatchers("/manager/**").hasRole("MANAGER")
-                .requestMatchers("/user/**").hasRole("USER")
-                .requestMatchers("/", "/login").permitAll()
-                .and()
-                .formLogin()
-                .loginPage("/login")
-                .permitAll()
-                .and()
-                .logout()
-                .permitAll();
-        return http.build();
-    }
+                .authorizeHttpRequests(auth -> auth
+                        .requestMatchers("/admin/**").hasRole("ADMIN") // Доступ только для ADMIN
+                        .requestMatchers("/manager/**").hasRole("MANAGER") // Доступ только для MANAGER
+                        .requestMatchers("/user/**").hasRole("USER") // Доступ только для USER
+                        .requestMatchers("/", "/login").permitAll() // Доступ для всех
+                        .anyRequest().authenticated() // Все остальные запросы требуют аутентификации
+                )
+                .formLogin(form -> form
+                        .loginPage("/login") // Страница входа
+                        .permitAll() // Разрешить доступ к странице входа всем
+                )
+                .logout(LogoutConfigurer::permitAll // Разрешить выход всем
+                );
 
-    // Конфигурация аутентификации пользователей через UserDetailsService
-    @Bean
-    public AuthenticationManager authenticationManager(HttpSecurity http) throws Exception {
-        AuthenticationManagerBuilder authenticationManagerBuilder = http.getSharedObject(AuthenticationManagerBuilder.class);
-        authenticationManagerBuilder.userDetailsService(userDetailsService)
-                .passwordEncoder(passwordEncoder());
-        return authenticationManagerBuilder.build();
+        return http.build();
     }
 
     // Определение PasswordEncoder
@@ -56,4 +48,12 @@ public class SecurityConfig {
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
+
+    // Определение AuthenticationManager (нужно, если используется UserDetailsService)
+    @Bean
+    public AuthenticationManager authenticationManager(AuthenticationConfiguration authenticationConfiguration) throws Exception {
+        return authenticationConfiguration.getAuthenticationManager();
+    }
+
 }
+

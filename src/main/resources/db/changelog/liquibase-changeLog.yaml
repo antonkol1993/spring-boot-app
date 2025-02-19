@@ -3,12 +3,6 @@ databaseChangeLog:
       file: db/changelog/scripts/ver_1.0/init_tables.sql
   - include:
       file: db/changelog/scripts/ver_1.0/add_initial_players.sql
-
-#  - include:
-#      file: db/changelog/scripts/ver_1.0/add_initial_roles.sql
-#  - include:
-#      file: db/changelog/scripts/ver_1.0/add_initial_persons.sql
-
   - include:
       file: db/changelog/scripts/ver_1.0/add_initial_positions.sql
   - include:
@@ -17,6 +11,7 @@ databaseChangeLog:
       file: db/changelog/scripts/ver_1.0/add_initial_teams.sql
   - include:
       file: db/changelog/scripts/ver_1.0/add_initial_games.sql
+
   - include:
       file: db/changelog/scripts/ver_1.01/update_team_table.sql
   - include:
@@ -27,4 +22,11 @@ databaseChangeLog:
       file: db/changelog/scripts/ver_1.01/update_player_table.sql
   - include:
       file: db/changelog/scripts/ver_1.01/add_wiki_image_player_table.sql
+
+  - include:
+      file: db/changelog/scripts/ver_1.02/add_initial_persons.sql
+  - include:
+      file: db/changelog/scripts/ver_1.02/add_initial_roles.sql
+  - include:
+      file: db/changelog/scripts/ver_1.02/add_initial_person_roles.sql
 

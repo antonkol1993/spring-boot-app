@@ -34,8 +34,9 @@ public class PersonServiceImpl implements PersonService {
     }
 
     @Override
-    public List<Person> getPersonByName(String name) {
-        return personRepository.findAllByFirstName(name);
+    public Person getPersonByUsername(String name) {
+        Optional<Person> personByUsername = personRepository.findPersonByUsername(name);
+        return personByUsername.orElseThrow();
     }
 
     @Override

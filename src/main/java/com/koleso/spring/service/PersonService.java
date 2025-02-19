@@ -13,7 +13,7 @@ public interface PersonService {
 
     Person getPersonById(Long id);
 
-    List<Person> getPersonByName(String name);
+    Person getPersonByUsername(String name);
 
     void addPerson(Person person);
 
