@@ -71,6 +71,8 @@
         <th>Total Games</th>
         <th>Quantity Players</th>
         <th>Id</th>
+        <th>Actions</th>
+        <th sec:authorize="hasRole('ADMIN')" th:text="'Actions'"></th>
     </tr>
 
     <tr th:each="team,count: ${teams}">
