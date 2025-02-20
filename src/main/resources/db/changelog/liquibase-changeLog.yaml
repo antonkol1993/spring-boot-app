@@ -13,7 +13,7 @@ databaseChangeLog:
       file: db/changelog/scripts/ver_1.0/add_initial_games.sql
 
   - include:
-      file: db/changelog/scripts/ver_1.01/update_persons_table.sql
+      file: db/changelog/scripts/ver_1.01/update_team_table.sql
   - include:
       file: db/changelog/scripts/ver_1.01/add_logo_wiki_team_table.sql
   - include:
@@ -29,5 +29,4 @@ databaseChangeLog:
       file: db/changelog/scripts/ver_1.02/add_initial_roles.sql
   - include:
       file: db/changelog/scripts/ver_1.02/add_initial_person_roles.sql
-  - include:
-      file: db/changelog/scripts/ver_1.02/update_persons_table.sql
+
