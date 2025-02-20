@@ -101,8 +101,8 @@ public class PlayerController {
             @PathVariable String id,
             ModelAndView modelAndView) {
         Long playerId = Long.valueOf(id);
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        modelAndView.addObject("authentication", authentication);
+//        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+//        modelAndView.addObject("authentication", authentication);
         modelAndView.addObject("player", playerService.getPlayerById(playerId));
         modelAndView.setViewName("player/showPlayer");
         return modelAndView;

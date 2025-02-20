@@ -30,5 +30,5 @@ public class Person {
             joinColumns = @JoinColumn(name = "person_id"),
             inverseJoinColumns = @JoinColumn(name = "role_id")
     )
-    private List<Role> role = new ArrayList<>();
+    private List<Role> roles = new ArrayList<>();
 }

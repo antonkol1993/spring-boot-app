@@ -18,7 +18,7 @@ public class PersonServiceImpl implements PersonService {
 
     @Override
     public List<Person> getPersons(int page, int pageSize) {
-        Page<Person> persons = personRepository.findAll(PageRequest.of(page, pageSize));
+        Page<Person> persons = personRepository.findAll(PageRequest.of(page - 1, pageSize));
         return persons.getContent();
     }
 
