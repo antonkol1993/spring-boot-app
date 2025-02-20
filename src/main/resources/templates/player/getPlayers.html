@@ -1,4 +1,4 @@
-<html lang="aria-atomic" xmlns:th="http://www.thymeleaf.org">
+<html lang="aria-atomic" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 
 
 <head>
@@ -92,17 +92,19 @@
         <td th:text="${player.id}"></td>
 
 
-        <td><a class="delete_submit"
+        <td>
+            <!-- Видно только для ADMIN -->
+            <a class="delete_submit"
                style="color: darkred"
                href="#"
                th:href="@{'players/remove/{id}'(id=${player.id})}"
-               th:text="Remove"></a>
+               sec:authorize="hasRole('ADMIN')">Remove</a>
 
             <a class="edit_submit"
                style="color: lightcoral"
                href="#"
                th:href="@{'players/update/{id}'(id=${player.id})}"
-               th:text="Edit"></a>
+               sec:authorize="hasRole('ADMIN')">Edit</a>
         </td>
 
     </tr>
@@ -114,8 +116,10 @@
            th:text="${page}"> </a>
     </tr>
 
-    <a class="add_href" style="color: darkred" href="players/add">Add a new
-        player</a>
+    <a sec:authorize="hasRole('ADMIN')"
+       class="add_href"
+       style="color: darkred"
+       href="players/add">Add a new player</a>
 </div>
 <div th:replace="~{fragments/menu :: footer}"></div>
 <!--<div th:replace="~{fragments/toLogin :: logOut}"></div>-->

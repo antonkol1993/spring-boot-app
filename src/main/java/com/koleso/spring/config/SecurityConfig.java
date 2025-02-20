@@ -57,8 +57,9 @@ public class SecurityConfig {
 //                        .csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse()) // Генерация и хранение CSRF токена
 //                )
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/**").permitAll()  // Разрешить доступ ко всем страницам
-                        .anyRequest().authenticated())
+                        .requestMatchers("/persons/**").hasRole("ADMIN") // Только ADMIN может видеть /persons
+                        .anyRequest().permitAll() // Остальные страницы доступны всем
+                )
                 .formLogin(form -> form
                         .loginPage("/login") // Страница входа
                         .defaultSuccessUrl("/welcome", true)

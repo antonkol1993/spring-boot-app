@@ -1,4 +1,4 @@
-<html lang="aria-atomic" xmlns:th="http://www.thymeleaf.org">
+<html lang="aria-atomic" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 
 <head>
     <title>Team list</title>
@@ -95,13 +95,15 @@
                style="color: darkred"
                href="#"
                th:href="@{'teams/remove/{id}'(id=${team.id})}"
-               th:text="Remove"></a>
+               th:text="Remove"
+               sec:authorize="hasRole('ADMIN')"></a>
 
             <a class="edit_submit"
                style="color: lightcoral"
                href="#"
                th:href="@{'teams/update/{id}'(id=${team.id})}"
-               th:text="Edit"></a>
+               th:text="Edit"
+               sec:authorize="hasRole('ADMIN')"></a>
         </td>
     </tr>
 
@@ -113,7 +115,10 @@
        th:href="@{'/teams'(page=${page})}"
        th:text="${page}"> </a>
 </tr>
-<a class="add_href" style="color: yellowgreen" href="teams/add">Add a new
+<a sec:authorize="hasRole('ADMIN')"
+   class="add_href"
+   style="color: yellowgreen"
+   href="teams/add">Add a new
     team</a>
 </div>
 
