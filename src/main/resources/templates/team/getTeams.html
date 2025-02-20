@@ -137,19 +137,31 @@
         <td th:text="${team.id}"></td>
 
 
-        <td sec:authorize="hasAnyRole('ADMIN', 'MANAGER')">
+        <td>
+
             <a class="delete_submit"
                style="color: darkred"
                href="#"
                th:href="@{'teams/remove/{id}'(id=${team.id})}"
-               th:text="Remove">
+               th:text="Remove"
+
+               th:if="${#authorization.expression('hasRole(''ADMIN'')')
+    or (#authorization.expression('hasRole(''MANAGER'')')
+    and currentPerson != null
+    and currentPerson.team != null
+    and currentPerson.team.id == team.id)}">
             </a>
 
             <a class="edit_submit"
                style="color: lightcoral"
                href="#"
                th:href="@{'teams/update/{id}'(id=${team.id})}"
-               th:text="Edit">
+               th:text="Edit"
+               th:if="${#authorization.expression('hasRole(''ADMIN'')')
+    or (#authorization.expression('hasRole(''MANAGER'')')
+    and currentPerson != null
+    and currentPerson.team != null
+    and currentPerson.team.id == team.id)}">
             </a>
         </td>
     </tr>
@@ -157,20 +169,20 @@
 </table>
 
 <div>
-<tr th:if="${pageCount > 1}" th:each="page: ${#numbers.sequence(1, pageCount)}">
-    <a href="#"
-       th:href="@{'/teams'(page=${page})}"
-       th:text="${page}"> </a>
-</tr>
-<a sec:authorize="hasRole('ADMIN')"
-   class="add_href"
-   style="color: yellowgreen"
-   href="teams/add">Add a new
-    team</a>
+    <tr th:if="${pageCount > 1}" th:each="page: ${#numbers.sequence(1, pageCount)}">
+        <a href="#"
+           th:href="@{'/teams'(page=${page})}"
+           th:text="${page}"> </a>
+    </tr>
+    <a sec:authorize="hasRole('ADMIN')"
+       class="add_href"
+       style="color: yellowgreen"
+       href="teams/add">Add a new
+        team</a>
 </div>
 
 
-    <div th:replace="~{fragments/menu :: footer}"></div>
+<div th:replace="~{fragments/menu :: footer}"></div>
 
 </body>
 </html>
