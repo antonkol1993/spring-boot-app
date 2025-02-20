@@ -2,10 +2,14 @@ package com.koleso.spring.controller;
 
 import com.koleso.spring.dto.*;
 import com.koleso.spring.service.CountryService;
+import com.koleso.spring.service.PersonService;
 import com.koleso.spring.service.PlayerService;
 import com.koleso.spring.service.TeamService;
 import com.koleso.spring.service.pagination.PaginationService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
@@ -22,6 +26,8 @@ public class TeamController {
     private final TeamService teamService;
     private final PlayerService playerService;
     private final CountryService countryService;
+    private final PersonService personService;
+    private final UserDetailsService userDetailsService;
 
 
     @RequestMapping(method = RequestMethod.GET)
@@ -29,6 +35,20 @@ public class TeamController {
             @RequestParam(defaultValue = "1") int page,
             ModelAndView modelAndView) {
         List<Team> teamFromPage = teamService.getTeamFromPage(page, paginationService.getPageSize());
+        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+
+        // Убедитесь, что principal - это объект типа UserDetails (или User)
+        Person personByUsername;
+        if (principal instanceof UserDetails userDetails) {
+            // Теперь можно работать с userDetails (например, получить имя пользователя)
+            String username = userDetails.getUsername();
+            // Действия с userDetails
+            personByUsername = personService.getPersonByUsername(username);
+            modelAndView.addObject("currentPerson", personByUsername);
+        } else {
+            // В случае, если principal не является экземпляром UserDetails
+            System.out.println("Principal is not an instance of UserDetails");
+        }
         modelAndView.addObject("teams", teamFromPage);
         modelAndView.addObject("currentPage", page);
         modelAndView.addObject("pageSize", paginationService.getPageSize());
