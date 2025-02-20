@@ -26,7 +26,7 @@ public class PersonController {
 
     @GetMapping("add")
     public ModelAndView addPersonGet(ModelAndView modelAndView) {
-        modelAndView.setViewName("player/errorDataPlayer");
+        modelAndView.setViewName("person/errorDataPerson");
         return modelAndView;
     }
 
@@ -34,7 +34,7 @@ public class PersonController {
     public ModelAndView updatePersonGet(
             ModelAndView modelAndView,
             @PathVariable Long id) {
-        modelAndView.setViewName("player/errorDataPlayer");
+        modelAndView.setViewName("person/errorDataPerson");
         return modelAndView;
     }
 
@@ -42,7 +42,7 @@ public class PersonController {
     public ModelAndView removePersonGet(
             ModelAndView modelAndView,
             @PathVariable Long id) {
-        modelAndView.setViewName("player/errorDataPlayer");
+        modelAndView.setViewName("person/errorDataPerson");
         return modelAndView;
     }
 

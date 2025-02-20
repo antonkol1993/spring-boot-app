@@ -20,12 +20,19 @@
             <th>Actions</th>
         </tr>
         </thead>
-        <tbody th:each="person, count : ${persons}" >
+        <tbody th:each="person, count : ${persons}">
         <tr>
             <td th:text="(${count.count} + (${currentPage} -1) * ${pageSize})"></td>
             <td th:text="${person.username != null} ? ${person.username} : 'No info' "></td>
             <td th:text="${person.password != null} ? ${person.password} : 'No info' "></td>
-            <td th:each="role : ${person.roles}" th:text="${role != null} ? ${role} : 'No info' "></td>
+            <td>
+                <div th:if="${person.roles.size() > 1}" style="font-size: 12px"
+                     th:each="role : ${person.roles}"
+                     th:text="${role != null} ? ${role.name} : 'No info' "></div>
+                <div th:if="${person.roles.size() <= 1}"
+                     th:each="role : ${person.roles}"
+                     th:text="${role != null} ? ${role.name} : 'No info' "></div>
+            </td>
             <td th:text="${person.id != null} ? ${person.id} : 'No info' "></td>
 
             <td>
