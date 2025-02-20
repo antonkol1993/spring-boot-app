@@ -31,4 +31,8 @@ public class Person {
             inverseJoinColumns = @JoinColumn(name = "role_id")
     )
     private List<Role> roles = new ArrayList<>();
+
+    @OneToOne
+    @JoinColumn(name = "team_id", unique = true) // Поле в БД team_id
+    private Team team;
 }

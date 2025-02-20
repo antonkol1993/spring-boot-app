@@ -35,5 +35,6 @@ public class Team {
     @OneToMany(mappedBy = "homeTeam", cascade = CascadeType.ALL)
     private List<Game> homeGames;
 
-
+    @OneToOne(mappedBy = "team", cascade = CascadeType.ALL)
+    private Person manager;
 }
