@@ -29,4 +29,6 @@ databaseChangeLog:
       file: db/changelog/scripts/ver_1.02/add_initial_roles.sql
   - include:
       file: db/changelog/scripts/ver_1.02/add_initial_person_roles.sql
+  - include:
+      file: db/changelog/scripts/ver_1.02/update_persons_table.sql
 

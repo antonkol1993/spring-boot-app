@@ -7,21 +7,44 @@
 <body>
 
 
-<div th:fragment="logOut" class="d-flex justify-content-end align-items-center gap-2 border p-3 rounded">
+<div th:fragment="logOutWithoutBootstrap">
     <!-- Показать имя пользователя, если он аутентифицирован -->
-    <span sec:authentication="name" class="fw-bold">Username</span>
+    <div th:fragment="logOut" class="log-out-container">
+        <!-- Показать имя пользователя, если он аутентифицирован -->
+        <span sec:authentication="name" class="user-name">Username</span>
 
-    <!-- Форма для выхода, только если пользователь аутентифицирован -->
-    <form sec:authorize="isAuthenticated()" th:action="@{/logout}" method="post">
-        <button type="submit" class="btn btn-danger">Log Out</button>
-    </form>
+        <!-- Форма для выхода, только если пользователь аутентифицирован -->
+        <form sec:authorize="isAuthenticated()" th:action="@{/logout}" method="post">
+            <button type="submit" class="log-out-btn">Log Out</button>
+        </form>
 
-    <!-- Ссылка на вход, если пользователь не аутентифицирован -->
-    <a sec:authorize="!isAuthenticated()" th:href="@{/login}" class="btn btn-primary">Login</a>
+        <!-- Ссылка на вход, если пользователь не аутентифицирован -->
+        <a sec:authorize="!isAuthenticated()" th:href="@{/login}" class="login-btn">Login</a>
 
-    <!-- Дополнительная информация о текущем пользователе -->
-    <span sec:authentication="authorities" class="fw-bold"></span>
+        <!-- Дополнительная информация о текущем пользователе -->
+        <span sec:authentication="authorities" class="user-authorities"></span>
+    </div>
 </div>
+
+<div th:fragment="logOutBootStrap" class="d-flex justify-content-end align-items-center gap-2 border p-3 rounded">
+    <!-- Показать имя пользователя, если он аутентифицирован -->
+    <div th:fragment="logOut" class="log-out-container">
+        <!-- Показать имя пользователя, если он аутентифицирован -->
+        <span sec:authentication="name" class="user-name">Username</span>
+
+        <!-- Форма для выхода, только если пользователь аутентифицирован -->
+        <form sec:authorize="isAuthenticated()" th:action="@{/logout}" method="post">
+            <button type="submit" class="log-out-btn">Log Out</button>
+        </form>
+
+        <!-- Ссылка на вход, если пользователь не аутентифицирован -->
+        <a sec:authorize="!isAuthenticated()" th:href="@{/login}" class="login-btn">Login</a>
+
+        <!-- Дополнительная информация о текущем пользователе -->
+        <span sec:authentication="authorities" class="user-authorities"></span>
+    </div>
+</div>
+
 
 
 </body>
