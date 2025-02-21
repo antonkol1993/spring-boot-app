@@ -9,7 +9,6 @@ import com.koleso.spring.service.pagination.PaginationService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
@@ -27,7 +26,6 @@ public class TeamController {
     private final PlayerService playerService;
     private final CountryService countryService;
     private final PersonService personService;
-    private final UserDetailsService userDetailsService;
 
 
     @RequestMapping(method = RequestMethod.GET)
@@ -166,7 +164,7 @@ public class TeamController {
     public ModelAndView updatePlayersIntoTeamPost(
             @PathVariable Long id,
             @RequestBody PlayerCollectionDTO playerCollection,
-            ModelAndView modelAndView)  {
+            ModelAndView modelAndView) {
 
         Team teamById = teamService.getTeamById(id);
         List<Long> ids = playerCollection.getIds();
@@ -201,7 +199,6 @@ public class TeamController {
         modelAndView.setViewName("team/showTeam");
         return modelAndView;
     }
-
 
 
 }

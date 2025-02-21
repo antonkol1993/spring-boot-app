@@ -2,6 +2,7 @@ package com.koleso.spring.dto;
 
 import jakarta.persistence.*;
 import lombok.*;
+
 import java.util.List;
 
 @Getter
@@ -23,12 +24,12 @@ public class Team {
     private String teamWikiURL;
 
     @ManyToOne
-    @JoinColumn (name = "country_id", referencedColumnName = "id")
+    @JoinColumn(name = "country_id", referencedColumnName = "id")
     private Country country;
 
     @OneToMany(mappedBy = "team", cascade = CascadeType.ALL)
     private List<Player> players;
-    
+
     @OneToMany(mappedBy = "awayTeam", cascade = CascadeType.ALL)
     private List<Game> awayGames;
 
