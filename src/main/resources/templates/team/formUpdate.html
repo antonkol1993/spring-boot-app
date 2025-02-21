@@ -9,8 +9,6 @@
 <div class="container mt-5">
     <h1>Update a team</h1>
 
-<!--    th:modelAttribute="player"-->
-
     <form th:action="@{'/teams/update/{id}'(id=${team.id})}" method="post">
 
         <label>
@@ -23,7 +21,8 @@
                     th:selected="${team.country !=null} ? ${team.country.name} : ${countries.get(0)}">
             </option>
         </select><br>
-        <button type="submit" >Update</button>                   <br> <br> <br> <br>
+            <button type="submit">Update</button>
+            <br> <br> <br> <br>
         </label>
     </form>
 
@@ -31,9 +30,6 @@
         Update players</a>><br>
     <a href="#" th:href="@{'/teams/update/games/{id}'((id=${team.id}))}">
         Update games</a>><br>
-<!--        <form th:action="@{'/teams/update/extra'(id=${team.id})}" th:name="'games'" th:value="'games'" method="get">-->
-<!--            <button type="submit" >Update games</button>-->
-<!--        </form>><br>-->
 
 </div>
 

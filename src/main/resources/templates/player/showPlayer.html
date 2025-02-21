@@ -25,6 +25,7 @@
             font-size: 18px;
             font-weight: bold;
         }
+
         .lists {
             display: grid;
             grid-template-columns: 40% 60%; /* Два столбца */
@@ -55,9 +56,6 @@
 <th:block th:replace="~{fragments/toLogin :: logOutBootStrap}"></th:block>
 <th:block th:replace="~{fragments/cardOf :: personalCardPlayer}"></th:block>
 <th:block th:replace="~{fragments/cardOf :: personalCardPlayerUnderBody}"></th:block>
-
-<!--<span sec:authentication="roles" class="fw-bold">Username</span>-->
-
 
 
 <a class="add_href" style="color: darkred" href="/players">BACK TO PLAYERS</a>

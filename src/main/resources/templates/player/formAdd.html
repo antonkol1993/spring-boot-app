@@ -15,18 +15,19 @@
             Country: <select th:name="'country'">
             <option th:each="country : ${countries}"
                     th:text="${country != null && country.name != null } ? ${country.getName()} : ''"></option>
-            </select> <br>
+        </select> <br>
             Position: <select name="position">
             <option th:each="pos : ${positions}" th:name="'position'"
                     th:text="${pos != null && pos.name != null} ? ${pos.getName()} : ''"></option>
         </select> <br>
-            Rating: <input type="number" name="rating" th:value="${players.rating != null} ? players.rating : '' "/> <br>
+            Rating: <input type="number" name="rating" th:value="${players.rating != null} ? players.rating : '' "/>
+            <br>
             Team: <select name="team">
             <option th:each="t : ${teams}" th:name="'team'"
                     th:text="${t != null && t.name != null} ? ${t.name} : ''"></option>
         </select> <br>
         </label>
-        <button type="submit" >CREATE</button>
+        <button type="submit">CREATE</button>
     </form>
 </div>
 <!--<div th:replace="~{fragments/toLogin :: logOut}"></div>-->

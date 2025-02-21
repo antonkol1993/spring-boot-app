@@ -15,10 +15,10 @@
             Country: <select th:name="'country'">
             <option th:each="country : ${countries}"
                     th:text="${country != null && country.name != null } ? ${country.getName()} : ''"></option>
-            </select> <br>
+        </select> <br>
 
         </label>
-        <button type="submit" >CREATE</button>
+        <button type="submit">CREATE</button>
     </form>
 </div>
 

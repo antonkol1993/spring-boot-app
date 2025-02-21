@@ -4,21 +4,6 @@
     <meta charset="UTF-8">
     <title></title>
     <style>
-        .green {
-            color: green;
-        }
-
-        .yellow {
-            color: yellow;
-        }
-
-        .red {
-            color: red;
-        }
-
-        .black {
-            color: black;
-        }
     </style>
 </head>
 <body>
@@ -125,7 +110,7 @@
         <h2 class="text-center mb-4">Team</h2>
         <h1 class="text-center mb-4">
             <a class="card-link" href="#"
-               th:href="${player.team != null} ? @{/teams/get/{id}(id=${player.team.id})} : '#'"
+               th:href="${player.team != null} ? @{'/teams/get/{id}'(id=${player.team.id})} : '#'"
                th:text="${player.team != null} ? ${player.team.name} : 'No Team'">
             </a>
         </h1>
