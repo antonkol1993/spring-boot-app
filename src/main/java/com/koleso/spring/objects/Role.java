@@ -1,4 +1,4 @@
-package com.koleso.spring.dto;
+package com.koleso.spring.objects;
 
 import jakarta.persistence.*;
 import lombok.*;

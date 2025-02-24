@@ -1,6 +1,6 @@
 package com.koleso.spring.service;
 
-import com.koleso.spring.dto.Player;
+import com.koleso.spring.objects.Player;
 import com.koleso.spring.repository.PlayerRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;

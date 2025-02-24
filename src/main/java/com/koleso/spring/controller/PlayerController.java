@@ -1,9 +1,9 @@
 package com.koleso.spring.controller;
 
-import com.koleso.spring.dto.Country;
-import com.koleso.spring.dto.Player;
-import com.koleso.spring.dto.Position;
-import com.koleso.spring.dto.Team;
+import com.koleso.spring.objects.Country;
+import com.koleso.spring.objects.Player;
+import com.koleso.spring.objects.Position;
+import com.koleso.spring.objects.Team;
 import com.koleso.spring.service.*;
 import com.koleso.spring.service.pagination.PaginationService;
 import lombok.RequiredArgsConstructor;

@@ -1,4 +1,4 @@
-package com.koleso.spring.dto;
+package com.koleso.spring.objects;
 
 import jakarta.persistence.*;
 import lombok.*;
@@ -11,13 +11,17 @@ import java.util.List;
 @NoArgsConstructor
 @EqualsAndHashCode
 @Entity
-public class Position {
+public class Country {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @Column(name = "name")
     private String name;
+    private String capitalCity;
 
-    @OneToMany(mappedBy = "position", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "country", cascade = CascadeType.ALL)
     private List<Player> players;
+    @OneToMany(mappedBy = "country", cascade = CascadeType.ALL)
+    private List<Team> teams;
 
 }

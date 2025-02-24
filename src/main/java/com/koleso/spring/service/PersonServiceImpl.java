@@ -1,6 +1,6 @@
 package com.koleso.spring.service;
 
-import com.koleso.spring.dto.Person;
+import com.koleso.spring.objects.Person;
 import com.koleso.spring.repository.PersonRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;

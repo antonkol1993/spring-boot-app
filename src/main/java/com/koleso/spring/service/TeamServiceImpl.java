@@ -1,6 +1,6 @@
 package com.koleso.spring.service;
 
-import com.koleso.spring.dto.Team;
+import com.koleso.spring.objects.Team;
 import com.koleso.spring.repository.TeamRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;

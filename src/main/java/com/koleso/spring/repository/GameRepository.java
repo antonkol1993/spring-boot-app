@@ -1,6 +1,6 @@
 package com.koleso.spring.repository;
 
-import com.koleso.spring.dto.Game;
+import com.koleso.spring.objects.Game;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

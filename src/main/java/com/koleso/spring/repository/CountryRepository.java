@@ -1,6 +1,6 @@
 package com.koleso.spring.repository;
 
-import com.koleso.spring.dto.Country;
+import com.koleso.spring.objects.Country;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

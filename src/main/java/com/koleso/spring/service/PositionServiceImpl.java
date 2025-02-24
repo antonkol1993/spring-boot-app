@@ -1,6 +1,6 @@
 package com.koleso.spring.service;
 
-import com.koleso.spring.dto.Position;
+import com.koleso.spring.objects.Position;
 import com.koleso.spring.repository.PositionRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;

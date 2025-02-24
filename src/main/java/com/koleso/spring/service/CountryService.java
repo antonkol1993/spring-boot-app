@@ -1,6 +1,6 @@
 package com.koleso.spring.service;
 
-import com.koleso.spring.dto.Country;
+import com.koleso.spring.objects.Country;
 
 import java.util.List;
 

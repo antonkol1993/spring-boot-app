@@ -1,6 +1,6 @@
 package com.koleso.spring.repository;
 
-import com.koleso.spring.dto.Person;
+import com.koleso.spring.objects.Person;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;

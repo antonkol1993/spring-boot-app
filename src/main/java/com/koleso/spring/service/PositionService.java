@@ -1,6 +1,6 @@
 package com.koleso.spring.service;
 
-import com.koleso.spring.dto.Position;
+import com.koleso.spring.objects.Position;
 
 import java.util.List;
 

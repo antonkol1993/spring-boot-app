@@ -1,6 +1,6 @@
 package com.koleso.spring.service;
 
-import com.koleso.spring.dto.Game;
+import com.koleso.spring.objects.Game;
 
 import java.util.List;
 

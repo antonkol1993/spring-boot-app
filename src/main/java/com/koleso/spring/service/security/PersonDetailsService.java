@@ -1,10 +1,10 @@
 package com.koleso.spring.service.security;
 
-import com.koleso.spring.dto.Person;
+import com.koleso.spring.objects.Person;
+import com.koleso.spring.dto.PersonDetailsDTO;
 import com.koleso.spring.repository.PersonRepository;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -27,7 +27,7 @@ public class PersonDetailsService implements UserDetailsService {
         Person person = personRepository.findPersonByUsername(username)
                 .orElseThrow(() -> new UsernameNotFoundException("User not found"));
 
-        return new User(person.getUsername(), person.getPassword(), getAuthorities(person));
+        return new PersonDetailsDTO(person);
     }
 
     private Collection<? extends GrantedAuthority> getAuthorities(Person person) {

@@ -1,6 +1,10 @@
 package com.koleso.spring.controller;
 
 import com.koleso.spring.dto.*;
+import com.koleso.spring.objects.Country;
+import com.koleso.spring.objects.Person;
+import com.koleso.spring.objects.Player;
+import com.koleso.spring.objects.Team;
 import com.koleso.spring.service.CountryService;
 import com.koleso.spring.service.PersonService;
 import com.koleso.spring.service.PlayerService;

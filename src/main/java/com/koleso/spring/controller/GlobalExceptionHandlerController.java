@@ -1,4 +1,4 @@
-package com.koleso.spring.service.handlers;
+package com.koleso.spring.controller;
 
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.http.HttpStatus;
@@ -8,7 +8,7 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.NoHandlerFoundException;
 
 @ControllerAdvice
-public class GlobalExceptionHandler {
+public class GlobalExceptionHandlerController {
 
     // Обработчик 404 Not Found
     @ExceptionHandler(NoHandlerFoundException.class)

@@ -1,6 +1,6 @@
 package com.koleso.spring.service;
 
-import com.koleso.spring.dto.Team;
+import com.koleso.spring.objects.Team;
 
 import java.util.List;
 

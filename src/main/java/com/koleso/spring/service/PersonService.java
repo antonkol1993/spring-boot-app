@@ -1,6 +1,6 @@
 package com.koleso.spring.service;
 
-import com.koleso.spring.dto.Person;
+import com.koleso.spring.objects.Person;
 
 import java.util.List;
 
