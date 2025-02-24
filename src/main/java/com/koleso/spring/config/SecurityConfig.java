@@ -1,5 +1,6 @@
 package com.koleso.spring.config;
 
+import com.koleso.spring.service.handlers.GlobalExceptionHandler;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -16,9 +17,11 @@ import org.springframework.security.web.SecurityFilterChain;
 public class SecurityConfig {
 
     private final UserDetailsService userDetailsService;
+    private final GlobalExceptionHandler globalExceptionHandler;
 
-    public SecurityConfig(UserDetailsService userDetailsService) {
+    public SecurityConfig(UserDetailsService userDetailsService, GlobalExceptionHandler globalExceptionHandler) {
         this.userDetailsService = userDetailsService;
+        this.globalExceptionHandler = globalExceptionHandler;
     }
 
     //     Конфигурация разрешений для URL через authorizeHttpRequests
@@ -30,8 +33,7 @@ public class SecurityConfig {
                         .requestMatchers("/persons/**").hasRole("ADMIN") // Доступ только для ADMIN
                         .requestMatchers("/manager/**").hasRole("MANAGER") // Доступ только для MANAGER
                         .requestMatchers("/user/**").hasRole("USER") // Доступ только для USER
-                        .requestMatchers("/", "/login").permitAll() // Доступ для всех
-                        .anyRequest().authenticated() // Все остальные запросы требуют аутентификации
+                        .anyRequest().permitAll() // Все остальные запросы для всех
                 )
                 .formLogin(form -> form
                         .loginPage("/login") // Страница входа

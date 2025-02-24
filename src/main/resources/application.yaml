@@ -1,11 +1,20 @@
 spring:
+  mvc:
+    problem-details:
+      enabled: true
+  web:
+    resources:
+      add-mappings: false
+  security:
+    enabled: true
   application:
     name: spring-boot-app
     settings:
       pageSize: 10
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3307/springboot?createDatabaseIfNotExist=true
+#    url: jdbc:mysql://localhost:3307/springboot?createDatabaseIfNotExist=true
+    url: jdbc:mysql://localhost:3306/springboot?createDatabaseIfNotExist=true
     username: root
     password: root
     hikari:
