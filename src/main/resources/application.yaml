@@ -1,12 +1,10 @@
 spring:
   mvc:
     problem-details:
-      enabled: true
+      enabled: false
   web:
     resources:
       add-mappings: false
-  security:
-    enabled: true
   application:
     name: spring-boot-app
     settings:
@@ -43,3 +41,7 @@ server:
   servlet:
     session:
       timeout: 15m
+  error:
+    whitelabel:
+      enabled: false
+    include-stacktrace: never
