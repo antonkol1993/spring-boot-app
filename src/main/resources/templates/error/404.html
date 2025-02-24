@@ -3,8 +3,54 @@
 <head>
     <meta charset="UTF-8">
     <title>Page Not Found</title>
+    <style>
+        /* Контейнер с рамкой */
+        .log-out-container {
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            gap: 10px;
+            border: 2px solid #ccc;
+            padding: 15px;
+            border-radius: 10px;
+            background-color: #f9f9f9;
+        }
+
+        /* Стиль для имени пользователя */
+        .user-name {
+            font-weight: bold;
+        }
+
+        /* Стиль для кнопки выхода */
+        .log-out-btn {
+            padding: 8px 15px;
+            background-color: #f44336; /* Красный */
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        /* Стиль для кнопки входа */
+        .login-btn {
+            padding: 8px 15px;
+            background-color: #2196F3; /* Синий */
+            color: white;
+            border: none;
+            border-radius: 5px;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        /* Стиль для отображения дополнительных данных */
+        .user-authorities {
+            font-weight: bold;
+        }
+
+    </style>
 </head>
 <body>
+<th:block th:replace="~{fragments/toLogin :: logOutWithoutBootstrap}"></th:block>
 <h2 th:text="${message}"></h2>
 <p>Скорей всего :)</p>
 <a href="/players">на players</a>
