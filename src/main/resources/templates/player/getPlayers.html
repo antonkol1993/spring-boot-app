@@ -138,19 +138,22 @@
         <td th:text="${player.id}"></td>
 
 
-        <td sec:authorize="hasRole('ADMIN') or hasRole('MANAGER')">
+        <td>
             <!-- Видно только для ADMIN -->
             <a class="delete_submit"
                style="color: darkred"
                href="#"
                th:href="@{'players/remove/{id}'(id=${player.id})}"
-            >Remove</a>
+               th:if="${#authorization.expression('hasRole(''ADMIN'')')}"
+               th:text="Remove"></a>
+
 
             <a class="edit_submit"
                style="color: lightcoral"
                href="#"
                th:href="@{'players/update/{id}'(id=${player.id})}"
-            >Update</a>
+               th:if="${#authorization.expression('hasRole(''ADMIN'')')}"
+               th:text="Update"></a>
         </td>
 
     </tr>

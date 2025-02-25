@@ -1,7 +1,7 @@
 package com.koleso.spring.config;
 
 import com.koleso.spring.controller.GlobalExceptionHandlerController;
-import com.koleso.spring.service.security.TeamUpdateAuthorizationManager;
+import com.koleso.spring.service.security.TeamAuthorizationManager;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -20,12 +20,12 @@ public class SecurityConfig {
 
     private final UserDetailsService userDetailsService;
     private final GlobalExceptionHandlerController globalExceptionHandlerController;
-    private final TeamUpdateAuthorizationManager teamUpdateAuthorizationManager;
+    private final TeamAuthorizationManager teamAuthorizationManager;
 
-    public SecurityConfig(UserDetailsService userDetailsService, GlobalExceptionHandlerController globalExceptionHandlerController, TeamUpdateAuthorizationManager teamUpdateAuthorizationManager) {
+    public SecurityConfig(UserDetailsService userDetailsService, GlobalExceptionHandlerController globalExceptionHandlerController, TeamAuthorizationManager teamAuthorizationManager) {
         this.userDetailsService = userDetailsService;
         this.globalExceptionHandlerController = globalExceptionHandlerController;
-        this.teamUpdateAuthorizationManager = teamUpdateAuthorizationManager;
+        this.teamAuthorizationManager = teamAuthorizationManager;
     }
 
     //     Конфигурация разрешений для URL через authorizeHttpRequests
@@ -33,17 +33,21 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
                 .authorizeHttpRequests(auth -> auth
-                                .requestMatchers("/admin/**").hasRole("ADMIN") // Доступ только для ADMIN
-                                .requestMatchers("/persons/**").hasRole("ADMIN") // Доступ только для ADMIN
-//                          .requestMatchers("/players/add").hasRole("MANAGER")
-                                .requestMatchers("/teams/", "/teams/get/{id}").permitAll()
-                                .requestMatchers("/teams/update/").access(teamUpdateAuthorizationManager) // Доступ только для своего менеджера
-                                .requestMatchers("/teams/remove/**").access(teamUpdateAuthorizationManager) // Доступ только для своего менеджера
-                                .requestMatchers("/teams/add").access(teamUpdateAuthorizationManager) // Доступ только для своего менеджера
+                        .requestMatchers("/admin/**").hasRole("ADMIN") // Доступ только для ADMIN
+                        .requestMatchers("/persons/**").hasRole("ADMIN") // Доступ только для ADMIN
+                        .requestMatchers("/players/", "/players/get/{id}").permitAll()
+                        .requestMatchers("/players/update/**").hasRole("ADMIN") // Доступ только для своего менеджера
+                        .requestMatchers("/players/remove/**").hasRole("ADMIN") // Доступ только для своего менеджера
+                        .requestMatchers("/players/add").hasRole("ADMIN") // Доступ только для своего менеджера
 
-                                .requestMatchers("/manager/**").hasRole("MANAGER") // Доступ только для MANAGER
-                                .requestMatchers("/user/**").hasRole("USER") // Доступ только для USER
-                                .anyRequest().permitAll() // Все остальные запросы для всех
+                        .requestMatchers("/teams/", "/teams/get/{id}").permitAll()
+                        .requestMatchers("/teams/update/**").access(teamAuthorizationManager) // Доступ только для своего менеджера
+                        .requestMatchers("/teams/remove/**").access(teamAuthorizationManager) // Доступ только для своего менеджера
+                        .requestMatchers("/teams/add").access(teamAuthorizationManager) // Доступ только для своего менеджера
+
+                        .requestMatchers("/manager/**").hasRole("MANAGER") // Доступ только для MANAGER
+                        .requestMatchers("/user/**").hasRole("USER") // Доступ только для USER
+                        .anyRequest().permitAll() // Все остальные запросы для всех
                 )
                 .formLogin(form -> form
                         .loginPage("/login") // Страница входа

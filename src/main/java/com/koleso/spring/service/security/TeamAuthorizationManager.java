@@ -10,7 +10,7 @@ import org.springframework.stereotype.Component;
 
 import java.util.function.Supplier;
 @Component
-public class TeamUpdateAuthorizationManager implements AuthorizationManager<RequestAuthorizationContext> {
+public class TeamAuthorizationManager implements AuthorizationManager<RequestAuthorizationContext> {
 
     @Override
     public AuthorizationDecision check(Supplier<Authentication> authentication, RequestAuthorizationContext context) {
