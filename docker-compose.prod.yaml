@@ -1,3 +1,5 @@
+version: "3.8"
+
 volumes:
   mysql-data: {}
 
@@ -6,18 +8,16 @@ services:
     image: maven:3.9.9-eclipse-temurin-21
     working_dir: /usr/src/app
     volumes:
-#      - $HOME/.m2:/root/.m2 todo:
       - .:/usr/src/app
     command: mvn clean install
 
   mysql:
     image: mysql:8.0
     restart: always
-    # set shared memory limit when using docker-compose
     shm_size: 128mb
     container_name: mysql_db
     ports:
-      - "3307:3306"
+      - "3306:3306"  # Для продакшн используем 3306
     environment:
       MYSQL_ROOT_PASSWORD: root
       MYSQL_DATABASE: spring_boot_database
@@ -29,10 +29,14 @@ services:
       context: .
       args:
         VERSION: 0.0.1-SNAPSHOT
-#      dockerfile: Dockerfile
+      dockerfile: Dockerfile
     ports:
-      - "8081:8080"
+      - "8080:8080" # Порт для продакшн
     environment:
       SPRING_DATASOURCE_URL: jdbc:mysql://mysql_db:3306/springboot?createDatabaseIfNotExist=true
       SPRING_DATASOURCE_USERNAME: root
       SPRING_DATASOURCE_PASSWORD: root
+    command: java -Dspring.profiles.active=prod -jar /opt/app/app.jar  # Используем профиль prod
+networks:
+  app_network:
+    driver: bridge

@@ -1,47 +1,38 @@
 spring:
-  mvc:
-    problem-details:
-      enabled: false
-  web:
-    resources:
-      add-mappings: false
-  application:
-    name: spring-boot-app
-    settings:
-      pageSize: 10
-  datasource:
-    driver-class-name: com.mysql.cj.jdbc.Driver
-#    url: jdbc:mysql://localhost:3307/springboot?createDatabaseIfNotExist=true
-    url: jdbc:mysql://localhost:3306/springboot?createDatabaseIfNotExist=true
-    username: root
-    password: root
-    hikari:
-      driver-class-name: com.mysql.cj.jdbc.Driver #${spring.datasource.driver-class-name}
-      jdbc-url: ${spring.datasource.url}
-      username: ${spring.datasource.username}
-      password: ${spring.datasource.password}
-  liquibase:
-    change-log: classpath:db/changelog/liquibase-changeLog.yaml
-  #    enabled: false
-  jpa:
-    properties:
-      hbm2ddl:
-        auto: validate
-      show_sql: true
-  thymeleaf:
-    cache: false
+  profiles:
+    active: prod # указываем, что активен профиль 'dev'.
+#    active: prod # указываем, что активен профиль 'prod'.
 
-logging:
-  level:
-    org:
-      springframework:
-        security: DEBUG
+#  mvc:
+#    problem-details:
+#      enabled: false
+#  web:
+#    resources:
+#      add-mappings: false
+#  application:
+#    name: spring-boot-app
+#    settings:
+#      pageSize: 10
+#  datasource:
+#    driver-class-name: com.mysql.cj.jdbc.Driver
+#    #    url: jdbc:mysql://localhost:3307/springboot?createDatabaseIfNotExist=true
+#    url: jdbc:mysql://localhost:3306/springboot?createDatabaseIfNotExist=true
+#    username: root
+#    password: root
+#    hikari:
+#      driver-class-name: com.mysql.cj.jdbc.Driver #${spring.datasource.driver-class-name}
+#      jdbc-url: ${spring.datasource.url}
+#      username: ${spring.datasource.username}
+#      password: ${spring.datasource.password}
+#  liquibase:
+#    change-log: classpath:db/changelog/liquibase-changeLog.yaml
+#  #    enabled: false
+#  jpa:
+#    properties:
+#      hbm2ddl:
+#        auto: validate
+#      show_sql: true
+#  thymeleaf:
+#    cache: false
+#
 
-server:
-  servlet:
-    session:
-      timeout: 15m
-  error:
-    whitelabel:
-      enabled: false
-    include-stacktrace: never
