@@ -12,10 +12,10 @@ services:
     command: mvn clean install
 
   mysql:
+    container_name: mysql_db
     image: mysql:8.0
     restart: always
     shm_size: 128mb
-    container_name: mysql_db
     ports:
       - "3307:3306"  # Для разработки используем 3307
     environment:
