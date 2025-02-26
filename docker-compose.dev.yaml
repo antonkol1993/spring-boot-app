@@ -1,10 +1,12 @@
 version: "3.8"
+name: spring_boot_app_dev
 
 volumes:
   mysql-data: {}
 
 services:
   build-mvn:
+    container_name: mvn_dev
     image: maven:3.9.9-eclipse-temurin-21
     working_dir: /usr/src/app
     volumes:
@@ -23,8 +25,19 @@ services:
       MYSQL_DATABASE: spring_boot_database
     volumes:
       - mysql-data:/var/lib/mysql
+    networks:
+      - app_network
+    healthcheck:                                                      # добавить в prod
+      test: [ "CMD", "mysqladmin", "ping", "-h", "localhost" ]
+      interval: 10s
+      timeout: 5s
+      retries: 3
 
   app:
+    depends_on:
+      mysql:
+        condition: service_healthy                                    # добавить в prod
+    container_name: app_dev
     build:
       context: .
       args:
@@ -33,7 +46,7 @@ services:
     ports:
       - "8081:8080" # Порт для разработки
     environment:
-      SPRING_DATASOURCE_URL: jdbc:mysql://mysql_db:3306/springboot?createDatabaseIfNotExist=true
+      SPRING_DATASOURCE_URL: jdbc:mysql://localhost:3306/springboot?createDatabaseIfNotExist=true
       SPRING_DATASOURCE_USERNAME: root
       SPRING_DATASOURCE_PASSWORD: root
     command: java -Dspring.profiles.active=dev -jar /opt/app/app.jar  # Используем профиль dev

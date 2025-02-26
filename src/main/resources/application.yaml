@@ -1,6 +1,6 @@
 spring:
   profiles:
-    active: prod # указываем, что активен профиль 'dev'.
+    active: dev # указываем, что активен профиль 'dev'.
 #    active: prod # указываем, что активен профиль 'prod'.
 
 #  mvc:

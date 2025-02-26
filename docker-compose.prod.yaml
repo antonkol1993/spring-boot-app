@@ -1,4 +1,5 @@
 version: "3.8"
+name: spring_boot_app_prod
 
 volumes:
   mysql-data: {}
@@ -23,6 +24,8 @@ services:
       MYSQL_DATABASE: spring_boot_database
     volumes:
       - mysql-data:/var/lib/mysql
+    networks:
+      - app_network
 
   app:
     build:
@@ -33,7 +36,7 @@ services:
     ports:
       - "8080:8080" # Порт для продакшн
     environment:
-      SPRING_DATASOURCE_URL: jdbc:mysql://mysql_db:3306/springboot?createDatabaseIfNotExist=true
+      SPRING_DATASOURCE_URL: jdbc:mysql://localhost:3306/springboot?createDatabaseIfNotExist=true
       SPRING_DATASOURCE_USERNAME: root
       SPRING_DATASOURCE_PASSWORD: root
     command: java -Dspring.profiles.active=prod -jar /opt/app/app.jar  # Используем профиль prod
