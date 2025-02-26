@@ -46,7 +46,7 @@ services:
     ports:
       - "8081:8080" # Порт для разработки
     environment:
-      SPRING_DATASOURCE_URL: jdbc:mysql://localhost:3306/springboot?createDatabaseIfNotExist=true
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql_db:3306/springboot?createDatabaseIfNotExist=true
       SPRING_DATASOURCE_USERNAME: root
       SPRING_DATASOURCE_PASSWORD: root
     command: java -Dspring.profiles.active=dev -jar /opt/app/app.jar  # Используем профиль dev

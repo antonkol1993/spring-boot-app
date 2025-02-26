@@ -1,40 +1,40 @@
-server:
-  port: 8080
-  servlet:
-    session:
-      timeout: 15m
-      cookie:
-        name: JSESSIONID_PROD
-
-spring:
-  datasource:
-    url: jdbc:mysql://localhost:3306/springboot?createDatabaseIfNotExist=true
-    username: root
-    password: root
-    hikari:
-      driver-class-name: com.mysql.cj.jdbc.Driver
-      jdbc-url: ${spring.datasource.url}
-      username: ${spring.datasource.username}
-      password: ${spring.datasource.password}
-
-  jpa:
-    properties:
-      hbm2ddl:
-        auto: validate  # В продакшн обычно используется 'validate', чтобы только проверять схему базы данных
-      show_sql: false
-
-  liquibase:
-    change-log: classpath:db/changelog/liquibase-changeLog.yaml
-    enabled: true  # В продакшн обычно используем Liquibase для миграции базы данных
-
-  application:
-    settings:
-      pageSize: 10
-
-logging:
-  level:
-    org:
-      springframework:
-        security: WARN
-  console:
-    encoding: UTF-8
+#server:
+#  port: 8080
+#  servlet:
+#    session:
+#      timeout: 15m
+#      cookie:
+#        name: JSESSIONID_PROD
+#
+#spring:
+#  datasource:
+#    url: jdbc:mysql://localhost:3306/springboot?createDatabaseIfNotExist=true
+#    username: root
+#    password: root
+#    hikari:
+#      driver-class-name: com.mysql.cj.jdbc.Driver
+#      jdbc-url: ${spring.datasource.url}
+#      username: ${spring.datasource.username}
+#      password: ${spring.datasource.password}
+#
+#  jpa:
+#    properties:
+#      hbm2ddl:
+#        auto: validate  # В продакшн обычно используется 'validate', чтобы только проверять схему базы данных
+#      show_sql: false
+#
+#  liquibase:
+#    change-log: classpath:db/changelog/liquibase-changeLog.yaml
+#    enabled: true  # В продакшн обычно используем Liquibase для миграции базы данных
+#
+#  application:
+#    settings:
+#      pageSize: 10
+#
+#logging:
+#  level:
+#    org:
+#      springframework:
+#        security: WARN
+#  console:
+#    encoding: UTF-8

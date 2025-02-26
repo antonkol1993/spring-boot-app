@@ -1,45 +1,45 @@
-version: "3.8"
-name: spring_boot_app_prod
-
-volumes:
-  mysql-data: {}
-
-services:
-  build-mvn:
-    image: maven:3.9.9-eclipse-temurin-21
-    working_dir: /usr/src/app
-    volumes:
-      - .:/usr/src/app
-    command: mvn clean install
-
-  mysql:
-    container_name: mysql_db
-    image: mysql:8.0
-    restart: always
-    shm_size: 128mb
-    ports:
-      - "3306:3306"  # Для продакшн используем 3306
-    environment:
-      MYSQL_ROOT_PASSWORD: root
-      MYSQL_DATABASE: spring_boot_database
-    volumes:
-      - mysql-data:/var/lib/mysql
-    networks:
-      - app_network
-
-  app:
-    build:
-      context: .
-      args:
-        VERSION: 0.0.1-SNAPSHOT
-      dockerfile: Dockerfile
-    ports:
-      - "8080:8080" # Порт для продакшн
-    environment:
-      SPRING_DATASOURCE_URL: jdbc:mysql://localhost:3306/springboot?createDatabaseIfNotExist=true
-      SPRING_DATASOURCE_USERNAME: root
-      SPRING_DATASOURCE_PASSWORD: root
-    command: java -Dspring.profiles.active=prod -jar /opt/app/app.jar  # Используем профиль prod
-networks:
-  app_network:
-    driver: bridge
+#version: "3.8"
+#name: spring_boot_app_prod
+#
+#volumes:
+#  mysql-data: {}
+#
+#services:
+#  build-mvn:
+#    image: maven:3.9.9-eclipse-temurin-21
+#    working_dir: /usr/src/app
+#    volumes:
+#      - .:/usr/src/app
+#    command: mvn clean install
+#
+#  mysql:
+#    container_name: mysql_db
+#    image: mysql:8.0
+#    restart: always
+#    shm_size: 128mb
+#    ports:
+#      - "3306:3306"  # Для продакшн используем 3306
+#    environment:
+#      MYSQL_ROOT_PASSWORD: root
+#      MYSQL_DATABASE: spring_boot_database
+#    volumes:
+#      - mysql-data:/var/lib/mysql
+#    networks:
+#      - app_network
+#
+#  app:
+#    build:
+#      context: .
+#      args:
+#        VERSION: 0.0.1-SNAPSHOT
+#      dockerfile: Dockerfile
+#    ports:
+#      - "8080:8080" # Порт для продакшн
+#    environment:
+#      SPRING_DATASOURCE_URL: jdbc:mysql://localhost:3306/springboot?createDatabaseIfNotExist=true
+#      SPRING_DATASOURCE_USERNAME: root
+#      SPRING_DATASOURCE_PASSWORD: root
+#    command: java -Dspring.profiles.active=prod -jar /opt/app/app.jar  # Используем профиль prod
+#networks:
+#  app_network:
+#    driver: bridge

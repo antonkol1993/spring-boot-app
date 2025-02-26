@@ -7,4 +7,4 @@ COPY target/spring-boot-app-${VERSION}.jar /opt/app/app.jar
 
 
 EXPOSE 8080
-ENTRYPOINT ["java", "-jar", "/opt/app/app.jar"]
+#ENTRYPOINT ["java", "-jar", "/opt/app/app.jar"]
