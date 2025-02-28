@@ -5,26 +5,23 @@ server:
       timeout: 15m
       cookie:
         name: JSESSIONID_LOCALE
+
 spring:
   datasource:
-    url: jdbc:mysql://localhost:3306/springboot?createDatabaseIfNotExist=true
+    url: jdbc:mysql://localhost:3307/springboot?createDatabaseIfNotExist=true
     username: root
     password: root
     hikari:
       driver-class-name: com.mysql.cj.jdbc.Driver
-      jdbc-url: ${spring.datasource.url}
-      username: ${spring.datasource.username}
-      password: ${spring.datasource.password}
+  application:
+    settings:
+      pageSize: 10
 
     logging:
       level:
         org:
           springframework:
             security: INFO
-
-  application:
-    settings:
-      pageSize: 10
   jpa:
     properties:
       hbm2ddl:
@@ -33,12 +30,3 @@ spring:
   liquibase:
     change-log: classpath:db/changelog/liquibase-changeLog.yaml
     enabled: true
-
-logging:
-  level:
-    org:
-      springframework:
-        security: DEBUG
-
-  console:
-    encoding: UTF-8
