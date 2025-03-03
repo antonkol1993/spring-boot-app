@@ -28,6 +28,14 @@ public class GlobalExceptionHandlerController {
         return modelAndView;
     }
 
+    //Универсальный обработчик
+    @ExceptionHandler(Exception.class)
+    public ModelAndView handleGlobalError(HttpServletRequest request, Exception ex) {
+        ModelAndView modelAndView = new ModelAndView("error/otherError");
+        modelAndView.setStatus(HttpStatus.INTERNAL_SERVER_ERROR);
+        modelAndView.addObject("message", "Универсальная ошибка: " + ex.getMessage());
+        return modelAndView;
+    }
 
 //    // Обработчик
 //    @ExceptionHandler(Exception.class)
