@@ -27,4 +27,15 @@ public class GlobalExceptionHandlerController {
         modelAndView.addObject("message", "Тебе сюды нельзиа: " + request.getRequestURI());
         return modelAndView;
     }
+
+
+//    // Обработчик
+//    @ExceptionHandler(Exception.class)
+//    public ModelAndView handle(HttpServletRequest request, Exception ex) {
+//        ModelAndView modelAndView = new ModelAndView("error/404"); // путь к кастомной странице
+//        modelAndView.setStatus(HttpStatus.NOT_FOUND);
+//        modelAndView.addObject("message", "что-то пошло не так: " + request.getRequestURI());
+//        return modelAndView;
+//    }
+
 }

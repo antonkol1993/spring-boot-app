@@ -3,12 +3,12 @@ server:
   servlet:
     session:
       timeout: 15m
-      cookie:
-        name: JSESSIONID_TWO
+#      cookie:
+#        name: JSESSIONID_TWO
 
 spring:
   datasource:
-    url: jdbc:mysql://mysql:3306/springboot?createDatabaseIfNotExist=true
+    url: jdbc:mysql://mysql_shared:3306/springboot?createDatabaseIfNotExist=true
     username: root
     password: root
     hikari:

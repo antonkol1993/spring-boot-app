@@ -3,8 +3,8 @@ server:
   servlet:
     session:
       timeout: 15m
-      cookie:
-        name: JSESSIONID_LOCALE
+#      cookie:
+#        name: JSESSIONID_LOCALE
 
 spring:
   datasource:

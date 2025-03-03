@@ -1,4 +1,3 @@
-version: "3.8"
 
 services:
   mysql:
@@ -19,14 +18,14 @@ services:
       args:
         VERSION: 0.0.1-SNAPSHOT
     container_name: springboot_app_one
-    restart: always
+#    restart: always
     depends_on:
       - mysql
     environment:
       SPRING_PROFILES_ACTIVE: docker-one  # Активируем профиль "docker-one"
       SERVER_PORT: 8080
-      MYSQL_HOST: mysql
-      MYSQL_PORT: 3306
+#      MYSQL_HOST: mysql
+#      MYSQL_PORT: 3306
     ports:
       - "8080:8080"
 
@@ -36,14 +35,14 @@ services:
       args:
         VERSION: 0.0.1-SNAPSHOT
     container_name: springboot_app_two
-    restart: always
+#    restart: always
     depends_on:
       - mysql
     environment:
       SPRING_PROFILES_ACTIVE: docker-two  # Активируем профиль "docker-two"
       SERVER_PORT: 8080
-      MYSQL_HOST: mysql
-      MYSQL_PORT: 3306
+#      MYSQL_HOST: mysql
+#      MYSQL_PORT: 3306
     ports:
       - "8081:8080"
 
