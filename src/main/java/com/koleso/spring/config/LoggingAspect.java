@@ -1,6 +1,7 @@
 package com.koleso.spring.config;
 
 import org.aspectj.lang.JoinPoint;
+import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -29,4 +30,15 @@ public class LoggingAspect {
     public void logAfterThrowing(JoinPoint joinPoint, Throwable exception) {
         logger.error("Method {} throws an exception: {}", joinPoint.getSignature().toShortString(), exception.getMessage());
     }
+
+    @Around("execution(* com.koleso.spring..*(..))")
+    public Object logExecutionTime(ProceedingJoinPoint joinPoint) throws Throwable {
+        long start = System.currentTimeMillis();
+        Object result = joinPoint.proceed();
+        long elapsedTime = System.currentTimeMillis() - start;
+
+        logger.info("Method {} executed in {} ms", joinPoint.getSignature().toShortString(), elapsedTime);
+        return result;
+    }
+
 }
