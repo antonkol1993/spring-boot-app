@@ -33,12 +33,18 @@ public class LoggingAspect {
 
     @Around("execution(* com.koleso.spring..*(..))")
     public Object logExecutionTime(ProceedingJoinPoint joinPoint) throws Throwable {
-            long start = System.currentTimeMillis();
+        long start = System.currentTimeMillis();
+        try {
             Object result = joinPoint.proceed();
             long elapsedTime = System.currentTimeMillis() - start;
-
             logger.info("Method {} executed in {} ms", joinPoint.getSignature().toShortString(), elapsedTime);
             return result;
+        } catch (Throwable ex) {
+            long elapsedTime = System.currentTimeMillis() - start;
+            logger.error("Method {} failed after {} ms with exception: {}",
+                    joinPoint.getSignature().toShortString(), elapsedTime, ex.getMessage(), ex);
+            throw ex;
+        }
     }
 
 }
