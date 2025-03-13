@@ -5,14 +5,15 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.NoHandlerFoundException;
 import org.springframework.web.servlet.resource.NoResourceFoundException;
 
 @ControllerAdvice
 public class GlobalExceptionHandlerController {
 
     // Обработчик 404 Not Found
-    @ExceptionHandler(NoResourceFoundException.class)
-    public ModelAndView handleNotFound404(HttpServletRequest request, NoResourceFoundException ex) {
+    @ExceptionHandler(NoHandlerFoundException.class)
+    public ModelAndView handleNotFound404(HttpServletRequest request, NoHandlerFoundException ex) {
         ModelAndView modelAndView = new ModelAndView("error/404"); // путь к кастомной странице
         modelAndView.setStatus(HttpStatus.NOT_FOUND);
         modelAndView.addObject("message", "Куда-то не туда: " + request.getRequestURI());
